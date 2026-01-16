@@ -4,59 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tyler Eno | Industrial Systems Architect</title>
-    <style>
-        body { font-family: 'Courier New', Courier, monospace; background-color: #ffffff; color: #111111; line-height: 1.6; padding: 2rem; max-width: 800px; margin: 0 auto; }
-        h1 { font-family: Helvetica, Arial, sans-serif; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.2rem; }
-        h2 { font-family: Helvetica, Arial, sans-serif; font-size: 1.1rem; color: #555; margin-top: 0; font-weight: 400; }
-        h3 { border-bottom: 2px solid #111; padding-bottom: 5px; margin-top: 2rem; font-family: Helvetica, Arial, sans-serif; }
-        .tagline { font-style: italic; color: #444; margin-bottom: 2rem; display: block; }
-        .btn { display: inline-block; background: #111; color: #fff; padding: 8px 12px; text-decoration: none; font-weight: bold; margin-right: 10px; font-size: 0.9rem; }
-        .btn:hover { background: #444; }
-        a { color: #111; text-decoration: underline; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="operations.html">OPERATIONS</a></li>
+            <li><a href="ventures.html">VENTURES</a></li>
+            <li><a href="journal.html">LOGS</a></li>
+        </ul>
+    </nav>
 
-    <header>
+    <header class="hero">
         <h1>TYLER ENO</h1>
         <h2>INDUSTRIAL SYSTEMS ARCHITECT</h2>
-        <span class="tagline">Sovereign Operational Technology for DDIL Environments</span>
+        <span class="tagline">Status: <span class="status-indicator"></span> LIVE TELEMETRY</span>
     </header>
 
-    <section id="about">
-        <h3>ABOUT</h3>
-        <p>Tyler Eno is a systems architect specializing in sovereign infrastructure for disconnected and hostile environments. He is the lead developer of ARK, an autonomous server kernel designed to maintain operational continuity in mining, aerospace, and tactical edge scenarios.</p>
+    <div class="trust-bar">
+        <span>EVgo</span> | <span>Burning Man Project</span> | <span>Sun-Wave</span> | <span>West Valley College (MESA)</span>
+    </div>
+
+    <section class="container">
+        <div class="abstract">
+            <p>I bridge the gap between heavy infrastructure and digital intelligence. With a background in national EV charging networks (EVgo) and temporary critical infrastructure (Burning Man), I engineer the nervous systems that keep physical assets online. From lithium extraction in Arkansas to artisan manufacturing, I build systems that survive the elements.</p>
+        </div>
     </section>
 
-    <section id="projects">
-        <h3>PROJECTS</h3>
-        <p><strong>ARK: Autonomous Resilient Kernel</strong><br>
-        A field-validated, autonomous infrastructure stack that ensures 100% data retention and self-healing during power and network failure. Validated via Mobile Node Alpha.</p>
-        
-        <p style="margin-top: 15px;">
+    <section class="container">
+        <h3>QUICK ACCESS</h3>
+        <p>
             <a href="ARK-CONOPS.pdf" class="btn" target="_blank">READ CONOPS (PDF)</a>
             <a href="https://github.com/Tylereno/ark-node" class="btn" target="_blank">VIEW GITHUB</a>
-            <!-- TODO: Replace # with your Datadog public dashboard URL once created -->
-            <!-- Example: https://app.datadoghq.com/dashboard/public/xxxxx -->
-            <a href="#" class="btn" target="_blank" id="telemetry-link" style="opacity: 0.6; cursor: not-allowed; pointer-events: none;" title="Dashboard URL pending - update href and remove style attribute to activate">LIVE TELEMETRY</a>
-        </p>
-        <p style="font-size: 0.85rem; color: #666; margin-top: 8px; font-style: italic;">
-            Real-time system metrics from Mobile Node Alpha
         </p>
     </section>
 
-    <section id="contact">
-        <h3>CONTACT</h3>
-        <p>For industrial partnerships and research inquiries:</p>
-        <p>
-            Email: <a href="mailto:t.eno992@gmail.com">t.eno992@gmail.com</a><br>
-            Network: <a href="https://linkedin.com/in/tyler-eno" target="_blank">LinkedIn</a>
+    <footer>
+        <p>&copy; 2026 Tyler Eno. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">
+            Email: <a href="mailto:t.eno992@gmail.com">t.eno992@gmail.com</a> | 
+            <a href="https://linkedin.com/in/tyler-eno" target="_blank">LinkedIn</a>
         </p>
-    </section>
-
-    <footer style="margin-top: 4rem; font-size: 0.8rem; color: #666; border-top: 1px solid #eee; padding-top: 1rem;">
-        &copy; 2026 Tyler Eno. All rights reserved.
     </footer>
-
 </body>
 </html>
