@@ -180,9 +180,8 @@ ARK represents a shift from "Connected Industrial IoT" to **"Sovereign Industria
 ## 8.0 CONTACT
 
 **Project Lead:** Tyler Eno  
-**Email:** [Your contact]  
-**Repository:** [GitHub URL]  
-**Documentation:** [Docs URL]
+**Email:** t.eno992@gmail.com  
+**Repository:** https://github.com/Tylereno
 
 ---
 
