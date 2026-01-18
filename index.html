@@ -95,10 +95,11 @@
             <div class="mermaid">
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#000000', 'lineColor': '#000000', 'secondaryColor': '#f5f5f5', 'tertiaryColor': '#ffffff', 'background': '#fafafa', 'mainBkg': '#ffffff', 'secondBkg': '#f5f5f5', 'textColor': '#000000'}}}%%
 graph TB
-    %% Define styles to force white background and black borders
+    %% Define styles
     classDef hardware fill:#ffffff,stroke:#000000,stroke-width:2px,color:#000000
     classDef logic fill:#f5f5f5,stroke:#000000,stroke-width:1px,stroke-dasharray: 5 5,color:#000000
     classDef storage fill:#ffffff,stroke:#000000,stroke-width:2px,color:#000000
+    classDef cognitive fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000000
 
     subgraph Power_Layer["POWER & ENERGY"]
         direction TB
@@ -125,6 +126,25 @@ graph TB
         Orch --> APP4[Monitoring Stack]
     end
 
+    subgraph Cognitive_Core["COGNITIVE CORE"]
+        direction TB
+        Orch --> Ollama[Ollama Inference Engine]
+        Ollama --> Model1[granite4:3b]
+        Ollama --> Model2[qwen2.5:3b]
+        Ollama --> Embed[nomic-embed-text]
+        Model1 --> CrewAI[CrewAI Orchestrator]
+        Model2 --> CrewAI
+        Embed --> VectorMem[Vector Memory<br/>ChromaDB]
+        VectorMem --> CrewAI
+        CrewAI --> Agent1[SysAdmin Agent]
+        CrewAI --> Agent2[Strategist Agent]
+        CrewAI --> Agent3[Writer Agent]
+        CrewAI --> Agent4[Editor Agent]
+        Agent1 --> DockerSock[Docker Socket]
+        Agent2 --> SerperAPI[SerperDev API]
+        Agent2 --> Internet[Internet]
+    end
+
     subgraph Storage_Layer["ATOMIC STORAGE"]
         direction TB
         NVMe[NVMe RAID 1]
@@ -132,8 +152,18 @@ graph TB
         APP1 --> NVMe
         APP2 --> NVMe
         APP3 --> NVMe
+        CrewAI --> RunHistory[Run History]
+        RunHistory --> NVMe
         NVMe --> Log
         Log --> BUFFER[Store & Forward Buffer]
+    end
+
+    subgraph Mission_Control["MISSION CONTROL"]
+        direction TB
+        CrewAI --> Status[Status]
+        Status --> FastAPI[FastAPI Backend<br/>Port 8085]
+        FastAPI --> NextJS[Next.js Dashboard<br/>Port 3003]
+        NextJS --> Operator[Operator]
     end
 
     subgraph Network_Layer["MESH & TRANSPORT"]
@@ -143,11 +173,15 @@ graph TB
         BUFFER --> Mesh
         APP4 --> Mesh
         Host --> Telem
+        NextJS --> RemoteAccess[Remote Access]
+        RemoteAccess --> Mesh
     end
 
     subgraph Observability["OBSERVABILITY"]
         APP4 --> DATADOG[Datadog Metrics]
         APP4 --> SENTRY[Sentry Error Tracking]
+        FastAPI --> HealthStatus[Health Status]
+        HealthStatus --> DATADOG
         Mesh --> REMOTE[Remote Access]
     end
 
@@ -160,9 +194,10 @@ graph TB
     class Orch,APP1,APP2,APP3,APP4,Mesh,Telem logic
     class Log,BUFFER storage
     class DATADOG,SENTRY,REMOTE,VOLT logic
+    class Ollama,Model1,Model2,Embed,CrewAI,VectorMem,Agent1,Agent2,Agent3,Agent4,DockerSock,SerperAPI,Internet,Status,FastAPI,NextJS,Operator,RunHistory,HealthStatus,RemoteAccess cognitive
             </div>
         </div>
-        <p style="font-size: 0.85rem; color: var(--gray); margin-top: 1rem; text-align: center;">Autonomous infrastructure stack for DDIL environments. Hardware watchdog architecture with power-aware orchestration and 100% data retention.</p>
+        <p style="font-size: 0.85rem; color: var(--gray); margin-top: 1rem; text-align: center;">Autonomous infrastructure stack for DDIL environments with Cognitive AI layer. Hardware watchdog architecture with power-aware orchestration, 100% data retention, and autonomous AI agent workforce.</p>
     </section>
 
     <section class="container">
