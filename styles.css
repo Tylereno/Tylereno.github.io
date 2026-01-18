@@ -639,4 +639,19 @@ a:hover {
     .case-study {
         padding: 1rem;
     }
+    
+    .meta-block {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .dossier-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .specs-grid {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+    }
 }
