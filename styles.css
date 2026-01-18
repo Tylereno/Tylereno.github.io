@@ -147,19 +147,21 @@ p {
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 3rem auto;
-    padding: 2rem 0;
+    padding: 2rem 1rem;
     border-top: 2px solid #000;
     border-bottom: 2px solid #000;
+    flex-wrap: wrap;
 }
 
 /* INDIVIDUAL ITEMS */
 .trust-item {
     flex: 1;
+    min-width: 200px;
     display: flex;
     flex-direction: column;
-    padding: 0 1rem;
+    padding: 0 0.75rem;
 }
 
 /* TYPOGRAPHY */

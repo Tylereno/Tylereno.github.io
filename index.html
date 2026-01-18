@@ -52,17 +52,33 @@
         <div class="trust-divider"></div>
 
         <div class="trust-item">
-            <span class="trust-org">SUN-WAVE</span>
-            <span class="trust-role">SYSTEMS ARCHITECT</span>
-            <span class="trust-context">EXPEDITION VEHICLE POWER</span>
+            <span class="trust-org">ARK-NODE</span>
+            <span class="trust-role">LEAD DEVELOPER</span>
+            <span class="trust-context">AUTONOMOUS INFRASTRUCTURE</span>
         </div>
 
         <div class="trust-divider"></div>
 
         <div class="trust-item">
-            <span class="trust-org">BLACK ROCK CITY</span>
+            <span class="trust-org">CRITICAL INFRASTRUCTURE</span>
             <span class="trust-role">POWER LOGISTICS</span>
+            <span class="trust-context">LARGE-SCALE TEMPORARY OPS</span>
+        </div>
+
+        <div class="trust-divider"></div>
+
+        <div class="trust-item">
+            <span class="trust-org">OFF-GRID SOLAR SUPPLY</span>
+            <span class="trust-role">SYSTEMS ENGINEER</span>
             <span class="trust-context">SOLAR TRAILER DEPLOYMENT</span>
+        </div>
+
+        <div class="trust-divider"></div>
+
+        <div class="trust-item">
+            <span class="trust-org">SUN-WAVE</span>
+            <span class="trust-role">SYSTEMS ARCHITECT</span>
+            <span class="trust-context">EXPEDITION RV POWER</span>
         </div>
     </div>
 
@@ -77,42 +93,73 @@
         <div class="diagram-container">
             <div class="diagram-label">// SYSTEM_SCHEMATIC_V2.0</div>
             <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryBorderColor': '#000000', 'lineColor': '#000000', 'tertiaryColor': '#ffffff'}}}%%
-graph TD
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#000000', 'lineColor': '#000000', 'secondaryColor': '#f5f5f5', 'tertiaryColor': '#ffffff', 'background': '#fafafa', 'mainBkg': '#ffffff', 'secondBkg': '#f5f5f5', 'textColor': '#000000'}}}%%
+graph TB
     %% Define styles to force white background and black borders
-    classDef hardware fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    classDef logic fill:#f4f4f4,stroke:#000,stroke-width:1px,stroke-dasharray: 5 5,color:#000
+    classDef hardware fill:#ffffff,stroke:#000000,stroke-width:2px,color:#000000
+    classDef logic fill:#f5f5f5,stroke:#000000,stroke-width:1px,stroke-dasharray: 5 5,color:#000000
+    classDef storage fill:#ffffff,stroke:#000000,stroke-width:2px,color:#000000
 
     subgraph Power_Layer["POWER & ENERGY"]
         direction TB
         Solar[Solar Array 2kW] --> CC[Charge Controller]
-        Grid[Grid Power] --> CC
-        CC --> LiFePO4[LiFePO4 Battery]
-        LiFePO4 --> PSU[Server PSU]
+        Grid[Grid / Shore Power] --> CC
+        CC --> LiFePO4[LiFePO4 Battery Bank]
+        LiFePO4 --> PSU[Server PSU & Buck Converters]
     end
 
-    subgraph Compute_Stack["COMPUTE & RECOVERY"]
+    subgraph Resilience_Layer["AUTONOMOUS RECOVERY"]
+        Watchdog[Hardware Watchdog] -->|Hard Reset| Host
+        UPS[UPS Backup] --> Host
+        VOLT[Voltage Sensors] --> Orch
+    end
+
+    subgraph Compute_Layer["COMPUTE KERNEL"]
         direction TB
-        Watchdog[Watchdog Timer] -.->|Reset| Host[Linux Docker Host]
-        PSU ==> Host
-        Host --> Orch[Docker Orchestration]
+        Host[Linux Docker Host]
+        Orch[Docker Orchestration]
+        Host --> Orch
+        Orch --> APP1[Data Logger]
+        Orch --> APP2[Telemetry Forwarder]
+        Orch --> APP3[Safety Controllers]
+        Orch --> APP4[Monitoring Stack]
     end
 
-    subgraph Data_Pipe["DATA & STORAGE"]
+    subgraph Storage_Layer["ATOMIC STORAGE"]
         direction TB
-        Orch --> NVMe[NVMe Storage]
-        Orch --> Telem[Telemetry]
+        NVMe[NVMe RAID 1]
+        Log[Immutable Logs]
+        APP1 --> NVMe
+        APP2 --> NVMe
+        APP3 --> NVMe
+        NVMe --> Log
+        Log --> BUFFER[Store & Forward Buffer]
     end
 
-    subgraph Comms["NETWORK MESH"]
+    subgraph Network_Layer["MESH & TRANSPORT"]
         direction TB
-        Telem --> Mesh[Zero-Trust Mesh]
-        NVMe --> Mesh
+        Mesh[Zero-Trust Mesh / VPN]
+        Telem[LoRa Telemetry]
+        BUFFER --> Mesh
+        APP4 --> Mesh
+        Host --> Telem
     end
 
-    %% Styles
-    class Solar,Grid,CC,LiFePO4,PSU,Host,NVMe,Watchdog hardware
-    class Orch,Telem,Mesh logic
+    subgraph Observability["OBSERVABILITY"]
+        APP4 --> DATADOG[Datadog Metrics]
+        APP4 --> SENTRY[Sentry Error Tracking]
+        Mesh --> REMOTE[Remote Access]
+    end
+
+    %% Inter-layer connections
+    PSU ==> Host
+    Watchdog -.->|Heartbeat| Orch
+
+    %% Styling
+    class Solar,Grid,CC,LiFePO4,PSU,Host,NVMe,Watchdog,UPS hardware
+    class Orch,APP1,APP2,APP3,APP4,Mesh,Telem logic
+    class Log,BUFFER storage
+    class DATADOG,SENTRY,REMOTE,VOLT logic
             </div>
         </div>
         <p style="font-size: 0.85rem; color: var(--gray); margin-top: 1rem; text-align: center;">Autonomous infrastructure stack for DDIL environments. Hardware watchdog architecture with power-aware orchestration and 100% data retention.</p>
