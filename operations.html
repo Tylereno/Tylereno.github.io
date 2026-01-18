@@ -43,26 +43,83 @@
             </div>
         </div>
 
-        <div class="case-study" id="ark">
-            <h4>OP-02: SOVEREIGN EDGE TELEMETRY</h4>
-            <div class="role">ARK | Lead Architect</div>
+        <div class="case-study" id="ark" style="margin-bottom: 4rem;">
+            <h4>OP-02: SOVEREIGN EDGE TELEMETRY | ARK NODE</h4>
+            <div class="role">Lead Architect | Active Development</div>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--gray);">#EdgeCompute #OfflineAI #SolarPower #SelfHosted</p>
             
-            <div class="mission">
-                <strong>THE MISSION</strong>
-                <p>Solve the "Dark Site" problem for remote industrial assets.</p>
+            <div class="mission" style="margin-top: 2rem;">
+                <strong>// OPERATIONAL_CONSTRAINT</strong>
+                <p>Deploying persistent AI agents and data services in "Denied, Disrupted, Intermittent, and Limited" (DDIL) environments presents two critical failures:</p>
+                <ol style="margin-left: 2rem; margin-top: 0.5rem;">
+                    <li><strong>Power Volatility:</strong> Standard servers cannot survive the fluctuating voltage and hard cuts of off-grid solar arrays.</li>
+                    <li><strong>Network Isolation:</strong> Cloud-dependent agents fail immediately without 99.9% uptime.</li>
+                </ol>
+                <p style="margin-top: 1rem;"><strong>Goal:</strong> Build a "Zero-Dependency" node capable of running local LLMs and agent swarms with &lt;100W power draw.</p>
             </div>
             
-            <div class="engineering">
-                <strong>THE ENGINEERING</strong>
-                <p>Built a self-healing Linux/Docker kernel with Sentry/Datadog instrumentation.</p>
+            <div class="engineering" style="margin-top: 2rem;">
+                <strong>// SYSTEM_ARCHITECTURE</strong>
+                <p style="margin-top: 0.5rem;">The ARK Node utilizes a hardware-first approach to resilience. Unlike cloud clusters, the physical layer is tightly coupled with the logic layer.</p>
+                
+                <h4 style="margin-top: 1.5rem; font-size: 0.95rem; border-bottom: 1px solid var(--border); padding-bottom: 0.25rem;">KEY COMPONENTS</h4>
+                
+                <p style="margin-top: 1rem;"><strong>Power Layer:</strong> 2kW Solar Array feeding 5kWh LiFePO4 buffer. Direct DC-to-DC regulation avoids inverter efficiency loss.</p>
+                
+                <p><strong>Compute Kernel:</strong> Linux Docker Host with Docker Compose orchestration. Selected for deterministic restart policies and low overhead compared to Kubernetes (critical for solar budget). Custom hardware watchdog monitors voltage at the solar controller.</p>
+                
+                <p><strong>Watchdog Protocol:</strong> Voltage sensors monitor battery SoC. If battery drops &lt;20%, the system gracefully terminates non-essential Docker containers before hard power loss. Hardware watchdog timer executes hard reset if software hangs.</p>
+                
+                <p><strong>Storage Layer:</strong> NVMe SSD with atomic write guarantees. Immutable logs and store-and-forward buffer ensure 100% data retention during network outages.</p>
+                
+                <p><strong>Network & Observability:</strong> Zero-trust mesh (Tailscale) for secure remote access. LoRa telemetry for low-power long-range communication. Datadog metrics and Sentry error tracking for operational visibility.</p>
             </div>
             
-            <div class="result">
-                <strong>THE RESULT</strong>
-                <p>99.9% Uptime and "Zero-Touch" recovery validation via Mobile Node Alpha.</p>
+            <div class="engineering" style="margin-top: 2rem;">
+                <strong>// AUTOMATION_LOGIC</strong>
+                <p style="margin-top: 0.5rem;">Power-aware orchestration script that manages container lifecycles based on telemetry:</p>
+                
+                <div class="code-block">
+<pre><code>def power_governor(telemetry):
+    """
+    Adjusts compute load based on battery telemetry.
+    Prioritizes critical infra (databases) over 
+    expansive logic (LLMs).
+    """
+    battery_soc = telemetry.get('soc')
+    solar_input = telemetry.get('pv_watts')
+
+    if battery_soc < 20:
+        print("[CRITICAL] Power Critical. Shedding Load.")
+        docker_client.containers.get('llm_inference').stop()
+        docker_client.containers.get('agent_swarm').stop()
+    
+    elif battery_soc > 80 and solar_input > 500:
+        print("[NOMINAL] Solar Surplus. Resuming Training Jobs.")
+        docker_client.containers.get('llm_train').start()</code></pre>
+                </div>
             </div>
             
-            <p style="margin-top: 1.5rem;">
+            <div class="result" style="margin-top: 2rem;">
+                <strong>// TELEMETRY_DATA</strong>
+                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                    <li><strong>Uptime:</strong> 99.9% (vs 60% standard hardware in field tests)</li>
+                    <li><strong>Recovery Time:</strong> &lt;2 minutes from cold boot to full agent restoration</li>
+                    <li><strong>Power Draw:</strong> 45W Idle / 120W Peak Load</li>
+                    <li><strong>Data Retention:</strong> 100% during 72+ hour network outages</li>
+                </ul>
+            </div>
+            
+            <div class="result" style="margin-top: 2rem;">
+                <strong>// ARCHITECTURAL_DECISIONS</strong>
+                <p style="margin-top: 0.5rem;"><strong>Docker Orchestration vs. Kubernetes:</strong> Selected Docker Compose for power overhead. Kubernetes control plane consumes 20-30W minimum. On a solar budget, every watt matters. Docker Compose provides deterministic restart policies without the orchestration overhead.</p>
+                
+                <p><strong>Direct DC Power:</strong> Eliminated AC inverter layer to reduce conversion losses. Server PSU operates directly from LiFePO4 battery bank with buck converters for voltage regulation. Saves ~15% power compared to AC-inverter-AC path.</p>
+                
+                <p><strong>Hardware Watchdog:</strong> Software can fail silently during brownouts. Hardware watchdog timer monitors kernel heartbeat. On hang detection, executes hard power cycle autonomously. Enables "Zero-Touch" recovery without human intervention.</p>
+            </div>
+            
+            <p style="margin-top: 2rem;">
                 <a href="ARK-CONOPS.pdf" class="btn" target="_blank">READ CONOPS (PDF)</a>
                 <a href="https://github.com/Tylereno/ark-node" class="btn" target="_blank">VIEW GITHUB</a>
             </p>

@@ -409,6 +409,48 @@ a:hover {
     content: "[SYSTEM ARCHITECTURE DIAGRAM]";
 }
 
+/* Code Blocks */
+.code-block {
+    background: #1e1e1e;
+    border: 1px solid #000;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.code-block pre {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.code-block code {
+    color: #d4d4d4;
+    background: transparent;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.code-block .hljs-comment,
+.code-block .hljs-quote {
+    color: #6a9955;
+}
+
+.code-block .hljs-keyword,
+.code-block .hljs-selector-tag {
+    color: #569cd6;
+}
+
+.code-block .hljs-string,
+.code-block .hljs-number {
+    color: #ce9178;
+}
+
+.code-block .hljs-function {
+    color: #dcdcaa;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     body {
