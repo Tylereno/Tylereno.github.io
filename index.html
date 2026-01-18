@@ -20,6 +20,10 @@
     
     <title>Tyler Eno | Industrial Systems Architect</title>
     <link rel="stylesheet" href="styles.css">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { primaryColor: '#000000', primaryTextColor: '#000000', primaryBorderColor: '#000000', lineColor: '#000000', secondaryColor: '#f5f5f5', tertiaryColor: '#ffffff' } });
+    </script>
 </head>
 <body>
     <nav>
@@ -47,6 +51,63 @@
         <div class="abstract">
             <p>I bridge the gap between heavy infrastructure and digital intelligence. With a background in national EV charging networks (EVgo) and temporary critical infrastructure, I engineer the nervous systems that keep physical assets online. From lithium extraction in Arkansas to artisan manufacturing, I build systems that survive the elements.</p>
         </div>
+    </section>
+
+    <section class="container">
+        <h3>ARK NODE ARCHITECTURE</h3>
+        <div class="mermaid">
+graph TB
+    subgraph "Power Layer"
+        SOLAR[Solar Array] --> CC[Charge Controller]
+        GRID[Grid Power] --> CC
+        CC --> BATT[LiFePO4 Battery Bank]
+        BATT --> INVERTER[DC-AC Inverter]
+        BATT --> PSU[Server PSU]
+    end
+    
+    subgraph "Compute Layer"
+        PSU --> SERVER[Linux Server<br/>Docker Host]
+        SERVER --> DOCKER[Docker Compose<br/>Orchestration]
+        DOCKER --> APP1[Data Logger]
+        DOCKER --> APP2[Telemetry Forwarder]
+        DOCKER --> APP3[Safety Controllers]
+        DOCKER --> APP4[Monitoring Stack]
+    end
+    
+    subgraph "Storage Layer"
+        APP1 --> NVME[NVMe SSD<br/>Atomic Writes]
+        APP2 --> NVME
+        APP3 --> NVME
+        NVME --> BUFFER[Store & Forward<br/>Buffer]
+    end
+    
+    subgraph "Network Layer"
+        BUFFER --> SAT[Satellite/Uplink]
+        BUFFER --> MESH[Zero-Trust Mesh<br/>Tailscale]
+        APP4 --> MESH
+    end
+    
+    subgraph "Observability"
+        APP4 --> DATADOG[Datadog Metrics]
+        APP4 --> SENTRY[Sentry Error Tracking]
+        MESH --> REMOTE[Remote Access]
+    end
+    
+    subgraph "Autonomous Recovery"
+        WDT[Hardware Watchdog<br/>Timer] --> SERVER
+        VOLT[Voltage Sensors] --> DOCKER
+        DOCKER --> L1[Level 1: Nominal]
+        DOCKER --> L2[Level 2: Conservation]
+        DOCKER --> L3[Level 3: Survival]
+    end
+    
+    style SOLAR fill:#fff,stroke:#000,stroke-width:2px
+    style BATT fill:#fff,stroke:#000,stroke-width:2px
+    style SERVER fill:#fff,stroke:#000,stroke-width:2px
+    style NVME fill:#fff,stroke:#000,stroke-width:2px
+    style WDT fill:#fff,stroke:#000,stroke-width:2px
+        </div>
+        <p style="font-size: 0.85rem; color: var(--gray); margin-top: 1rem; text-align: center;">Autonomous infrastructure stack for DDIL environments. Hardware watchdog architecture with power-aware orchestration and 100% data retention.</p>
     </section>
 
     <section class="container">
