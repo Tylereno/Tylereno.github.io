@@ -451,6 +451,127 @@ a:hover {
     color: #dcdcaa;
 }
 
+/* OPERATIONS PAGE STYLES */
+
+.page-header {
+    margin-bottom: 4rem;
+    border-bottom: 4px solid #000;
+    padding-bottom: 1rem;
+}
+
+.meta-block {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--gray);
+    display: flex;
+    gap: 2rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.status-live {
+    color: #009900;
+    font-weight: bold;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Dossier Styling */
+.project-dossier {
+    margin-bottom: 6rem;
+}
+
+.dossier-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.dossier-header h4 {
+    margin: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.project-tag {
+    background: #000;
+    color: #fff;
+    padding: 4px 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Specs Grid */
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+    background: var(--gray-light);
+    padding: 2rem;
+    border: 1px solid var(--black);
+}
+
+.spec-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.spec-card h3 {
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.25rem;
+}
+
+.spec-card p {
+    font-weight: normal;
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Tech Stack List */
+.tech-stack-list {
+    margin: 2rem 0;
+}
+
+.tech-stack-list ul {
+    list-style: none;
+    padding: 0;
+    font-family: 'Courier New', monospace;
+    border-left: 2px solid #000;
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.tech-stack-list li {
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.tech-stack-list strong {
+    font-weight: bold;
+    color: var(--black);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     body {

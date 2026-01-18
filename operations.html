@@ -17,9 +17,13 @@
         </ul>
     </nav>
 
-    <header class="hero">
-        <h1>OPERATIONS</h1>
-        <h2>CASE STUDIES</h2>
+    <header class="hero page-header">
+        <h1>OPERATIONAL LOGS</h1>
+        <div class="meta-block">
+            <span>// CLEARANCE: PUBLIC</span>
+            <span>// SOURCE: TYLER_ENO_ARCHIVES</span>
+            <span class="status-live">// STATUS: ACTIVE RECORDING</span>
+        </div>
     </header>
 
     <section class="container">
@@ -43,10 +47,26 @@
             </div>
         </div>
 
-        <div class="case-study" id="ark" style="margin-bottom: 4rem;">
-            <h4>OP-02: SOVEREIGN EDGE TELEMETRY | ARK NODE</h4>
-            <div class="role">Lead Architect | Active Development</div>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--gray);">#EdgeCompute #OfflineAI #SolarPower #SelfHosted</p>
+        <div class="case-study project-dossier" id="ark" style="margin-bottom: 4rem;">
+            <div class="dossier-header">
+                <h4>OPERATION: ARK NODE (v4.0.0)</h4>
+                <span class="project-tag">AUTONOMOUS EDGE INFRASTRUCTURE</span>
+            </div>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h3>OBJECTIVE</h3>
+                    <p>Establish sovereign compute and 100% data retention in kinetic, off-grid environments without reliance on cloud uptime.</p>
+                </div>
+                <div class="spec-card">
+                    <h3>ENVIRONMENT</h3>
+                    <p>DDIL (Denied, Disrupted, Intermittent, Limited). High thermal variance. Variable power input (Solar/DC).</p>
+                </div>
+                <div class="spec-card">
+                    <h3>RESULTS</h3>
+                    <p>99.9% Local Uptime. Zero data loss during 72hr connectivity blackout. Autonomous self-healing via Watchdog.</p>
+                </div>
+            </div>
             
             <div class="mission" style="margin-top: 2rem;">
                 <strong>// OPERATIONAL_CONSTRAINT</strong>
@@ -64,13 +84,31 @@
                 
                 <h4 style="margin-top: 1.5rem; font-size: 0.95rem; border-bottom: 1px solid var(--border); padding-bottom: 0.25rem;">KEY COMPONENTS</h4>
                 
+                <p style="margin-top: 0.5rem;">The ARK Node v4.0 is a self-contained infrastructure stack designed to replace fragile cloud dependencies with robust local sovereignty. It integrates a <strong>Cognitive Core (Ollama/CrewAI)</strong> for autonomous decision making and a <strong>Hardware Watchdog</strong> layer for physical resilience.</p>
+                
+                <div class="tech-stack-list">
+                    <ul>
+                        <li><strong>Compute:</strong> Linux Docker Host with Docker Compose orchestration</li>
+                        <li><strong>Cognition:</strong> Ollama (granite4:3b, qwen2.5:3b) + CrewAI Orchestrator</li>
+                        <li><strong>Agents:</strong> SysAdmin, Strategist, Writer, Editor agents with Vector Memory (ChromaDB)</li>
+                        <li><strong>Network:</strong> Zero-Trust Mesh (Tailscale) + LoRaWAN Telemetry</li>
+                        <li><strong>Power:</strong> 2kW Solar Array + 5kWh LiFePO4 Buffer + DC-DC Regulation</li>
+                        <li><strong>Storage:</strong> NVMe RAID 1 with atomic write guarantees</li>
+                        <li><strong>Mission Control:</strong> FastAPI Backend (Port 8085) + Next.js Dashboard (Port 3003)</li>
+                    </ul>
+                </div>
+                
+                <h4 style="margin-top: 1.5rem; font-size: 0.95rem; border-bottom: 1px solid var(--border); padding-bottom: 0.25rem;">KEY COMPONENTS</h4>
+                
                 <p style="margin-top: 1rem;"><strong>Power Layer:</strong> 2kW Solar Array feeding 5kWh LiFePO4 buffer. Direct DC-to-DC regulation avoids inverter efficiency loss.</p>
                 
                 <p><strong>Compute Kernel:</strong> Linux Docker Host with Docker Compose orchestration. Selected for deterministic restart policies and low overhead compared to Kubernetes (critical for solar budget). Custom hardware watchdog monitors voltage at the solar controller.</p>
                 
+                <p><strong>Cognitive Core:</strong> Ollama inference engine running local LLM models (granite4:3b, qwen2.5:3b) with CrewAI orchestrating autonomous agent workforce. Vector Memory (ChromaDB) enables persistent agent memory across restarts.</p>
+                
                 <p><strong>Watchdog Protocol:</strong> Voltage sensors monitor battery SoC. If battery drops &lt;20%, the system gracefully terminates non-essential Docker containers before hard power loss. Hardware watchdog timer executes hard reset if software hangs.</p>
                 
-                <p><strong>Storage Layer:</strong> NVMe SSD with atomic write guarantees. Immutable logs and store-and-forward buffer ensure 100% data retention during network outages.</p>
+                <p><strong>Storage Layer:</strong> NVMe SSD with atomic write guarantees. Immutable logs and store-and-forward buffer ensure 100% data retention during network outages. CrewAI run history stored locally for audit and recovery.</p>
                 
                 <p><strong>Network & Observability:</strong> Zero-trust mesh (Tailscale) for secure remote access. LoRa telemetry for low-power long-range communication. Datadog metrics and Sentry error tracking for operational visibility.</p>
             </div>
