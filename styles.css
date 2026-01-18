@@ -141,46 +141,50 @@ p {
     display: block;
 }
 
-/* Trust Bar */
-.trust-bar {
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 2rem;
+/* Trust Container */
+.trust-container {
+    width: 100%;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    padding: 2rem 0;
+    margin: 2rem 0;
     background: var(--gray-light);
+}
+
+.trust-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
-    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
-.trust-item {
+.trust-col {
+    display: flex;
+    flex-direction: column;
     text-align: left;
-    font-size: 0.9rem;
 }
 
-.trust-item strong {
-    display: block;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
+.trust-entity {
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
     color: var(--black);
+    margin-bottom: 0.5rem;
 }
 
 .trust-role {
-    display: block;
-    font-size: 0.85rem;
-    color: var(--gray);
-    margin-bottom: 0.25rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    color: #444;
+    margin-top: 4px;
 }
 
 .trust-detail {
-    display: block;
-    font-family: 'Courier New', Courier, monospace;
     font-size: 0.8rem;
-    color: var(--black);
+    color: #666;
+    margin-top: 4px;
     line-height: 1.4;
 }
 
@@ -356,6 +360,8 @@ a:hover {
 .mermaid {
     background: #fafafa;
     padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     overflow-x: auto;
     text-align: center;
     min-height: 400px;
@@ -364,6 +370,14 @@ a:hover {
 .mermaid svg {
     max-width: 100%;
     height: auto;
+}
+
+.mermaid svg rect {
+    fill: #ffffff !important;
+}
+
+.mermaid svg .node rect {
+    fill: #ffffff !important;
 }
 
 /* Visual Placeholder for Diagrams */
@@ -420,13 +434,15 @@ a:hover {
         gap: 1.5rem;
     }
     
-    .trust-bar {
+    .trust-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 1.5rem 1rem;
+        text-align: center;
+        padding: 0 1rem;
     }
     
-    .trust-item {
+    .trust-col {
+        align-items: center;
+        margin-bottom: 1.5rem;
         text-align: center;
     }
     
