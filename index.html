@@ -29,8 +29,8 @@
     <nav>
         <ul>
             <li><a href="index.html" title="Home">HOME</a></li>
-            <li><a href="operations.html" title="Case Studies & Projects">OPERATIONS</a></li>
-            <li><a href="ventures.html" title="Portfolio Companies">VENTURES</a></li>
+            <li><a href="operations.html" title="Client Projects & Case Studies">OPERATIONS</a></li>
+            <li><a href="ventures.html" title="Companies Founded & Owned">VENTURES</a></li>
             <li><a href="journal.html" title="Technical Journal">LOGS</a></li>
             <li><a href="consultation.html" title="Consulting Services">CONSULTATION</a></li>
         </ul>
@@ -58,55 +58,38 @@
         <h3>ARK NODE ARCHITECTURE</h3>
         <div class="mermaid">
 graph TB
-    subgraph "Power Layer"
-        SOLAR[Solar Array] --> CC[Charge Controller]
-        GRID[Grid Power] --> CC
-        CC --> BATT[LiFePO4 Battery Bank]
-        BATT --> INVERTER[DC-AC Inverter]
-        BATT --> PSU[Server PSU]
-    end
+    SOLAR[Solar Array] --> CC[Charge Controller]
+    GRID[Grid Power] --> CC
+    CC --> BATT[LiFePO4 Battery]
+    BATT --> PSU[Server PSU]
+    PSU --> SERVER[Linux Server<br/>Docker Host]
+    SERVER --> DOCKER[Docker Orchestration]
+    DOCKER --> APP1[Data Logger]
+    DOCKER --> APP2[Telemetry]
+    DOCKER --> APP3[Monitoring]
+    APP1 --> NVME[NVMe Storage]
+    APP2 --> NVME
+    NVME --> BUFFER[Store & Forward]
+    BUFFER --> MESH[Zero-Trust Mesh]
+    APP3 --> MESH
+    WDT[Watchdog Timer] --> SERVER
+    VOLT[Voltage Sensors] --> DOCKER
     
-    subgraph "Compute Layer"
-        PSU --> SERVER[Linux Server<br/>Docker Host]
-        SERVER --> DOCKER[Docker Compose<br/>Orchestration]
-        DOCKER --> APP1[Data Logger]
-        DOCKER --> APP2[Telemetry Forwarder]
-        DOCKER --> APP3[Safety Controllers]
-        DOCKER --> APP4[Monitoring Stack]
-    end
-    
-    subgraph "Storage Layer"
-        APP1 --> NVME[NVMe SSD<br/>Atomic Writes]
-        APP2 --> NVME
-        APP3 --> NVME
-        NVME --> BUFFER[Store & Forward<br/>Buffer]
-    end
-    
-    subgraph "Network Layer"
-        BUFFER --> SAT[Satellite/Uplink]
-        BUFFER --> MESH[Zero-Trust Mesh<br/>Tailscale]
-        APP4 --> MESH
-    end
-    
-    subgraph "Observability"
-        APP4 --> DATADOG[Datadog Metrics]
-        APP4 --> SENTRY[Sentry Error Tracking]
-        MESH --> REMOTE[Remote Access]
-    end
-    
-    subgraph "Autonomous Recovery"
-        WDT[Hardware Watchdog<br/>Timer] --> SERVER
-        VOLT[Voltage Sensors] --> DOCKER
-        DOCKER --> L1[Level 1: Nominal]
-        DOCKER --> L2[Level 2: Conservation]
-        DOCKER --> L3[Level 3: Survival]
-    end
-    
-    style SOLAR fill:#fff,stroke:#000,stroke-width:2px
-    style BATT fill:#fff,stroke:#000,stroke-width:2px
-    style SERVER fill:#fff,stroke:#000,stroke-width:2px
-    style NVME fill:#fff,stroke:#000,stroke-width:2px
-    style WDT fill:#fff,stroke:#000,stroke-width:2px
+    style SOLAR fill:#fff,stroke:#000,stroke-width:2px,color:#000
+    style BATT fill:#fff,stroke:#000,stroke-width:2px,color:#000
+    style SERVER fill:#fff,stroke:#000,stroke-width:2px,color:#000
+    style NVME fill:#fff,stroke:#000,stroke-width:2px,color:#000
+    style WDT fill:#fff,stroke:#000,stroke-width:2px,color:#000
+    style CC fill:#fff,stroke:#000,stroke-width:2px,color:#000
+    style GRID fill:#fff,stroke:#000,stroke-width:2px,color:#000
+    style PSU fill:#fff,stroke:#000,stroke-width:2px,color:#000
+    style DOCKER fill:#fff,stroke:#000,stroke-width:2px,color:#000
+    style APP1 fill:#fff,stroke:#000,stroke-width:2px,color:#000
+    style APP2 fill:#fff,stroke:#000,stroke-width:2px,color:#000
+    style APP3 fill:#fff,stroke:#000,stroke-width:2px,color:#000
+    style BUFFER fill:#fff,stroke:#000,stroke-width:2px,color:#000
+    style MESH fill:#fff,stroke:#000,stroke-width:2px,color:#000
+    style VOLT fill:#fff,stroke:#000,stroke-width:2px,color:#000
         </div>
         <p style="font-size: 0.85rem; color: var(--gray); margin-top: 1rem; text-align: center;">Autonomous infrastructure stack for DDIL environments. Hardware watchdog architecture with power-aware orchestration and 100% data retention.</p>
     </section>
