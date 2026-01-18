@@ -43,9 +43,21 @@
     </header>
 
     <div class="trust-bar">
-        <span><strong>EVgo</strong> <span style="font-weight: normal;">(Project Manager, National EV Network)</span></span> | 
-        <span><strong>Sun-Wave</strong> <span style="font-weight: normal;">(Mobile Power Systems)</span></span> | 
-        <span><strong>Temporary Critical Infrastructure</strong> <span style="font-weight: normal;">(10K-Node Database, 10% Fuel Reduction)</span></span>
+        <div class="trust-item">
+            <strong>EVgo</strong><br>
+            <span class="trust-role">Project Management & Network Ops</span><br>
+            <span class="trust-detail">National Level EV Infrastructure</span>
+        </div>
+        <div class="trust-item">
+            <strong>Sun-Wave</strong><br>
+            <span class="trust-role">Systems Architect</span><br>
+            <span class="trust-detail">Expedition Vehicle Power & Local 100% Uptime Networks</span>
+        </div>
+        <div class="trust-item">
+            <strong>BRC / Off-Grid Ops</strong><br>
+            <span class="trust-role">Power Logistics</span><br>
+            <span class="trust-detail">Multi-Megawatt Microgrids & Solar Trailer Deployment</span>
+        </div>
     </div>
 
     <section class="container">
@@ -56,40 +68,55 @@
 
     <section class="container">
         <h3>ARK NODE ARCHITECTURE</h3>
-        <div class="mermaid">
-graph TB
-    SOLAR[Solar Array] --> CC[Charge Controller]
-    GRID[Grid Power] --> CC
-    CC --> BATT[LiFePO4 Battery]
-    BATT --> PSU[Server PSU]
-    PSU --> SERVER[Linux Server<br/>Docker Host]
-    SERVER --> DOCKER[Docker Orchestration]
-    DOCKER --> APP1[Data Logger]
-    DOCKER --> APP2[Telemetry]
-    DOCKER --> APP3[Monitoring]
-    APP1 --> NVME[NVMe Storage]
-    APP2 --> NVME
-    NVME --> BUFFER[Store & Forward]
-    BUFFER --> MESH[Zero-Trust Mesh]
-    APP3 --> MESH
-    WDT[Watchdog Timer] --> SERVER
-    VOLT[Voltage Sensors] --> DOCKER
-    
-    style SOLAR fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    style BATT fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    style SERVER fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    style NVME fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    style WDT fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    style CC fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    style GRID fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    style PSU fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    style DOCKER fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    style APP1 fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    style APP2 fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    style APP3 fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    style BUFFER fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    style MESH fill:#fff,stroke:#000,stroke-width:2px,color:#000
-    style VOLT fill:#fff,stroke:#000,stroke-width:2px,color:#000
+        <div class="diagram-container">
+            <div class="diagram-label">// SYSTEM_SCHEMATIC_V2.0</div>
+            <div class="mermaid">
+graph TD
+    %% Global Styles
+    classDef hardware fill:#f4f4f4,stroke:#333,stroke-width:2px
+    classDef logic fill:#e6e6e6,stroke:#333,stroke-dasharray: 5 5
+
+    subgraph Power_Layer["POWER & ENERGY"]
+        direction TB
+        Solar[Solar Array 2kW] --> CC[Charge Controllers]
+        Grid[Grid / Shore Power] --> CC
+        CC --> LiFePO4[LiFePO4 Battery Bank]
+        LiFePO4 --> PSU[Server PSU & Buck Converters]
+    end
+
+    subgraph Resilience_Layer["AUTONOMOUS RECOVERY"]
+        Watchdog[Hardware Watchdog] -->|Hard Reset| Host
+        UPS[UPS Backup] --> Host
+    end
+
+    subgraph Compute_Layer["COMPUTE KERNEL"]
+        Host[Linux Docker Host]
+        Orch[Docker Orchestration]
+        Host --> Orch
+    end
+
+    subgraph Storage_Layer["ATOMIC STORAGE"]
+        NVMe[NVMe RAID 1]
+        Log[Immutable Logs]
+        NVMe --> Log
+    end
+
+    subgraph Network_Layer["MESH & TRANSPORT"]
+        Mesh[Zero-Trust Mesh / VPN]
+        Telem[LoRa Telemetry]
+    end
+
+    %% Connections between layers
+    PSU ==> Host
+    Orch --> NVMe
+    Orch --> Mesh
+    Watchdog -.->|Heartbeat| Orch
+    Host --> Telem
+
+    %% Styling
+    class Solar,LiFePO4,Host,NVMe,Watchdog hardware
+    class Orch,Mesh,Log,Telem logic
+            </div>
         </div>
         <p style="font-size: 0.85rem; color: var(--gray); margin-top: 1rem; text-align: center;">Autonomous infrastructure stack for DDIL environments. Hardware watchdog architecture with power-aware orchestration and 100% data retention.</p>
     </section>
