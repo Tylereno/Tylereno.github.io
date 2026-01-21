@@ -781,34 +781,685 @@
                 <div class="ps-card-header">
                     <div class="ps-icon problem-icon">⚠</div>
                     <h3>THE "DARK SITE" GAP</h3>
-                    </div>
-                    <p>Standard IoT gateways rely on the cloud. When satellite links fail or bandwidth drops, they buffer for 2 hours and then drop packets.</p>
-                    <p>In mining, environmental monitoring, and remote logistics, this data loss creates:</p>
-                    <ul>
-                        <li>Compliance violations</li>
-                        <li>Operational blind spots</li>
-                        <li>Safety protocol failures</li>
-                        <li>Forensic gaps in incident investigation</li>
-                    </ul>
                 </div>
+                <p>Standard IoT gateways rely on the cloud. When satellite links fail or bandwidth drops, they buffer for 2 hours and then drop packets.</p>
+                <p>In mining, environmental monitoring, and remote logistics, this data loss creates:</p>
+                <ul>
+                    <li>Compliance violations</li>
+                    <li>Operational blind spots</li>
+                    <li>Safety protocol failures</li>
+                    <li>Forensic gaps in incident investigation</li>
+                </ul>
+            </div>
 
-                <div class="ps-card">
-                    <div class="ps-card-header">
-                        <div class="ps-icon solution-icon">✓</div>
-                        <h3>SOVEREIGN OPERATIONAL TECHNOLOGY</h3>
-                    </div>
-                    <p>The ARK Node is a <strong style="color: var(--accent-amber);">Sovereign Data Center</strong> — a self-contained edge command system that maintains full data sovereignty, local intelligence, and autonomous recoverability at the site. Built to run independently of cloud services, ARK preserves complete telemetry and decision histories on-site while providing secure remote diagnostics, local AI inference, and resilient operations in disconnected environments.</p>
-                    <p>It operates indefinitely without internet connectivity, utilizing a "Store-and-Forward" architecture that guarantees:</p>
-                    <ul>
-                        <li><strong>100% data retention</strong> during outages of any duration</li>
-                        <li><strong>Autonomous decision-making</strong> via local AI inference</li>
-                        <li><strong>Energy-aware orchestration</strong> for solar/battery environments</li>
-                        <li><strong>Self-healing architecture</strong> with hardware watchdog</li>
-                    </ul>
+            <div class="ps-card">
+                <div class="ps-card-header">
+                    <div class="ps-icon solution-icon">✓</div>
+                    <h3>SOVEREIGN OPERATIONAL TECHNOLOGY</h3>
+                </div>
+                <p>The ARK Node is a <strong style="color: var(--accent-amber);">Sovereign Data Center</strong> — a self-contained edge command system that maintains full data sovereignty, local intelligence, and autonomous recoverability at the site. Built to run independently of cloud services, ARK preserves complete telemetry and decision histories on-site while providing secure remote diagnostics, local AI inference, and resilient operations in disconnected environments.</p>
+                <p>It operates indefinitely without internet connectivity, utilizing a "Store-and-Forward" architecture that guarantees:</p>
+                <ul>
+                    <li><strong>100% data retention</strong> during outages of any duration</li>
+                    <li><strong>Autonomous decision-making</strong> via local AI inference</li>
+                    <li><strong>Energy-aware orchestration</strong> for solar/battery environments</li>
+                    <li><strong>Self-healing architecture</strong> with hardware watchdog</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Capabilities -->
+<section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">CORE TECHNOLOGIES</div>
+            <h2 class="section-title">Sovereign Node Architecture</h2>
+            <p class="section-description">ARK moves the entire data center stack—databases, AI inference, and automation logic—directly to the field asset.</p>
+        </div>
+
+        <div class="capability-grid">
+            <div class="capability-card">
+                <div class="capability-number">01</div>
+                <h3>NOAH™ GUARDIAN<br>(AI OPS)</h3>
+                <p>An on-board Autonomous Agent integrated into the OS that acts as a "Level 1 Site Engineer."</p>
+                <ul class="capability-features">
+                    <li>Monitors thermal variances, log error rates, and vibration data</li>
+                    <li>Predicts failures before they occur using heuristic analysis</li>
+                    <li>Configurable safety settings (Low/Med/High Determinism)</li>
+                    <li>Requires human verification for destructive actions</li>
+                    <li>Runs on local GPU (Ollama) with no cloud API dependencies</li>
+                    <li>Immutable JSONL audit trail for all decisions</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <div class="capability-number">02</div>
+                <h3>ZERO-LOSS TELEMETRY<br>(STORE & FORWARD)</h3>
+                <p>ARK bypasses standard RAM buffers, writing high-frequency sensor data directly to atomic NVMe storage.</p>
+                <ul class="capability-features">
+                    <li>Caches terabytes of data locally during network silence</li>
+                    <li>Autonomously bursts compressed historical data when link returns</li>
+                    <li>Atomic writes prevent corruption during power loss</li>
+                    <li>Forensic "Black Box" logging for incident analysis</li>
+                    <li>Full data picture even after weeks of disconnection</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <div class="capability-number">03</div>
+                <h3>SELF-HEALING<br>ARCHITECTURE</h3>
+                <p>Multi-layer resilience stack designed to recover from failures without a "truck roll."</p>
+                <ul class="capability-features">
+                    <li>Hardware Watchdog: Physical timer executes hard reset if OS hangs</li>
+                    <li>Mean Time To Recovery (MTTR) < 60 seconds</li>
+                    <li>Autoheal Daemon: Monitors Docker container health states</li>
+                    <li>Restarts unhealthy services automatically</li>
+                    <li>Zero-Touch Boot: System initializes to operational state</li>
+                    <li>No external auth servers or human input required</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <div class="capability-number">04</div>
+                <h3>ENERGY-AWARE<br>ORCHESTRATION</h3>
+                <p>Intelligent load shedding for solar/battery constrained environments.</p>
+                <ul class="capability-features">
+                    <li>Reads Solar/UPS telemetry via Modbus/NUT protocols</li>
+                    <li>4-Tier Shedding: Dynamically kills non-essential containers</li>
+                    <li>Tier 1 (<30% SoC): Sheds development & media containers</li>
+                    <li>Tier 0 (<15% SoC): Preserves only Core Telemetry & Comms</li>
+                    <li>Extends critical uptime by 400% during solar droughts</li>
+                    <li>Automatic recovery when power returns</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <div class="capability-number">05</div>
+                <h3>ZERO-TRUST<br>MESH NETWORKING</h3>
+                <p>Military-grade secure connectivity without exposing services to the internet.</p>
+                <ul class="capability-features">
+                    <li>Tailscale VPN with WireGuard encryption</li>
+                    <li>Works across Satellite/Cellular/LoRaWAN</li>
+                    <li>Automatic WAN failover between links</li>
+                    <li>Air-gap ready: Can operate completely offline</li>
+                    <li>Role-based access control for operators</li>
+                    <li>No open firewall ports required</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <div class="capability-number">06</div>
+                <h3>LOCAL AI<br>INFERENCE</h3>
+                <p>Run intelligent anomaly detection on-site without cloud latency or API costs.</p>
+                <ul class="capability-features">
+                    <li>GPU-accelerated local LLM inference (Ollama)</li>
+                    <li>CrewAI Agent Framework for complex workflows</li>
+                    <li>Granite4:3b, Qwen2.5-coder models pre-loaded</li>
+                    <li>Vector database (ChromaDB) for knowledge retrieval</li>
+                    <li>Sub-second token generation with 4GB GPU</li>
+                    <li>No internet required for AI operations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technical Specifications -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">TECHNICAL SPECIFICATIONS</div>
+            <h2 class="section-title">Platform Architecture</h2>
+        </div>
+
+        <div class="tech-specs">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Specification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Orchestration Engine</td>
+                        <td>Docker Compose with Autoheal & Watchtower Integration</td>
+                    </tr>
+                    <tr>
+                        <td>Networking Strategy</td>
+                        <td>Zero-Trust Mesh (Tailscale) + Local Fallback + WAN Failover</td>
+                    </tr>
+                    <tr>
+                        <td>Storage Architecture</td>
+                        <td>NVMe-backed Atomic Logging + Vector Database (ChromaDB)</td>
+                    </tr>
+                    <tr>
+                        <td>Power Compatibility</td>
+                        <td>12V/24V/48V DC Native (Solar/Battery Integration via Modbus/NUT)</td>
+                    </tr>
+                    <tr>
+                        <td>AI Intelligence</td>
+                        <td>Local GPU Inference (Ollama) + CrewAI Agent Framework</td>
+                    </tr>
+                    <tr>
+                        <td>Supported Models</td>
+                        <td>Granite4:3b (2GB), Qwen2.5-coder:3b (1GB), Qwen3-VL:2b, Nomic-embed-text</td>
+                    </tr>
+                    <tr>
+                        <td>Security Posture</td>
+                        <td>Air-Gap Ready, Role-Based Access, Zero-Dependency Boot</td>
+                    </tr>
+                    <tr>
+                        <td>Communication Protocols</td>
+                        <td>MQTT, Modbus TCP, HTTP/S, RTSP (Video), OPDS (Media)</td>
+                    </tr>
+                    <tr>
+                        <td>Resilience Metric</td>
+                        <td>Hardware Watchdog (< 60s Mean Time To Recovery)</td>
+                    </tr>
+                    <tr>
+                        <td>Container Services</td>
+                        <td>34+ pre-configured services (AI, Media, Monitoring, Automation)</td>
+                    </tr>
+                    <tr>
+                        <td>Development Tools</td>
+                        <td>Code-Server (VS Code), GitEa (Git), File Browser, Aider (AI Code Assistant)</td>
+                    </tr>
+                    <tr>
+                        <td>Monitoring Stack</td>
+                        <td>Uptime Kuma, Dozzle (Log Viewer), Portainer, Docker Health Checks</td>
+                    </tr>
+                    <tr>
+                        <td>Backup System</td>
+                        <td>Automated Weekly Snapshots + Git-based Auto-Save</td>
+                    </tr>
+                    <tr>
+                        <td>Remote Access</td>
+                        <td>SSH, WEBTOP (Remote Desktop), Tailscale Hostname Routing</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="architecture-box mt-2">
+            <h3 class="text-center mb-2" style="color: var(--accent-amber);">LAYERED ARCHITECTURE</h3>
+
+            <div class="arch-layer">
+                <div class="arch-layer-title">Layer 1: Resilience & Recovery</div>
+                <div class="arch-components">
+                    <span class="arch-component">Hardware Watchdog</span>
+                    <span class="arch-component">Autoheal Daemon</span>
+                    <span class="arch-component">Zero-Touch Boot</span>
+                    <span class="arch-component">Backup Automation</span>
+                </div>
+            </div>
+
+            <div class="arch-layer">
+                <div class="arch-layer-title">Layer 2: Orchestration & Containers</div>
+                <div class="arch-components">
+                    <span class="arch-component">Docker Compose</span>
+                    <span class="arch-component">Watchtower</span>
+                    <span class="arch-component">Portainer</span>
+                    <span class="arch-component">Dockge</span>
+                </div>
+            </div>
+
+            <div class="arch-layer">
+                <div class="arch-layer-title">Layer 3: AI & Intelligence</div>
+                <div class="arch-components">
+                    <span class="arch-component">NOAH Guardian (AI Ops)</span>
+                    <span class="arch-component">Ollama (LLM Inference)</span>
+                    <span class="arch-component">CrewAI (Agent Framework)</span>
+                    <span class="arch-component">ChromaDB (Vector Store)</span>
+                    <span class="arch-component">Open WebUI</span>
+                </div>
+            </div>
+
+            <div class="arch-layer">
+                <div class="arch-layer-title">Layer 4: Application Services</div>
+                <div class="arch-components">
+                    <span class="arch-component">Jellyfin (Media)</span>
+                    <span class="arch-component">Home Assistant (Automation)</span>
+                    <span class="arch-component">Vaultwarden (Secrets)</span>
+                    <span class="arch-component">Syncthing (File Sync)</span>
+                    <span class="arch-component">AudiobookShelf</span>
+                    <span class="arch-component">MeTube</span>
+                    <span class="arch-component">Kiwix (Offline Wiki)</span>
+                </div>
+            </div>
+
+            <div class="arch-layer">
+                <div class="arch-layer-title">Layer 5: Development & Monitoring</div>
+                <div class="arch-components">
+                    <span class="arch-component">Code-Server</span>
+                    <span class="arch-component">GitEa</span>
+                    <span class="arch-component">Uptime Kuma</span>
+                    <span class="arch-component">Dozzle</span>
+                    <span class="arch-component">Homarr Dashboard</span>
+                    <span class="arch-component">WEBTOP</span>
+                </div>
+            </div>
+
+            <div class="arch-layer">
+                <div class="arch-layer-title">Layer 6: Networking & Security</div>
+                <div class="arch-components">
+                    <span class="arch-component">Tailscale VPN</span>
+                    <span class="arch-component">Traefik Reverse Proxy</span>
+                    <span class="arch-component">Caddy TLS Manager</span>
+                    <span class="arch-component">Cloudflare DDNS</span>
+                    <span class="arch-component">Authelia (SSO)</span>
+                </div>
+            </div>
+
+            <div class="arch-layer">
+                <div class="arch-layer-title">Layer 7: Storage & Data</div>
+                <div class="arch-components">
+                    <span class="arch-component">NVMe Atomic Writes</span>
+                    <span class="arch-component">Persistent Volumes</span>
+                    <span class="arch-component">File Browser</span>
+                    <span class="arch-component">Store-and-Forward Queue</span>
                 </div>
             </div>
         </div>
     </div>
+</section>
+
+<!-- Operational Scenarios -->
+<section class="section" style="background: var(--bg-secondary);">
+    <div class="wide-container">
+        <div class="section-header">
+            <div class="section-label">OPERATIONAL SCENARIOS</div>
+            <h2 class="section-title">Use Cases</h2>
+            <p class="section-description">Real-world applications where ARK's autonomous capabilities provide mission-critical resilience.</p>
+        </div>
+
+        <div class="scenario-grid">
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Mining Sector</div>
+                    <div class="scenario-icon">⛏️</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>Direct Lithium Extraction (DLE)</h3>
+
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>A standalone extraction module operates in a remote salt flat. A multi-day dust storm obstructs solar capacity and blocks the satellite uplink for 72 hours. Standard gateways drop data after 2 hours.</p>
+                    </div>
+
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>ARK switches telemetry to "Store-and-Forward" mode, caching all sensor data locally. Simultaneously, the Power Manager detects the voltage drop and sheds non-essential visualization containers to preserve battery for core sensors. When connectivity returns, compressed historical data bursts to HQ automatically.</p>
+                    </div>
+
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> Zero data loss. Zero downtime. Zero human intervention. Full compliance audit trail maintained.
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Aerospace / Defense</div>
+                    <div class="scenario-icon">🛰️</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>High-Latency Command & Control</h3>
+
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>An autonomous system (rover, UAV, or forward operating base) operates with significant communication lag or radio silence periods. Real-time control from "Headquarters" is impossible or unreliable.</p>
+                    </div>
+
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>ARK acts as the local "Mission Control," hosting a full repository of technical documentation and decision logic. Noah™ Guardian analyzes faults and executes repairs locally without waiting for external command. The system logs all autonomous decisions to an immutable audit trail for post-mission review.</p>
+                    </div>
+
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> Instantaneous fault resolution. Complete autonomy. Full forensic accountability for command decisions.
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Emergency Services</div>
+                    <div class="scenario-icon">🚨</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>Disaster Response Mobile Command</h3>
+
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>A Mobile Command Center loses grid power during a wildfire or hurricane response. Standard servers crash, corrupting databases and severing communications with field teams at the worst possible moment.</p>
+                    </div>
+
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>ARK's Hardware Watchdog prevents OS corruption during power transients. The Energy Orchestration system instantly sheds the Media/Dev tier, prioritizing the communications stack to keep the radio link alive 4x longer on backup batteries. When power returns, all services auto-recover without manual restart.</p>
+                    </div>
+
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> Critical comms maintained despite grid failure. No data corruption. Seamless recovery without IT staff intervention.
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Environmental Monitoring</div>
+                    <div class="scenario-icon">🌍</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>Remote Weather Station Network</h3>
+
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>A network of climate monitoring stations in the Arctic must operate through polar night (24/7 darkness) with limited solar recharge and intermittent satellite passes for data upload.</p>
+                    </div>
+
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>Energy Orchestration monitors battery state-of-charge and progressively sheds layers: first web dashboards, then AI processing, preserving only sensor logging and periodic satellite bursts. Store-and-Forward queues months of high-resolution climate data locally. When spring returns and solar power increases, ARK auto-recovers full capabilities and uploads the complete dataset.</p>
+                    </div>
+
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> 6+ months of continuous operation on limited solar. Zero data loss through polar winter. No site visits required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Maritime Operations</div>
+                    <div class="scenario-icon">⚓</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>Offshore Platform Management</h3>
+
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>An unmanned offshore oil/gas platform or aquaculture system must operate autonomously between monthly maintenance visits. Network connectivity is expensive satellite bandwidth, and equipment failures require costly helicopter deployments.</p>
+                    </div>
+
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>NOAH Guardian monitors equipment vibration, temperature, and runtime hours to predict pump/motor failures before they occur. The system automatically throttles non-critical processes during equipment stress, logs anomalies to the Black Box, and sends compressed alert packets via satellite. If a failure occurs, Self-Healing Architecture attempts software recovery before calling for human intervention.</p>
+                    </div>
+
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> Predictive maintenance reduces helicopter callouts by 60%. Complete operational history available for regulatory inspection.
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Power Rentals</div>
+                    <div class="scenario-icon">🔌</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>Mobile Power Generator Rentals</h3>
+
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>Rolling rental fleets require rapid deployment, remote monitoring of fuel, runtime and maintenance scheduling. Intermittent connectivity and harsh environments make fleet supervision costly and error-prone.</p>
+                    </div>
+
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>ARK provides continuous generator telemetry, fuel-level alerts, and runtime analytics. Noah™ Guardian auto-schedules maintenance, compresses logs for efficient backhaul, and secures operator access via Tailscale for remote diagnostics and safe control.</p>
+                    </div>
+
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> Improved fleet uptime, reduced maintenance costs, and remote issue resolution without routine on-site visits.
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Agriculture</div>
+                    <div class="scenario-icon">🌾</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>Precision Agriculture & Irrigation Management</h3>
+
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>Remote farms with solar-powered pumps and sparse connectivity face irrigation gaps and crop loss if data is lost or delayed.</p>
+                    </div>
+
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>ARK stores high-resolution sensor data locally, runs on-site AI to adapt irrigation schedules, and controls pumps autonomously. Store-and-Forward ensures complete datasets for seasonal analysis and regulatory reporting.</p>
+                    </div>
+
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> Optimized water usage, stabilized yields, and autonomous operation through connectivity outages.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Field Validation -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">FIELD VALIDATION</div>
+            <h2 class="section-title">Mobile Node Alpha</h2>
+            <p class="section-description">The ARK architecture has been battle-tested in a mobile research unit subject to real-world operational stress.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">🔧</div>
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Data Retention</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">GRID-INDEPENDENT POWER</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-value">&lt;60s</div>
+                <div class="stat-label">Mean Time To Recovery</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📡</div>
+                <div class="stat-value">∞</div>
+                <div class="stat-label">Outage Tolerance</div>
+            </div>
+        </div>
+
+        <div class="mt-2">
+            <h3 class="text-center mb-2" style="color: var(--accent-amber); font-size: 1.5rem;">Stress Testing Conditions</h3>
+
+            <div class="ps-grid">
+                <div class="ps-card">
+                    <h3 style="color: var(--accent-blue);">⚠️ Active Vibration</h3>
+                    <p>Transit-grade shock testing during daily commutes and off-road travel. NVMe storage withstood continuous vibration without data corruption.</p>
+                </div>
+
+                <div class="ps-card">
+                    <h3 style="color: var(--accent-blue);">🌡️ Thermal Stress</h3>
+                    <p>Unconditioned desert environment (Phoenix, AZ) with temperature swings from 115°F days to 50°F nights. No thermal throttling or service degradation.</p>
+                </div>
+
+                <div class="ps-card">
+                    <h3 style="color: var(--accent-blue);">🔋 Power Volatility</h3>
+                    <p>Variable solar input and battery cycling with simulated grid outages. Energy Orchestration prevented brownout-induced data loss.</p>
+                </div>
+
+                <div class="ps-card">
+                    <h3 style="color: var(--accent-blue);">📶 Network Disruption</h3>
+                    <p>Deliberate 72+ hour backhaul severing events (airplane mode testing). Store-and-Forward retained 100% of telemetry data with automatic sync upon reconnection.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deployment Timeline removed per request -->
+    </div>
+</section>
+
+<!-- Service Catalog -->
+<section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">COMPLETE SERVICE CATALOG</div>
+            <h2 class="section-title">34+ Pre-Configured Services</h2>
+            <p class="section-description">A comprehensive application stack ready to deploy from day one.</p>
+        </div>
+
+        <div class="capability-grid">
+            <div class="capability-card">
+                <h3>🤖 AI & Machine Learning</h3>
+                <ul class="capability-features">
+                    <li>Ollama (GPU-Accelerated LLM Inference)</li>
+                    <li>Open WebUI (Chat Interface)</li>
+                    <li>CrewAI Backend & Frontend (Agent Framework)</li>
+                    <li>CrewAI Visualizer (Workflow Builder)</li>
+                    <li>ChromaDB (Vector Database)</li>
+                    <li>NOAH Guardian (AI Operations Agent)</li>
+                    <li>Knowledge Vault (Memory System)</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <h3>🛠️ Development Tools</h3>
+                <ul class="capability-features">
+                    <li>Code-Server (Browser-Based VS Code)</li>
+                    <li>GitEa (Self-Hosted Git Repositories)</li>
+                    <li>File Browser (Web File Manager)</li>
+                    <li>Aider (AI Code Assistant)</li>
+                    <li>Claude Code CLI (Local LLM Interface)</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <h3>📊 Monitoring & Operations</h3>
+                <ul class="capability-features">
+                    <li>Uptime Kuma (Service Monitoring & Alerts)</li>
+                    <li>Dozzle (Real-Time Log Viewer)</li>
+                    <li>Portainer (Container Management)</li>
+                    <li>Dockge (Docker Compose UI)</li>
+                    <li>Docker Health Check CLI</li>
+                    <li>Autoheal (Self-Healing Daemon)</li>
+                    <li>Watchtower (Auto-Update Manager)</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <h3>🎬 Media Management</h3>
+                <ul class="capability-features">
+                    <li>Jellyfin (Video Streaming)</li>
+                    <li>AudiobookShelf (Audiobook Library)</li>
+                    <li>MeTube (YouTube Downloader)</li>
+                    <li>Syncthing (File Synchronization)</li>
+                    <li>Kiwix (Offline Wikipedia)</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <h3>🏠 Automation & IoT</h3>
+                <ul class="capability-features">
+                    <li>Home Assistant (Smart Home Hub)</li>
+                    <li>Zigbee/Z-Wave Device Support</li>
+                    <li>Automation & Scene Creation</li>
+                    <li>MQTT Broker Integration</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <h3>🔒 Security & Access</h3>
+                <ul class="capability-features">
+                    <li>Tailscale (Zero-Trust VPN)</li>
+                    <li>Traefik (Reverse Proxy + HTTPS)</li>
+                    <li>Caddy (Alternative TLS Manager)</li>
+                    <li>Authelia (Single Sign-On)</li>
+                    <li>Vaultwarden (Password Manager)</li>
+                    <li>Cloudflare DDNS</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <h3>🖥️ Remote Access</h3>
+                <ul class="capability-features">
+                    <li>WEBTOP (Remote Desktop - Alpine KDE)</li>
+                    <li>SSH Server (Secure Shell)</li>
+                    <li>Tailscale Hostname Routing</li>
+                    <li>Browser-Based Remote Development</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <h3>📱 User Interfaces</h3>
+                <ul class="capability-features">
+                    <li>Homarr (Unified Dashboard)</li>
+                    <li>ARK Launchpad (Quick-Launch Interface)</li>
+                    <li>ARK Dashboard (Main Control Panel)</li>
+                    <li>Custom Widget Support</li>
+                    <li>Theme Customization</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <h3>💾 Data & Backup</h3>
+                <ul class="capability-features">
+                    <li>ARK Weekly Backup (Automated Snapshots)</li>
+                    <li>Auto-Save (Git Auto-Commit)</li>
+                    <li>Persistent Volume Management</li>
+                    <li>NVMe-Backed Black Box Logging</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <h3>🔧 ARK Framework Services</h3>
+                <ul class="capability-features">
+                    <li>ARK Auth Gateway (Authentication Router)</li>
+                    <li>ARK Bridge (Inter-Service Communication)</li>
+                    <li>ARK Dispatcher (Job Queue & Scheduler)</li>
+                    <li>Service Discovery & Routing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA / Contact -->
+<section class="footer-cta" id="contact">
+    <div class="container">
+        <h2>PILOT PROGRAM OPEN</h2>
+        <p>ARK Node v4.6.0 is ready for field trials. Limited slots available for early adopters in mining, aerospace, emergency services, and remote monitoring sectors.</p>
+
+        <a href="mailto:your-email@tylereno.me" class="hero-cta">Request Pilot Access</a>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-label">Contact</div>
+                <div class="contact-value">Tyler Eno, Systems Architect</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Email</div>
+                <div class="contact-value"><a href="mailto:your-email@tylereno.me">your-email@tylereno.me</a></div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Web</div>
+                <div class="contact-value"><a href="https://tylereno.me" target="_blank">tylereno.me</a></div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Footer -->
 <footer class="footer-legal">
