@@ -1071,14 +1071,222 @@
     <div class="wide-container">
         <div class="section-header">
             <div class="section-label">OPERATIONAL SCENARIOS</div>
-            <h2 class="section-title">Use Cases</h2>
-            <p class="section-description">Real-world applications where ARK's autonomous capabilities provide mission-critical resilience.</p>
+            <h2 class="section-title">Use Cases & Framework</h2>
+            <p class="section-description">Real-world applications mapped to the <span class="highlight">ARK MASTER CAPABILITY MATRIX (v5.0)</span>.<br>
+            <strong>Total Core Profiles:</strong> 14 &nbsp;|&nbsp; <strong>Distinct Verticals:</strong> 18 &nbsp;|&nbsp; <strong>Operational Scenarios:</strong> 24+</p>
+            <div style="margin:2rem auto 2.5rem auto;max-width:900px;background:var(--bg-tertiary);border:1px solid var(--border-color);border-radius:8px;padding:2rem;">
+                <h3 style="color:var(--accent-amber);margin-bottom:1rem;text-align:center;">ARK MASTER CAPABILITY MATRIX (v5.0)</h3>
+                <ul style="list-style:none;padding:0;">
+                    <li><strong style="color:var(--accent-blue);">TIER 1: DEFENSE & CRITICAL RESPONSE</strong> <span style="color:var(--text-secondary);">(The "Tip of the Spear")</span></li>
+                    <ul style="margin-bottom:1rem;">
+                        <li><strong>ark-defense-tradewinds</strong> — Aerospace / Defense / GovCloud</li>
+                        <li><strong>ark-fire</strong> — Emergency Services / First Responders</li>
+                        <li><strong>ark-health</strong> — Healthcare / Humanitarian Aid</li>
+                    </ul>
+                    <li><strong style="color:var(--accent-blue);">TIER 2: INDUSTRIAL & INFRASTRUCTURE</strong> <span style="color:var(--text-secondary);">(The "Revenue Engines")</span></li>
+                    <ul style="margin-bottom:1rem;">
+                        <li><strong>ark-mine</strong> — Mining / Extractive Industries</li>
+                        <li><strong>ark-grid</strong> — Utilities / Telecom / Energy</li>
+                        <li><strong>ark-marine</strong> — Maritime / Offshore Energy</li>
+                        <li><strong>ark-construct</strong> — Construction / Engineering</li>
+                        <li><strong>ark-farm</strong> — Agriculture / Environmental Science</li>
+                    </ul>
+                    <li><strong style="color:var(--accent-blue);">TIER 3: LOGISTICS & COMMERCE</strong> <span style="color:var(--text-secondary);">(The "Supply Chain")</span></li>
+                    <ul style="margin-bottom:1rem;">
+                        <li><strong>ark-truck</strong> — Transportation / Long-Haul</li>
+                        <li><strong>ark-logistics</strong> — Supply Chain / Warehousing</li>
+                        <li><strong>ark-ev</strong> — Automotive / Charging Networks</li>
+                    </ul>
+                    <li><strong style="color:var(--accent-blue);">TIER 4: CIVIL & LIFESTYLE</strong> <span style="color:var(--text-secondary);">(The "Daily Drivers")</span></li>
+                    <ul>
+                        <li><strong>ark-facility</strong> — Education / Retail / Smart Buildings</li>
+                        <li><strong>ark-home</strong> — Residential / Smart Home</li>
+                        <li><strong>ark-mobile-legacy</strong> — Nomadic Living / RV</li>
+                    </ul>
+                </ul>
+                <p style="color:var(--text-muted);font-size:0.95rem;margin-top:1.5rem;">Each scenario card below is mapped to a profile and tier, illustrating how ARK adapts to sector-specific challenges.</p>
+            </div>
         </div>
 
         <div class="scenario-grid">
-            <!-- Industrial & Infrastructure -->
+            <!-- TIER 1: DEFENSE & CRITICAL RESPONSE -->
             <div class="scenario-category-header" style="margin-bottom:2rem;">
-                <h3 style="color:var(--accent-blue);text-transform:uppercase;letter-spacing:0.1em;font-size:1.1rem;">Industrial & Infrastructure</h3>
+                <h3 style="color:var(--accent-blue);text-transform:uppercase;letter-spacing:0.1em;font-size:1.1rem;">TIER 1: DEFENSE & CRITICAL RESPONSE</h3>
+                <div style="color:var(--text-secondary);font-size:0.95rem;">Profiles: ark-defense-tradewinds, ark-fire, ark-health</div>
+            </div>
+            <!-- Aerospace / Defense / GovCloud -->
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Aerospace / Defense</div>
+                    <div class="scenario-icon">🛰️</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>Command & Control (ark-defense-tradewinds)</h3>
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>Acts as local Mission Control for UAVs/Rovers during radio silence. Hosts technical docs and decision logic locally.</p>
+                    </div>
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>ARK enables autonomous operation and logs all command decisions to an immutable audit trail for post-mission review.</p>
+                    </div>
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> Instantaneous fault resolution. Complete autonomy. Full forensic accountability for command decisions.
+                    </div>
+                </div>
+            </div>
+            <!-- Emergency Services / First Responders -->
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Emergency Services</div>
+                    <div class="scenario-icon">🚨</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>Disaster Response (ark-fire)</h3>
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>Mobile Command Center loses grid power during wildfire/hurricane response. Standard servers crash, corrupting databases and severing comms with field teams.</p>
+                    </div>
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>ARK's Hardware Watchdog prevents OS corruption. Energy Orchestration sheds non-essential workloads to keep radio links alive 4x longer. All services auto-recover when power returns.</p>
+                    </div>
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> Critical comms maintained. No data corruption. Seamless recovery without IT staff intervention.
+                    </div>
+                </div>
+            </div>
+            <!-- Healthcare / Humanitarian Aid -->
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Healthcare</div>
+                    <div class="scenario-icon">🏥</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>Field Hospital Operations (ark-health)</h3>
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>Field hospitals in disaster zones must maintain patient records and device logs despite unreliable power and network access.</p>
+                    </div>
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>ARK stores all patient and device data locally, provides autonomous backup power management, and ensures all logs are uploaded securely when possible.</p>
+                    </div>
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> No loss of patient data, continuous device monitoring, and compliance with medical record regulations.
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIER 2: INDUSTRIAL & INFRASTRUCTURE -->
+            <div class="scenario-category-header" style="margin:2.5rem 0 2rem 0;">
+                <h3 style="color:var(--accent-blue);text-transform:uppercase;letter-spacing:0.1em;font-size:1.1rem;">TIER 2: INDUSTRIAL & INFRASTRUCTURE</h3>
+                <div style="color:var(--text-secondary);font-size:0.95rem;">Profiles: ark-mine, ark-grid, ark-marine, ark-construct, ark-farm</div>
+            </div>
+            <!-- Mining / Extractive Industries -->
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Mining Sector</div>
+                    <div class="scenario-icon">⛏️</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>Direct Lithium Extraction (ark-mine)</h3>
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>Caching sensor data during multi-day dust storms when satellite links fail. Preventing data gaps in compliance reporting.</p>
+                    </div>
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>ARK switches telemetry to Store-and-Forward mode, caching all sensor data locally. Power Manager sheds non-essential containers to preserve battery. Data bursts to HQ when connectivity returns.</p>
+                    </div>
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> Zero data loss. Zero downtime. Full compliance audit trail maintained.
+                    </div>
+                </div>
+            </div>
+            <!-- Utilities / Telecom / Energy -->
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Utilities</div>
+                    <div class="scenario-icon">💡</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>Remote Substation Automation (ark-grid)</h3>
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>Autonomous fault detection and relay restarts for remote substations. Logging all events for compliance and rapid recovery.</p>
+                    </div>
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>ARK provides local SCADA logging, autonomous fault detection, and self-healing restart of critical relays. Store-and-Forward ensures all event logs are preserved and uploaded when connectivity returns.</p>
+                    </div>
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> Uninterrupted grid operation, full event traceability, and reduced need for emergency field dispatches.
+                    </div>
+                </div>
+            </div>
+            <!-- Maritime / Offshore Energy -->
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Maritime Operations</div>
+                    <div class="scenario-icon">⚓</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>Offshore Platform Management (ark-marine)</h3>
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>Predictive maintenance on oil/gas rigs to reduce helicopter callouts by 60%. Navigation and NMEA sensor logging for autonomous shipping.</p>
+                    </div>
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>NOAH Guardian monitors equipment vibration, temperature, and runtime hours to predict failures. Logs anomalies to the Black Box and sends compressed alert packets via satellite. Self-Healing Architecture attempts software recovery before human intervention.</p>
+                    </div>
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> Predictive maintenance, reduced callouts, and complete operational history for inspection.
+                    </div>
+                </div>
+            </div>
+            <!-- Construction / Engineering -->
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Construction</div>
+                    <div class="scenario-icon">🏗️</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>Remote Site Monitoring (ark-construct)</h3>
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>Logging site sensor data and running safety AI (PPE detection) locally in urban canyons or remote builds.</p>
+                    </div>
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>ARK logs all site sensor and camera data locally, runs on-site AI for safety compliance, and provides autonomous alerts for hazardous conditions. Data is uploaded when a connection is available.</p>
+                    </div>
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> Improved safety, full project documentation, and reduced downtime due to data loss.
+                    </div>
+                </div>
+            </div>
+            <!-- Agriculture / Environmental Science -->
+            <div class="scenario-card">
+                <div class="scenario-meta">
+                    <div class="scenario-badge">Agriculture</div>
+                    <div class="scenario-icon">🌾</div>
+                </div>
+                <div class="scenario-content">
+                    <h3>Precision Ag & Climate (ark-farm)</h3>
+                    <div class="scenario-section">
+                        <h4>THE CHALLENGE</h4>
+                        <p>Controlling irrigation autonomously based on local soil moisture sensors, independent of the cloud. Surviving polar winters by shedding all UI layers and only logging raw climate data to NVMe.</p>
+                    </div>
+                    <div class="scenario-section">
+                        <h4>THE ARK RESPONSE</h4>
+                        <p>ARK stores high-resolution sensor data locally, runs on-site AI to adapt irrigation schedules, and controls pumps autonomously. Store-and-Forward ensures complete datasets for seasonal analysis and regulatory reporting.</p>
+                    </div>
+                    <div class="scenario-result">
+                        <strong>RESULT:</strong> Optimized water usage, stabilized yields, and autonomous operation through connectivity outages and polar winters.
+                    </div>
+                </div>
             </div>
             <div class="scenario-card">
                 <div class="scenario-meta">
@@ -1248,93 +1456,145 @@
 
             <!-- Connectivity & Mobility -->
             <div class="scenario-category-header" style="margin:2.5rem 0 2rem 0;">
-                <h3 style="color:var(--accent-blue);text-transform:uppercase;letter-spacing:0.1em;font-size:1.1rem;">Connectivity & Mobility</h3>
-            </div>
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Telecommunications</div>
-                    <div class="scenario-icon">📶</div>
+                <!-- TIER 3: LOGISTICS & COMMERCE -->
+                <div class="scenario-category-header" style="margin:2.5rem 0 2rem 0;">
+                    <h3 style="color:var(--accent-blue);text-transform:uppercase;letter-spacing:0.1em;font-size:1.1rem;">TIER 3: LOGISTICS & COMMERCE</h3>
+                    <div style="color:var(--text-secondary);font-size:0.95rem;">Profiles: ark-truck, ark-logistics, ark-ev</div>
                 </div>
-                <div class="scenario-content">
-                    <h3>Cell Tower Site Resilience</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Cell towers in remote or disaster-prone areas face frequent power and backhaul outages, risking loss of call/data records and extended downtime.</p>
+                <!-- Transportation / Long-Haul -->
+                <div class="scenario-card">
+                    <div class="scenario-meta">
+                        <div class="scenario-badge">Transportation</div>
+                        <div class="scenario-icon">🚚</div>
                     </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK logs all call/data events locally, manages backup power, and autonomously restarts radios after brownouts. When the link is restored, all records are synchronized to the NOC.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Maintained service continuity, no loss of regulatory data, and faster recovery after outages.
-                    </div>
-                </div>
-            </div>
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Transportation</div>
-                    <div class="scenario-icon">🚚</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>Autonomous Fleet Operations</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Logistics fleets operating in remote regions or cross-border routes experience intermittent connectivity, risking loss of route, cargo, and compliance data.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK nodes in each vehicle cache all telemetry, route, and cargo data locally. Local AI optimizes routes and schedules maintenance. Data is synchronized to HQ when connectivity is available.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> No data loss, improved fleet efficiency, and regulatory compliance across borders.
+                    <div class="scenario-content">
+                        <h3>Fleet Ops & Telematics (ark-truck)</h3>
+                        <div class="scenario-section">
+                            <h4>THE CHALLENGE</h4>
+                            <p>Caching ELD (Electronic Logging Device) and route data when crossing borders or dead zones. Local driver safety scoring and route optimization.</p>
+                        </div>
+                        <div class="scenario-section">
+                            <h4>THE ARK RESPONSE</h4>
+                            <p>ARK nodes in each vehicle cache all telemetry, route, and cargo data locally. Local AI optimizes routes and schedules maintenance. Data is synchronized to HQ when connectivity is available.</p>
+                        </div>
+                        <div class="scenario-result">
+                            <strong>RESULT:</strong> No data loss, improved fleet efficiency, and regulatory compliance across borders.
+                        </div>
                     </div>
                 </div>
-            </div>
+                <!-- Supply Chain / Warehousing -->
+                <div class="scenario-card">
+                    <div class="scenario-meta">
+                        <div class="scenario-badge">Supply Chain</div>
+                        <div class="scenario-icon">📦</div>
+                    </div>
+                    <div class="scenario-content">
+                        <h3>Warehouse Automation (ark-logistics)</h3>
+                        <div class="scenario-section">
+                            <h4>THE CHALLENGE</h4>
+                            <p>Real-time inventory tracking and robotics coordination within a facility (Intranet-of-Things).</p>
+                        </div>
+                        <div class="scenario-section">
+                            <h4>THE ARK RESPONSE</h4>
+                            <p>ARK provides local orchestration and logging for warehouse robotics, ensuring uninterrupted operations and inventory accuracy even during network outages.</p>
+                        </div>
+                        <div class="scenario-result">
+                            <strong>RESULT:</strong> Continuous automation, no inventory loss, and resilient supply chain operations.
+                        </div>
+                    </div>
+                </div>
+                <!-- Automotive / Charging Networks -->
+                <div class="scenario-card">
+                    <div class="scenario-meta">
+                        <div class="scenario-badge">EV Charging</div>
+                        <div class="scenario-icon">🔋</div>
+                    </div>
+                    <div class="scenario-content">
+                        <h3>Charging & V2G (ark-ev)</h3>
+                        <div class="scenario-section">
+                            <h4>THE CHALLENGE</h4>
+                            <p>Managing V2G (Vehicle-to-Grid) loads and processing payment/authentication locally when the charging station loses internet.</p>
+                        </div>
+                        <div class="scenario-section">
+                            <h4>THE ARK RESPONSE</h4>
+                            <p>ARK enables local payment processing, authentication, and load management, ensuring charging services remain available and secure during outages.</p>
+                        </div>
+                        <div class="scenario-result">
+                            <strong>RESULT:</strong> No lost revenue, uninterrupted charging, and secure transactions.</p>
+                        </div>
+                    </div>
+                </div>
 
             <!-- Environment & Agriculture -->
             <div class="scenario-category-header" style="margin:2.5rem 0 2rem 0;">
-                <h3 style="color:var(--accent-blue);text-transform:uppercase;letter-spacing:0.1em;font-size:1.1rem;">Environment & Agriculture</h3>
-            </div>
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Environmental Monitoring</div>
-                    <div class="scenario-icon">🌍</div>
+                <!-- TIER 4: CIVIL & LIFESTYLE -->
+                <div class="scenario-category-header" style="margin:2.5rem 0 2rem 0;">
+                    <h3 style="color:var(--accent-blue);text-transform:uppercase;letter-spacing:0.1em;font-size:1.1rem;">TIER 4: CIVIL & LIFESTYLE</h3>
+                    <div style="color:var(--text-secondary);font-size:0.95rem;">Profiles: ark-facility, ark-home, ark-mobile-legacy</div>
                 </div>
-                <div class="scenario-content">
-                    <h3>Remote Weather Station Network</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>A network of climate monitoring stations in the Arctic must operate through polar night (24/7 darkness) with limited solar recharge and intermittent satellite passes for data upload.</p>
+                <!-- Education / Retail / Smart Buildings -->
+                <div class="scenario-card">
+                    <div class="scenario-meta">
+                        <div class="scenario-badge">Education</div>
+                        <div class="scenario-icon">🎓</div>
                     </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>Energy Orchestration monitors battery state-of-charge and progressively sheds layers: first web dashboards, then AI processing, preserving only sensor logging and periodic satellite bursts. Store-and-Forward queues months of high-resolution climate data locally. When spring returns and solar power increases, ARK auto-recovers full capabilities and uploads the complete dataset.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> 6+ months of continuous operation on limited solar. Zero data loss through polar winter. No site visits required.
-                    </div>
-                </div>
-            </div>
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Agriculture</div>
-                    <div class="scenario-icon">🌾</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>Precision Agriculture & Irrigation Management</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Remote farms with solar-powered pumps and sparse connectivity face irrigation gaps and crop loss if data is lost or delayed.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK stores high-resolution sensor data locally, runs on-site AI to adapt irrigation schedules, and controls pumps autonomously. Store-and-Forward ensures complete datasets for seasonal analysis and regulatory reporting.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Optimized water usage, stabilized yields, and autonomous operation through connectivity outages.
+                    <div class="scenario-content">
+                        <h3>Remote School & Retail (ark-facility)</h3>
+                        <div class="scenario-section">
+                            <h4>THE CHALLENGE</h4>
+                            <p>Caching curriculum and student records for offline learning in developing regions. Enabling offline POS operations for mobile retail events.</p>
+                        </div>
+                        <div class="scenario-section">
+                            <h4>THE ARK RESPONSE</h4>
+                            <p>ARK caches all student records and digital content locally, enables offline access to curriculum, and synchronizes progress when a connection is available. For retail, ARK stores all sales and inventory data locally, enables offline POS, and syncs transactions to HQ when a connection is restored.</p>
+                        </div>
+                        <div class="scenario-result">
+                            <strong>RESULT:</strong> Continuous learning, no loss of student data, and seamless operation for mobile retail teams.
+                        </div>
                     </div>
                 </div>
-            </div>
+                <!-- Residential / Smart Home -->
+                <div class="scenario-card">
+                    <div class="scenario-meta">
+                        <div class="scenario-badge">Smart Home</div>
+                        <div class="scenario-icon">🏠</div>
+                    </div>
+                    <div class="scenario-content">
+                        <h3>Resilient Home Automation (ark-home)</h3>
+                        <div class="scenario-section">
+                            <h4>THE CHALLENGE</h4>
+                            <p>Local Home Assistant execution that keeps lights and security working when the ISP goes down.</p>
+                        </div>
+                        <div class="scenario-section">
+                            <h4>THE ARK RESPONSE</h4>
+                            <p>ARK runs Home Assistant and automation logic locally, ensuring uninterrupted smart home operation and security even during internet outages.</p>
+                        </div>
+                        <div class="scenario-result">
+                            <strong>RESULT:</strong> No loss of automation, continuous security, and peace of mind for residents.
+                        </div>
+                    </div>
+                </div>
+                <!-- Nomadic Living / RV -->
+                <div class="scenario-card">
+                    <div class="scenario-meta">
+                        <div class="scenario-badge">Nomadic Living</div>
+                        <div class="scenario-icon">🚐</div>
+                    </div>
+                    <div class="scenario-content">
+                        <h3>Mobile Media & Energy (ark-mobile-legacy)</h3>
+                        <div class="scenario-section">
+                            <h4>THE CHALLENGE</h4>
+                            <p>Media streaming, energy monitoring, and Starlink bonding for RVs and mobile living, even when off-grid or in remote areas.</p>
+                        </div>
+                        <div class="scenario-section">
+                            <h4>THE ARK RESPONSE</h4>
+                            <p>ARK provides local media streaming, energy telemetry, and network bonding, ensuring comfort and connectivity for nomadic lifestyles.</p>
+                        </div>
+                        <div class="scenario-result">
+                            <strong>RESULT:</strong> Entertainment, energy awareness, and reliable connectivity on the move.
+                        </div>
+                    </div>
+                </div>
 
             <!-- Community & Commerce -->
             <div class="scenario-category-header" style="margin:2.5rem 0 2rem 0;">
