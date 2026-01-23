@@ -4,8 +4,293 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARK™ SERIES-4 SOVEREIGN NODE | Industrial OT Platform</title>
-    <link rel="stylesheet" href="styles.css">
-</head>        .capability-grid {
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e14;
+            --bg-secondary: #1a1f26;
+            --bg-tertiary: #252b35;
+            --text-primary: #e6e8eb;
+            --text-secondary: #a0a8b5;
+            --text-muted: #6b7280;
+            --accent-amber: #fbbf24;
+            --accent-blue: #3b82f6;
+            --border-color: #2d3748;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .wide-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-amber);
+            letter-spacing: 0.1em;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--accent-amber);
+            color: var(--accent-amber);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            margin-left: 1rem;
+        }
+
+        .classification {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--danger);
+            letter-spacing: 0.1em;
+            border: 1px solid var(--danger);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            padding: 6rem 0 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(251, 191, 36, 0.03) 2px,
+                    rgba(251, 191, 36, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tagline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent-amber);
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1;
+            color: var(--text-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--accent-amber);
+            color: var(--bg-primary);
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            border: 2px solid var(--accent-amber);
+        }
+
+        .hero-cta:hover {
+            background: transparent;
+            color: var(--accent-amber);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-blue);
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Problem/Solution Grid */
+        .ps-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .ps-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+        }
+
+        .ps-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .ps-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .problem-icon {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+        }
+
+        .solution-icon {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+
+        .ps-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .ps-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .ps-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ps-card li {
+            color: var(--text-secondary);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .ps-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-amber);
+        }
+
+        /* Capability Cards */
+        .capability-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
@@ -814,301 +1099,6 @@
                     </div>
                 </div>
             </div>
-            <!-- New Use Cases Start -->
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Defense / Tradewinds</div>
-                    <div class="scenario-icon">🛡️</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>ark-defense-tradewinds</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Critical DoD, disaster response, and infrastructure sites require air-gapped, tamper-resistant, and cyber-hardened platforms. Standard IT systems are vulnerable to supply chain attacks and remote exploits.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK deploys as a physically isolated, zero-cloud, secure node with immutable audit trails and hardware root-of-trust. All data and control remain on-site, with no external dependencies or remote access vectors.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Hardened, air-gapped operations. DoD-grade security. No remote attack surface.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Fire Response</div>
-                    <div class="scenario-icon">🔥</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>ark-fire</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Wildland and urban fire teams need real-time situational awareness, but comms are unreliable and sensor data is fragmented.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK fuses sensor feeds (thermal, air quality, GPS) and builds a local mesh network for resilient comms and mapping, even in comms-denied zones.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Real-time mapping, mesh comms, and sensor fusion for fire response teams.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Health / Medical</div>
-                    <div class="scenario-icon">🏥</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>ark-health</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Field hospitals and medical teams require secure, reliable patient data and remote diagnostics in disaster or combat zones.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK provides encrypted local storage, telemedicine support, and medical logistics tracking, ensuring patient privacy and operational continuity.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Secure patient data, remote diagnostics, and resilient medical logistics.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Grid / Energy</div>
-                    <div class="scenario-icon">🔋</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>ark-grid</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Microgrids and distributed energy resources need autonomous management and grid resilience during blackouts or cyber events.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK manages energy storage, orchestrates distributed assets, and maintains grid stability with local AI, even when isolated from the main grid.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Grid resilience, autonomous DER management, and blackout-proof operations.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">EV Fleet</div>
-                    <div class="scenario-icon">🚗</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>ark-ev</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Electric vehicle fleets require real-time telemetry, charging optimization, and V2G integration, often in areas with poor connectivity.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK enables local V2G management, battery health analytics, and route optimization, storing all data for later sync when connectivity returns.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Optimized charging, V2G, and full fleet telemetry with zero data loss.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Facility Automation</div>
-                    <div class="scenario-icon">🏢</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>ark-facility</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Smart buildings need secure automation, access control, and environmental monitoring, but cloud reliance creates privacy and uptime risks.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK runs all automation logic and access control locally, with encrypted logs and no cloud dependency, ensuring privacy and resilience.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Private, resilient building automation and secure access control.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Mining Ops</div>
-                    <div class="scenario-icon">⛏️</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>ark-mine</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Mining operations require underground comms, air quality monitoring, and asset tracking in harsh, connectivity-challenged environments.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK provides underground mesh comms, real-time air quality analytics, and equipment monitoring, all with autonomous failover and data retention.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Safer mining, asset tracking, and continuous monitoring underground.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Logistics</div>
-                    <div class="scenario-icon">📦</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>ark-logistics</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Supply chains and warehouses need real-time tracking, inventory, and routing, but are often limited by unreliable networks.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK enables local fleet and inventory management, real-time tracking, and autonomous routing, syncing with HQ when possible.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Resilient supply chain, real-time tracking, and optimized logistics.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Trucking</div>
-                    <div class="scenario-icon">🚚</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>ark-truck</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Long-haul and last-mile logistics require ELD compliance, telematics, and driver safety, often in areas with spotty coverage.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK logs ELD and telematics data locally, provides driver safety analytics, and syncs with central systems when connectivity is restored.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> ELD compliance, driver safety, and uninterrupted telematics for trucking fleets.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Construction</div>
-                    <div class="scenario-icon">🏗️</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>ark-construct</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Construction sites need asset management, safety monitoring, and crew coordination, but are often disconnected and dynamic.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK integrates drones, sensors, and crew coordination tools, automating safety checks and asset tracking on-site, with or without internet.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Automated safety, asset management, and crew coordination for construction.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Agriculture</div>
-                    <div class="scenario-icon">🌱</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>ark-farm</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Precision agriculture, greenhouses, and livestock operations need IoT sensors, automation, and robotics, but face rural connectivity gaps.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK automates irrigation, climate, and livestock monitoring, running all logic locally and storing data for regulatory and seasonal analysis.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Optimized ag operations, robotics, and autonomous control in rural areas.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Marine</div>
-                    <div class="scenario-icon">🚢</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>ark-marine</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Vessels require automation, navigation, and remote monitoring, integrating NMEA, radar, and satellite comms, often far from shore.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK provides local vessel automation, navigation analytics, and remote monitoring, with seamless satellite and radio comms integration.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Autonomous vessel ops, navigation, and monitoring at sea.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Residential</div>
-                    <div class="scenario-icon">🏠</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>ark-home</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>Homes need automation, security, and energy management, but cloud reliance creates privacy and reliability risks.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK runs all smart home logic locally, integrates with cloud only as needed, and provides secure, private automation and monitoring.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Private, resilient home automation and energy management.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scenario-card">
-                <div class="scenario-meta">
-                    <div class="scenario-badge">Mobile / Legacy</div>
-                    <div class="scenario-icon">🚐</div>
-                </div>
-                <div class="scenario-content">
-                    <h3>ark-mobile-legacy</h3>
-                    <div class="scenario-section">
-                        <h4>THE CHALLENGE</h4>
-                        <p>RV, van, and off-grid living require media, IoT, and remote access, but often lack reliable internet or power.</p>
-                    </div>
-                    <div class="scenario-section">
-                        <h4>THE ARK RESPONSE</h4>
-                        <p>ARK provides local media, IoT automation, and secure remote access for nomadic lifestyles, with full offline capability and solar optimization.</p>
-                    </div>
-                    <div class="scenario-result">
-                        <strong>RESULT:</strong> Off-grid media, IoT, and remote access for mobile living.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- New Use Cases End -->
 
             <div class="scenario-card">
                 <div class="scenario-meta">
