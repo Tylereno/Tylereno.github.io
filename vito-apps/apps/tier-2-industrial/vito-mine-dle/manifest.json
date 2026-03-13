@@ -1,0 +1,51 @@
+{
+  "program": "ark-mine-dle",
+  "tier": "TIER 2 - Industrial & Infrastructure",
+  "codename": "EXTRACT",
+  "category": "Mining / Extractive Industries",
+  "version": "4.6.6",
+  "description": "Direct Lithium Extraction with 72-hour offline cache. Survives multi-day dust storms without satellite uplink.",
+  "challenge": "A standalone extraction module operates in a remote salt flat. A multi-day dust storm obstructs solar capacity and blocks the satellite uplink for 72 hours. Standard gateways drop data after 2 hours.",
+  "response": "VITO switches telemetry to 'Store-and-Forward' mode, caching all sensor data locally. Power Manager sheds non-essential containers to preserve battery. Data bursts to HQ when connectivity returns.",
+  "result": "Zero data loss. Zero downtime. Zero human intervention. Full compliance audit trail maintained.",
+  "agents_enabled": ["VIGIL", "STOW", "KINETIC", "GHOST", "FORGE"],
+  "agents_disabled": [],
+  "key_capabilities": [
+    "72-hour NVMe persistence",
+    "Store-and-Forward burst sync",
+    "Modbus/CANbus sensor integration",
+    "Predictive maintenance AI",
+    "Compliance audit trails"
+  ],
+  "power_behavior": {
+    "100_percent": "All services active",
+    "60_percent": "Shed UI/Dev tools",
+    "40_percent": "Shed non-critical sensors (preserve core telemetry)",
+    "20_percent": "Core telemetry + PLC bridge only",
+    "10_percent": "Graceful shutdown to NVMe"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "modbus-rtu": "^1.0.0",
+    "node": "^18.0.0"
+  },
+  "ports": {
+    "api": 3001,
+    "telemetry": 3002,
+    "modbus": 502,
+    "mesh": 41641
+  },
+  "volumes": {
+    "sensor_cache": "/data/sensors",
+    "nvme_cache": "/data/stow",
+    "compliance": "/data/compliance"
+  },
+  "environment_variables": {
+    "STOW_STORE_AND_FORWARD_MODE": "true",
+    "STOW_BURST_SYNC_ON_CONNECTIVITY": "true",
+    "STOW_CACHE_DURATION_DAYS": "21",
+    "KINETIC_BATTERY_SHED_MODE": "true",
+    "KINETIC_SOLAR_INTEGRATION": "true",
+    "FORGE_MODBUS_TCP_ENABLED": "true"
+  }
+}

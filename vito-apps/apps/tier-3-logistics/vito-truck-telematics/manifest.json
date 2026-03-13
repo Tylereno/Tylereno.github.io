@@ -1,0 +1,47 @@
+{
+  "program": "ark-truck-telematics",
+  "tier": "TIER 3 - Logistics & Commerce",
+  "codename": "FLEET",
+  "category": "Transportation / Logistics",
+  "version": "4.6.6",
+  "description": "Fleet telematics with multi-WAN bonding and ELD regulatory compliance.",
+  "challenge": "Long-haul trucking requires reliable connectivity across multiple states, intermittent dead zones, and strict ELD (Electronic Logging Device) compliance even during network outages.",
+  "response": "VITO bonds cellular + satellite links, stores ELD events locally during dead zones, and replays them when connectivity returns. STOW maintains immutable audit trail for regulatory inspection.",
+  "result": "Continuous ELD compliance, seamless coverage across dead zones, and reduced paperwork audits.",
+  "agents_enabled": ["STOW", "GHOST", "FORGE"],
+  "agents_disabled": ["VIGIL", "KINETIC", "OTTO"],
+  "key_capabilities": [
+    "Multi-WAN bonding (cellular + satellite)",
+    "ELD event logging + replay",
+    "Dead-zone caching",
+    "Immutable audit trails",
+    "Regulatory compliance recording"
+  ],
+  "power_behavior": {
+    "100_percent": "All services active",
+    "50_percent": "Core ELD + GPS only",
+    "20_percent": "Minimal logging mode",
+    "10_percent": "Graceful shutdown"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "node": "^18.0.0"
+  },
+  "ports": {
+    "api": 3001,
+    "eld_gateway": 3013,
+    "mesh": 41641
+  },
+  "volumes": {
+    "eld_events": "/data/eld",
+    "gps_logs": "/data/gps",
+    "nvme_cache": "/data/stow"
+  },
+  "environment_variables": {
+    "STOW_ELD_LOGGING": "true",
+    "STOW_IMMUTABLE_AUDIT_TRAIL": "true",
+    "GHOST_MULTI_WAN_BONDING": "true",
+    "GHOST_CELLULAR_SATELLITE_FAILOVER": "true",
+    "FORGE_ELD_COMPLIANCE_CHECK": "true"
+  }
+}

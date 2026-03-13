@@ -1,0 +1,50 @@
+{
+  "program": "ark-grid-substation",
+  "tier": "TIER 2 - Industrial & Infrastructure",
+  "codename": "UTILITY",
+  "category": "Utilities / Power Grid",
+  "version": "4.6.6",
+  "description": "Remote substation automation with autonomous fault detection and relay restarts.",
+  "challenge": "Rural substations must operate autonomously for weeks due to access restrictions or disaster events. Loss of connectivity or power can lead to undetected faults and service interruptions.",
+  "response": "VITO provides local SCADA logging, autonomous fault detection, and self-healing restart of critical relays. Store-and-Forward ensures all event logs are preserved and uploaded when connectivity returns.",
+  "result": "Uninterrupted grid operation, full event traceability, and reduced need for emergency field dispatches.",
+  "agents_enabled": ["VIGIL", "STOW", "KINETIC", "GHOST", "FORGE"],
+  "agents_disabled": [],
+  "key_capabilities": [
+    "SCADA integration + local logging",
+    "Autonomous fault detection AI",
+    "Self-healing PLC restarts",
+    "Event log compression",
+    "Compliance audit trails"
+  ],
+  "power_behavior": {
+    "100_percent": "All services active",
+    "60_percent": "Shed UI/Dev",
+    "40_percent": "Shed non-critical sensors",
+    "20_percent": "Core SCADA + relay bridge",
+    "10_percent": "Shutdown to NVMe"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "pymodbus": "^2.5.0",
+    "python": "^3.9.0"
+  },
+  "ports": {
+    "api": 3001,
+    "scada": 502,
+    "mesh": 41641
+  },
+  "volumes": {
+    "scada_logs": "/data/scada",
+    "nvme_cache": "/data/stow",
+    "compliance": "/data/compliance"
+  },
+  "environment_variables": {
+    "OTTO_SCADA_INTEGRATION": "true",
+    "OTTO_FAULT_DETECTION_AI": "true",
+    "STOW_SCADA_EVENT_LOGGING": "true",
+    "KINETIC_RELAY_RESTART_AUTO": "true",
+    "FORGE_PLC_AUTO_RESTART": "true",
+    "KINETIC_GRID_STABILITY_MODE": "true"
+  }
+}

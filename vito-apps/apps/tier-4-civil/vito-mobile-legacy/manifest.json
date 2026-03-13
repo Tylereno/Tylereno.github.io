@@ -1,0 +1,51 @@
+{
+  "program": "ark-mobile-legacy",
+  "tier": "TIER 4 - Civil & Lifestyle",
+  "codename": "NOMAD",
+  "category": "Mobile Living / RVs",
+  "version": "4.6.6",
+  "description": "RV/nomadic lifestyle platform with offline media, energy management, and multi-ISP routing.",
+  "challenge": "RVs and nomadic vehicles move constantly through disconnected areas, facing spotty cellular, expensive satellite data, and limited power budgets. Users need entertainment, navigation, and communication without burning data.",
+  "response": "VITO manages multi-ISP data budgets intelligently, caches media locally, optimizes power for appliances, and provides offline navigation. Minimizes data consumption through compression and scheduling.",
+  "result": "Uninterrupted nomadic lifestyle, optimized power usage, and intelligent data budget allocation.",
+  "agents_enabled": ["VIGIL", "STOW", "KINETIC", "GHOST"],
+  "agents_disabled": ["OTTO", "FORGE"],
+  "key_capabilities": [
+    "Multi-ISP cost optimization",
+    "Offline media library",
+    "Power management for appliances",
+    "Offline mapping",
+    "Data compression + scheduling"
+  ],
+  "power_behavior": {
+    "100_percent": "All services active",
+    "70_percent": "Shed streaming",
+    "50_percent": "Essential nav + comms",
+    "30_percent": "Comms only",
+    "10_percent": "Graceful shutdown"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "node": "^18.0.0"
+  },
+  "ports": {
+    "api": 3001,
+    "power_management": 3023,
+    "network_router": 3024,
+    "mesh": 41641
+  },
+  "volumes": {
+    "media_library": "/data/media",
+    "maps_offline": "/data/maps",
+    "power_logs": "/data/power",
+    "nvme_cache": "/data/stow"
+  },
+  "environment_variables": {
+    "KINETIC_MULTI_ISP_OPTIMIZATION": "true",
+    "KINETIC_DATA_BUDGET_AWARE": "true",
+    "KINETIC_APPLIANCE_POWER_CONTROL": "true",
+    "STOW_DATA_COMPRESSION": "true",
+    "STOW_SYNC_SCHEDULING": "true",
+    "GHOST_MULTI_WAN_BONDING": "true"
+  }
+}

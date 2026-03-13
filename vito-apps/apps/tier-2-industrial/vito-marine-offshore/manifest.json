@@ -1,0 +1,50 @@
+{
+  "program": "ark-marine-offshore",
+  "tier": "TIER 2 - Industrial & Infrastructure",
+  "codename": "VESSEL",
+  "category": "Maritime / Offshore Energy",
+  "version": "4.6.6",
+  "description": "Offshore platform management with predictive maintenance. Reduces helicopter callouts by 60%.",
+  "challenge": "An unmanned offshore oil/gas platform or aquaculture system must operate autonomously between monthly maintenance visits. Network connectivity is expensive satellite bandwidth, and equipment failures require costly helicopter deployments.",
+  "response": "NOAH Guardian monitors equipment vibration, temperature, and runtime hours to predict failures. Automatically throttles non-critical processes during equipment stress. Sends compressed alert packets via satellite. Self-healing attempts software recovery before human intervention.",
+  "result": "Predictive maintenance reduces helicopter callouts by 60%. Complete operational history available for regulatory inspection.",
+  "agents_enabled": ["VIGIL", "STOW", "KINETIC", "GHOST", "FORGE"],
+  "agents_disabled": [],
+  "key_capabilities": [
+    "Predictive maintenance (vibration + temperature)",
+    "Equipment stress throttling",
+    "Satellite burst transmission",
+    "Anomaly black box logging",
+    "Software self-healing"
+  ],
+  "power_behavior": {
+    "100_percent": "All services active",
+    "60_percent": "Shed UI/Dev",
+    "45_percent": "Shed non-essential equipment monitors",
+    "25_percent": "Critical pump/motor only",
+    "10_percent": "Shutdown to NVMe"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "node": "^18.0.0"
+  },
+  "ports": {
+    "api": 3001,
+    "equipment_bridge": 3005,
+    "satellite": 3006,
+    "mesh": 41641
+  },
+  "volumes": {
+    "equipment_logs": "/data/equipment",
+    "anomaly_black_box": "/data/blackbox",
+    "nvme_cache": "/data/stow"
+  },
+  "environment_variables": {
+    "OTTO_PREDICTIVE_MAINTENANCE": "true",
+    "OTTO_EQUIPMENT_ANALYSIS": "true",
+    "STOW_ANOMALY_LOGGING_ENABLED": "true",
+    "STOW_SATELLITE_BURST_ENABLED": "true",
+    "KINETIC_EQUIPMENT_STRESS_THROTTLE": "true",
+    "FORGE_EQUIPMENT_RECOVERY": "true"
+  }
+}

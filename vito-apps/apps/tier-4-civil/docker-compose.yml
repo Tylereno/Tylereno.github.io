@@ -1,0 +1,108 @@
+version: '3.8'
+
+services:
+  # TIER 4 - Civil & Lifestyle
+  # UX quality, user-initiated shedding
+
+  vito-facility-education:
+    container_name: vito-facility-education
+    build:
+      context: ./vito-facility-education
+      dockerfile: Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-facility-education
+      - STOW_STUDENT_PROGRESS_LOGGING=true
+    ports:
+      - "3001:3001"
+      - "3018:3018"  # Curriculum gateway
+      - "41641:41641"
+    volumes:
+      - ./data/curriculum:/data/curriculum
+      - ./data/progress:/data/progress
+      - ./data/stow:/data/stow
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - facility-education
+      - all
+
+  vito-facility-retail:
+    container_name: vito-facility-retail
+    build:
+      context: ./vito-facility-retail
+      dockerfile: Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-facility-retail
+      - STOW_TRANSACTION_LOGGING=true
+      - GHOST_INVENTORY_SYNC=true
+    ports:
+      - "3001:3001"
+      - "3019:3019"  # Payment gateway
+      - "3020:3020"  # Inventory sync
+      - "41641:41641"
+    volumes:
+      - ./data/transactions:/data/transactions
+      - ./data/inventory:/data/inventory
+      - ./data/stow:/data/stow
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - facility-retail
+      - all
+
+  vito-home-resilient:
+    container_name: vito-home-resilient
+    build:
+      context: ./vito-home-resilient
+      dockerfile: Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-home-resilient
+      - OTTO_LOCAL_AUTOMATION_ONLY=true
+      - OTTO_ROUTINE_LEARNING=true
+    ports:
+      - "3001:3001"
+      - "3021:3021"  # Home automation
+      - "3022:3022"  # Security gateway
+      - "41641:41641"
+    volumes:
+      - ./data/rules:/data/rules
+      - ./data/routines:/data/routines
+      - ./data/stow:/data/stow
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - home-resilient
+      - all
+
+  vito-mobile-legacy:
+    container_name: vito-mobile-legacy
+    build:
+      context: ./vito-mobile-legacy
+      dockerfile: Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-mobile-legacy
+      - KINETIC_MULTI_ISP_OPTIMIZATION=true
+      - KINETIC_DATA_BUDGET_AWARE=true
+    ports:
+      - "3001:3001"
+      - "3023:3023"  # Power management
+      - "3024:3024"  # Network router
+      - "41641:41641"
+    volumes:
+      - ./data/media:/data/media
+      - ./data/maps:/data/maps
+      - ./data/power:/data/power
+      - ./data/stow:/data/stow
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - mobile-legacy
+      - all
+
+networks:
+  vito-mesh:
+    driver: bridge

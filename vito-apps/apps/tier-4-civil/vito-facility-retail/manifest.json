@@ -1,0 +1,48 @@
+{
+  "program": "ark-facility-retail",
+  "tier": "TIER 4 - Civil & Lifestyle",
+  "codename": "POS",
+  "category": "Retail / Commerce",
+  "version": "4.6.6",
+  "description": "Mobile or fixed POS with offline inventory sync and payment processing.",
+  "challenge": "Retail locations with intermittent ISP suffer lost sales and inventory desynchronization. Mobile retail (food trucks, pop-up shops) often operate in dead zones.",
+  "response": "VITO enables offline payment processing, caches product inventory locally, and reconciles sales when connectivity returns. Complete transaction audit trail for regulatory compliance.",
+  "result": "Seamless sales regardless of connectivity, zero inventory desynchronization, and audit-ready transaction records.",
+  "agents_enabled": ["STOW", "GHOST", "FORGE"],
+  "agents_disabled": ["VIGIL", "KINETIC", "OTTO"],
+  "key_capabilities": [
+    "Offline payment processing",
+    "Inventory caching + sync",
+    "Transaction logging",
+    "Multi-tender support",
+    "Compliance audit trails"
+  ],
+  "power_behavior": {
+    "100_percent": "Full POS service",
+    "60_percent": "Core POS operations",
+    "40_percent": "Essential checkout",
+    "20_percent": "Payment processing only",
+    "10_percent": "Graceful shutdown"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "node": "^18.0.0"
+  },
+  "ports": {
+    "api": 3001,
+    "payment_gateway": 3019,
+    "inventory_sync": 3020,
+    "mesh": 41641
+  },
+  "volumes": {
+    "transactions": "/data/transactions",
+    "inventory": "/data/inventory",
+    "nvme_cache": "/data/stow"
+  },
+  "environment_variables": {
+    "STOW_TRANSACTION_LOGGING": "true",
+    "STOW_OFFLINE_PAYMENTS": "true",
+    "GHOST_INVENTORY_SYNC": "true",
+    "FORGE_PAYMENT_REPLAY": "true"
+  }
+}

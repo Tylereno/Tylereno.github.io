@@ -1,0 +1,47 @@
+{
+  "program": "ark-facility-education",
+  "tier": "TIER 4 - Civil & Lifestyle",
+  "codename": "SCHOOL",
+  "category": "Education / Schools",
+  "version": "4.6.6",
+  "description": "Remote learning facility with offline curriculum delivery and student progress tracking.",
+  "challenge": "Schools in rural or disaster-prone areas face periodic connectivity outages, disrupting remote learning and losing student progress data.",
+  "response": "VITO caches curriculum locally, logs student progress independently of network state, and resumes synchronization when connectivity returns. Teachers can continue lessons without interruption.",
+  "result": "Uninterrupted education, preserved learning records, and offline UX that feels native to students.",
+  "agents_enabled": ["STOW", "GHOST", "FORGE"],
+  "agents_disabled": ["VIGIL", "KINETIC", "OTTO"],
+  "key_capabilities": [
+    "Offline curriculum caching",
+    "Student progress tracking",
+    "Assessment data logging",
+    "Automatic sync on restore",
+    "Teacher offline mode"
+  ],
+  "power_behavior": {
+    "100_percent": "Full service with streaming",
+    "60_percent": "Shed HD streaming",
+    "40_percent": "Text + offline curriculum",
+    "20_percent": "Progress logging only",
+    "10_percent": "Shutdown"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "node": "^18.0.0"
+  },
+  "ports": {
+    "api": 3001,
+    "curriculum_gateway": 3018,
+    "mesh": 41641
+  },
+  "volumes": {
+    "curriculum": "/data/curriculum",
+    "student_progress": "/data/progress",
+    "nvme_cache": "/data/stow"
+  },
+  "environment_variables": {
+    "STOW_STUDENT_PROGRESS_LOGGING": "true",
+    "STOW_ASSESSMENT_DATA_PRESERVE": "true",
+    "GHOST_CURRICULUM_SYNC": "true",
+    "FORGE_OFFLINE_MODE": "true"
+  }
+}

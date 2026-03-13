@@ -1,0 +1,1043 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import {
+  ChevronRight,
+  ChevronLeft,
+  Shield,
+  Zap,
+  Activity,
+  CheckCircle,
+  Clock,
+  Menu,
+  Terminal,
+  Cpu,
+  Database,
+  Radio,
+  Lock,
+  Target,
+  Layers,
+  Server,
+  Satellite,
+  ArrowRight,
+  ArrowDown,
+  Users,
+  Award,
+  Globe,
+  Battery,
+  Wifi,
+  Eye,
+  Wrench,
+  BookOpen,
+  DollarSign,
+  TrendingUp,
+  AlertTriangle,
+  Box,
+} from 'lucide-react';
+
+const SlideDeck = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [showNotes, setShowNotes] = useState(false);
+
+  const totalSlides = 15;
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((s) => Math.min(s + 1, totalSlides - 1));
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((s) => Math.max(s - 1, 0));
+  }, []);
+
+  const toggleNotes = useCallback(() => {
+    setShowNotes((n) => !n);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+      }
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'n') toggleNotes();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [nextSlide, prevSlide, toggleNotes]);
+
+  /* ───────── SLIDE DATA ───────── */
+  const slides = [
+    /* 1 — TITLE */
+    {
+      id: 1, type: 'title',
+      title: 'VITO Series-4',
+      subtitle: 'Versatile Intelligence & Tactical Operations',
+      tagline: 'Autonomous Edge OS for DDIL Environments — Proposed for STTR SF25D-T1201',
+      meta: 'v4.7.0  ·  TRL 6  ·  12+ Months Field Validation  ·  40+ Containerized Services  ·  8 Autonomous Agents',
+      notes: 'VITO is not a concept — it is running production code managing 40+ services autonomously right now. This is a technology transition opportunity, not a feasibility study pitch.',
+    },
+    /* 2 — PROBLEM */
+    {
+      id: 2, type: 'problem',
+      title: 'Problem Space',
+      subtitle: 'Operational constraints driving the SF25D-T1201 solicitation',
+      items: [
+        { icon: Globe, color: 'red', label: 'DDIL Connectivity', desc: 'Satellite/ground links degrade during solar weather, eclipse, or adversary jamming — ground-loop C2 is fragile' },
+        { icon: Battery, color: 'orange', label: 'Finite Power Budget', desc: 'Eclipse cycles cut solar input to zero. Payload demands routinely exceed bus power capacity without active management' },
+        { icon: Clock, color: 'yellow', label: 'Command Latency', desc: 'Ground-loop cycles (500ms–10s RT) are incompatible with real-time threat response or collision avoidance' },
+        { icon: Users, color: 'purple', label: 'Operator Scaling', desc: 'Manual constellation management does not scale — solicitation requires ≥25% operator workload reduction (§3.2)' },
+        { icon: AlertTriangle, color: 'red', label: 'Data Integrity', desc: 'Standard bus computers drop telemetry during power transients and resets — no atomic persistence guarantees' },
+      ],
+      notes: 'DDIL = Denied, Degraded, Intermittent, Limited. These are the exact failure modes the SF25D-T1201 solicitation addresses.',
+    },
+    /* 3 — REQUIREMENTS TRACEABILITY MATRIX */
+    {
+      id: 3, type: 'alignment',
+      title: 'Requirements Traceability — SF25D-T1201',
+      subtitle: 'Section references per solicitation. All capabilities deployed and field-validated ≥12 months.',
+      rows: [
+        { ref: '§3.2', area: '1', req: 'Edge architectures for autonomous low-latency decision-making', vito: 'OTTO: Local LLM (Ollama) OODA loop, <3s inference, zero ground dependency' },
+        { ref: '§3.2', area: '1', req: 'Fuse, process, filter data from multiple sources/sensors', vito: 'VERA: Aggregates telemetry from 8 agents; cross-domain correlation' },
+        { ref: '§3.2', area: '1', req: 'Reduce kill-chain latency ≥50%', vito: 'Onboard inference (2-3s) vs ground RT (500ms-10s+); >80% reduction measured' },
+        { ref: '§3.2', area: '1', req: 'Reduce operator workload ≥25%', vito: '8-agent crew handles power/health/data/comms/recovery; humans direct, not operate' },
+        { ref: '§3.2', area: '1', req: 'Resilience to data poisoning, sensor degradation, noise', vito: 'VIGIL: threshold anomaly detection; OTTO degrades gracefully to deterministic logic' },
+        { ref: '§3.2', area: '1', req: 'Anomaly/maneuver detection AI/ML', vito: 'OTTO: pattern analysis via local LLM; compound failure detection across agents' },
+        { ref: '§3.2', area: '1', req: 'Zero-trust for on-board computation', vito: 'GHOST: WireGuard (ChaCha20-Poly1305), JWT/TOTP, air-gap mode, per-peer identity' },
+        { ref: '§3.2', area: '1', req: 'Data compression / efficient data handling', vito: 'STOW: burst sync, buffered prioritization, delta-only uploads on reconnect' },
+        { ref: '§3.2', area: '3', req: 'Autonomous load-shedding under duress', vito: 'KINETIC: 4-tier cascade via cgroup freezer; freeze/thaw <100ms; 12-mo field proven' },
+        { ref: '§3.2', area: '3', req: 'Hardware-agnostic flight software', vito: 'Docker containerization — runs on ARM, RISC-V, x86; any Linux-capable SoC' },
+        { ref: '§3.2', area: '3', req: 'Software modularity for autonomous integration', vito: '17 mission profiles share 8 core agents; satellite bus = Profile 18, same codebase' },
+        { ref: '§3.2', area: '3', req: 'All-of-vehicle autonomous optimization', vito: 'VIGIL + KINETIC + FORGE: coordinated health/power/recovery optimization loop' },
+        { ref: '§3.2', area: '3', req: 'Hardware modularity for rapid tech integration', vito: 'Docker Compose: add/remove services in seconds; hot-swap profiles at runtime' },
+        { ref: '§3.2', area: '3', req: 'Reconfigurability across mission profiles', vito: 'Profile selector: defense → mining → agriculture with one config delta' },
+        { ref: '§3.2', area: '2', req: 'Integrated sensor-computing for persistent tracking', vito: 'Coin nodes ($25 ea): LoRa 915MHz + GPS + env sensors, onboard processing' },
+        { ref: '§3.2', area: '2', req: 'Software-defined / reconfigurable payloads', vito: 'Containerized services = software-defined payloads; swap without bus firmware change' },
+        { ref: '§4.1.3.1', area: 'X', req: 'Cyber Operations and Cybersecurity', vito: 'Container isolation, zero-trust mesh, encrypted comms, JSONL audit, air-gap capable' },
+        { ref: '§4.1.3.2', area: 'X', req: 'Communications and Networks', vito: 'GHOST: Tailscale P2P mesh + LoRa + air-gap failover; no central infrastructure' },
+        { ref: '§4.1.4.2', area: 'X', req: 'Human-Machine Teaming and Interfaces', vito: 'Crew hierarchy: operators → OTTO (natural language) → specialist agents' },
+        { ref: '§4.1.4.3', area: 'X', req: 'Training and Simulation Technologies', vito: 'Mock battery mode, Docker-based sim, hardware abstraction for testing w/o real HW' },
+        { ref: '§4.1.4.5', area: 'X', req: 'Advanced Systems Engineering', vito: 'TRL 6 validated; 12-mo continuous ops; documented architecture + decision trees' },
+        { ref: '§4.1.4.6', area: 'X', req: 'Integrated Vehicle Health Management', vito: 'VIGIL: CPU/thermal/mem/disk/battery monitoring, threshold alerts, trending' },
+        { ref: '§4.1.4.7', area: 'X', req: 'Power and Thermal Management', vito: 'KINETIC (power cascade) + VIGIL (thermal) = closed-loop P&T optimization' },
+        { ref: '§4.1.4.16', area: 'X', req: 'Data Analytics and Artificial Intelligence', vito: 'GPU-accel Ollama + CrewAI orchestration + ChromaDB vector memory; fully local' },
+        { ref: '§4.1.4.17', area: 'X', req: 'Low C-SWaP', vito: 'Commodity HW (NUC/P53); coin nodes $25 ea; full 50-node mesh <$5K' },
+        { ref: '§4.1.2', area: 'X', req: 'Rapid Multi-Domain Integration', vito: '17 profiles across 4 tiers (defense/industrial/logistics/civil); same agent core' },
+        { ref: '§3.2', area: '1', req: 'Data security and sovereign data persistence', vito: 'Local-first, no cloud dependency, encrypted mesh, JSONL audit trail, NVMe atomic writes' },
+      ],
+      notes: 'This is the kill shot. 27 line-item requirement matches with solicitation section references. Every single one maps to a deployed, field-validated VITO capability. No other proposer at STTR scale will have this level of traceability.',
+    },
+    /* 4 — ARCHITECTURE */
+    {
+      id: 4, type: 'architecture',
+      title: 'System Architecture',
+      subtitle: 'Four-layer stack — cognitive tier degrades gracefully without affecting safety-critical operations',
+      layers: [
+        { name: 'COGNITIVE TIER', color: 'cyan', icon: Cpu, items: ['OTTO (Local LLM / Decision Making)', 'VERA (Intelligence Aggregation)', 'MASON (Resource Allocation)'], desc: 'AI decision-making separated from safety-critical operations' },
+        { name: 'OPERATIONAL TIER', color: 'emerald', icon: Activity, items: ['VIGIL (Health)', 'KINETIC (Power)', 'STOW (Data)', 'GHOST (Network)', 'FORGE (Recovery)'], desc: 'Five specialist agents execute autonomously' },
+        { name: 'INFRASTRUCTURE', color: 'blue', icon: Server, items: ['40+ Docker containers', 'Traefik routing', 'Tailscale mesh', 'Autoheal watchdog'], desc: 'Hardware-agnostic containerized services' },
+        { name: 'POWER + PHYSICAL', color: 'yellow', icon: Zap, items: ['Solar/Battery monitoring', 'NVMe atomic writes', 'LoRa mesh radios', 'Thermal sensors'], desc: 'Direct hardware interface layer' },
+      ],
+      notes: 'Emphasize the separation of Cognitive from Operational tier — if AI degrades, safety-critical operations continue. This is exactly what they mean by "do-no-harm" software.',
+    },
+    /* 5 — CREW */
+    {
+      id: 5, type: 'crew',
+      title: 'Agent Architecture — 8 Autonomous Agents',
+      subtitle: 'Hierarchical command structure: leadership tier directs, operations tier executes',
+      leadership: [
+        { name: 'VERA', role: 'Intelligence Officer', badge: 'INTEL', desc: 'System-wide pattern analysis, knowledge vault access, AI chat interface', color: 'cyan' },
+        { name: 'OTTO', role: 'Product Manager / AI', badge: 'MANAGER', desc: 'Local LLM inference, anomaly analysis, autonomous decision-making', color: 'emerald' },
+        { name: 'MASON', role: 'Personnel Director', badge: 'HR', desc: 'Agent capability management, resource allocation, crew scaling', color: 'purple' },
+      ],
+      operations: [
+        { name: 'VIGIL', role: 'Resilience Lead', desc: 'CPU/thermal/memory/disk monitoring', color: 'red' },
+        { name: 'KINETIC', role: 'Power Engineer', desc: '4-tier load-shedding cascade', color: 'yellow' },
+        { name: 'STOW', role: 'Data Steward', desc: 'Atomic NVMe writes every 2s', color: 'blue' },
+        { name: 'GHOST', role: 'NetSec Op', desc: 'Zero-trust mesh + air-gap', color: 'green' },
+        { name: 'FORGE', role: 'DevOps Builder', desc: 'Auto-heal + container recovery', color: 'orange' },
+      ],
+      notes: 'What makes VITO unique: not a monolithic program but a crew of specialists. Each agent has defined responsibilities, fail-independent operation, and coordinated recovery logic.',
+    },
+    /* 6 — KINETIC */
+    {
+      id: 6, type: 'deepdive',
+      title: 'KINETIC — Autonomous Load Shedding',
+      subtitle: 'Addresses §3.2 "Autonomous load-shedding method to maintain mission operation under duress"',
+      badge: '§3.2 FOCUS AREA 3',
+      stats: [
+        { label: 'Battery Extension', value: '4×', desc: 'on lower half of charge' },
+        { label: 'Freeze Latency', value: '<100ms', desc: 'cgroup freezer suspend' },
+        { label: 'Thaw Latency', value: '<100ms', desc: 'instant resume, zero data loss' },
+        { label: 'Field Validated', value: '12 mo', desc: 'Mobile Node Alpha' },
+      ],
+      cascade: [
+        { pct: '100%', tier: 'ALL SERVICES RUNNING', color: 'emerald' },
+        { pct: '80%', tier: 'Freeze: Media, entertainment', color: 'green' },
+        { pct: '60%', tier: 'Freeze: Dashboards, UI', color: 'yellow' },
+        { pct: '40%', tier: 'Freeze: AI processing, analytics', color: 'orange' },
+        { pct: '20%', tier: 'ONLY comms + data logging survive', color: 'red' },
+      ],
+      notes: 'This is THE feature the Space Force is asking for. "Autonomous load-shedding method to maintain mission operation and payload prioritization under duress." We don\'t propose it — we demo it live.',
+    },
+    /* 7 — STOW */
+    {
+      id: 7, type: 'deepdive',
+      title: 'STOW — Atomic Persistence Layer',
+      subtitle: 'NVMe atomic write pattern — worst-case data loss: 2 seconds at instantaneous power cut',
+      badge: '§4.1.4.6 HEALTH MGMT',
+      stats: [
+        { label: 'Flush Interval', value: '2s', desc: 'NVMe atomic writes' },
+        { label: 'Max Data Loss', value: '2s', desc: 'worst-case power cut' },
+        { label: 'Write Pattern', value: 'Atomic', desc: 'temp file → rename' },
+        { label: 'Burst Sync', value: '✓', desc: 'offline → online upload' },
+      ],
+      flow: [
+        'Sensor telemetry → In-memory buffer (fast writes)',
+        'Every 2s → Atomic flush to NVMe (temp + rename)',
+        'Power loss → At most 2s of data lost, no corruption',
+        'Connectivity returns → Burst sync uploads all buffered data',
+      ],
+      notes: 'In space, power loss is not hypothetical — eclipse cycles cut solar input to zero. STOW ensures every byte of telemetry survives. The atomic write pattern means the file system NEVER corrupts.',
+    },
+    /* 8 — GHOST */
+    {
+      id: 8, type: 'deepdive',
+      title: 'GHOST — Zero-Trust Mesh Networking',
+      subtitle: 'Addresses §3.2 "Zero-trust for on-board computation" and §4.1.3.1 Cyber Operations',
+      badge: '§4.1.3.1 CYBER',
+      stats: [
+        { label: 'Encryption', value: 'WireGuard', desc: 'ChaCha20-Poly1305' },
+        { label: 'Topology', value: 'P2P Mesh', desc: 'no central controller' },
+        { label: 'Air-Gap Mode', value: '✓', desc: 'mesh-only, no WAN' },
+        { label: 'Satellite Failover', value: 'Planned', desc: 'Starlink/Iridium' },
+      ],
+      flow: [
+        'Each VITO node joins Tailscale zero-trust mesh',
+        'Direct P2P connections preferred (low latency)',
+        'Relay fallback if direct path blocked',
+        'Air-gap mode: mesh stays alive with zero internet',
+      ],
+      notes: 'The solicitation explicitly calls out "zero-trust for on-board computation methods." GHOST implements this with WireGuard cryptography and Tailscale identity verification. Each satellite node in a constellation can coordinate securely without ground station relay.',
+    },
+    /* 9 — SOVEREIGN MESH */
+    {
+      id: 9, type: 'mesh',
+      title: 'Sovereign Mesh — Distributed Sensor Network',
+      subtitle: 'Coin nodes ($25 ea) + drone burst relay — addresses §3.2 Focus Area 2 (Sensor Payloads)',
+      items: [
+        { icon: Radio, label: 'Coin Nodes', desc: '$25 scatter sensors (LilyGo T1000-E / RAK4631). GPS, LoRa 915MHz, environmental sensors. IP67 waterproof.', color: 'blue' },
+        { icon: Satellite, label: 'Drone Relay', desc: 'Tethered drone at 400ft AGL repeats LoRa signals. 100km range. 10-min burst sync windows = 24hr coverage on one battery bank.', color: 'emerald' },
+        { icon: Cpu, label: 'Command Hub', desc: 'VITO node processes all telemetry locally. OTTO generates AI SITREPs. No internet required.', color: 'cyan' },
+        { icon: DollarSign, label: 'Total Cost', desc: '50 nodes + drone relay + command hub: under $5,000. Comparable satellite ISR: $500K+.', color: 'yellow' },
+      ],
+      notes: 'This is the "tip & cue" capability they mention in the solicitation. Coin nodes provide persistent wide-area sensing, drone relay provides data exfiltration from denied areas. Cost is 100x less than satellite alternatives.',
+    },
+    /* 10 — VALIDATION */
+    {
+      id: 10, type: 'validation',
+      title: 'Validation Data — TRL 6',
+      subtitle: '12+ months continuous operation on Mobile Node Alpha (unconditioned environment)',
+      metrics: [
+        { label: 'Uptime', value: '99.9%', desc: 'in unconditioned thermal environments', icon: Activity },
+        { label: 'Power Extension', value: '40%+', desc: 'runtime extension via autonomous shedding', icon: Battery },
+        { label: 'Data Retention', value: '100%', desc: 'during network outages', icon: Database },
+        { label: 'Recovery Time', value: '<60s', desc: 'from power cycle to full operation', icon: Clock },
+        { label: 'Services Managed', value: '40+', desc: 'Docker containers simultaneously', icon: Server },
+        { label: 'Human Intervention', value: 'Zero', desc: 'for standard failure recovery', icon: Users },
+      ],
+      hardware: {
+        Platform: 'Lenovo P53 Tactical Node',
+        CPU: 'Intel Core i7',
+        RAM: '32 GB',
+        Storage: '512 GB NVMe',
+        OS: 'Ubuntu 22.04',
+      },
+      notes: 'Most STTR Phase I proposals are TRL 2-3 (conceptual). We are TRL 6 — system demonstrated in relevant environment. This is a massive competitive advantage. We skip years of initial R&D.',
+    },
+    /* 11 — APPLICATIONS */
+    {
+      id: 11, type: 'applications',
+      title: 'Mission Profile Reconfigurability',
+      subtitle: '17 profiles across 4 tiers — same 8 core agents, different cascade thresholds and telemetry bindings',
+      tiers: [
+        { name: 'TIER 1: DEFENSE', color: 'red', apps: [
+          { code: 'TRADEWINDS', desc: 'UAV C2 / Radio Silence' },
+          { code: 'RESPONDER', desc: 'Emergency Disaster Response' },
+          { code: 'MED', desc: 'Field Hospital (HIPAA)' },
+        ]},
+        { name: 'TIER 2: INDUSTRIAL', color: 'orange', apps: [
+          { code: 'EXTRACT', desc: 'Mining/DLE' },
+          { code: 'UTILITY', desc: 'Substation' },
+          { code: 'VESSEL', desc: 'Offshore' },
+          { code: 'BUILD', desc: 'Construction' },
+          { code: 'YIELD', desc: 'Agriculture' },
+          { code: 'GENSET', desc: 'Generators' },
+          { code: 'TOWER', desc: 'Cell Sites' },
+        ]},
+        { name: 'TIER 3: LOGISTICS', color: 'blue', apps: [
+          { code: 'TRANSIT', desc: 'Fleet Telematics' },
+          { code: 'FLOW', desc: 'Warehouse' },
+          { code: 'CHARGE', desc: 'EV/V2G' },
+        ]},
+        { name: 'TIER 4: CIVIL', color: 'green', apps: [
+          { code: 'CAMPUS', desc: 'Education' },
+          { code: 'HABITAT', desc: 'Smart Home' },
+          { code: 'NOMAD', desc: 'RV/Nomadic' },
+          { code: 'POS', desc: 'Mobile Retail' },
+        ]},
+      ],
+      notes: 'This proves VITO is not a niche tool — it is a platform. The same core agents adapt to any DDIL environment. For Space Force: the "mission profile" is satellite bus management. Same agents, different cascade thresholds and telemetry sources.',
+    },
+    /* 12 — TRANSITION */
+    {
+      id: 12, type: 'transition',
+      title: 'Terrestrial → Orbital Transition Path',
+      subtitle: 'Phase I work items: what transfers directly vs. what requires adaptation',
+      keeps: [
+        { label: 'KINETIC load-shedding logic', desc: 'Eclipse cycles map directly to battery cascade thresholds' },
+        { label: 'STOW atomic persistence', desc: 'NVMe writes survive power loss — same pattern for satellite bus' },
+        { label: 'GHOST zero-trust mesh', desc: 'Constellation nodes coordinate via same P2P protocol' },
+        { label: 'FORGE auto-healing', desc: 'Container restart logic identical for space software' },
+        { label: 'OTTO local AI inference', desc: 'Onboard decision-making without ground station latency' },
+      ],
+      changes: [
+        { label: 'Telemetry interfaces', desc: 'Adapt from Linux /sys paths → SpaceWire/CAN bus protocols' },
+        { label: 'Radiation hardening', desc: 'Validate container recovery against Single Event Upsets (SEU)' },
+        { label: 'Thermal modeling', desc: 'Extend VIGIL from atmospheric to vacuum thermal management' },
+        { label: 'Orbital mechanics', desc: 'KINETIC cascade triggers based on eclipse prediction (GMAT/STK)' },
+      ],
+      notes: 'This slide justifies the university partnership. VITO handles the software — the university handles radiation modeling, orbital simulation, and thermal vacuum validation. Clean division of labor.',
+    },
+    /* 13 — PARTNERSHIP */
+    {
+      id: 13, type: 'partnership',
+      title: 'STTR Partnership Structure',
+      subtitle: 'SF25D-T1201 · STTR requires ≥30% university participation (40 USC §3702)',
+      business: {
+        name: 'Tyler Eno / VITO Platform',
+        role: 'Prime Contractor (70%)',
+        tasks: [
+          'Adapt core agent logic for spacecraft bus telemetry (SpaceWire/CAN)',
+          'Develop "Flat-Sat" software testbed',
+          'Execute Phase I showcase and demo',
+          'Port containerization to rad-hard SoC targets',
+          'Deliver Phase I feasibility report with live validation',
+        ],
+      },
+      university: {
+        name: 'University Research Partner (30%)',
+        budget: '$75K – $100K',
+        tasks: [
+          'Feasibility audit: VITO containerization for space-grade compute',
+          'Orbital power cycle simulation (GMAT/STK) for KINETIC validation',
+          'Radiation modeling: FORGE recovery time vs. SEU rates in LEO',
+          'Co-author CONOPS for Phase II prototype',
+          'Provide simulation infrastructure and academic validation',
+        ],
+      },
+      notes: 'STTR requires ≥30% university participation. The university gets $75K-$100K for simulation and modeling work. They bring academic credibility and orbital expertise; we bring the running code.',
+    },
+    /* 14 — TIMELINE + STRATEGY */
+    {
+      id: 14, type: 'timeline',
+      title: 'Phase I Timeline and Acquisition Strategy',
+      subtitle: 'STTR Phase I → Phase II → AMAC IDIQ (FA865226R0001) pathway',
+      milestones: [
+        { date: 'Feb 18', label: 'STTR solicitation opens', status: 'upcoming', color: 'blue' },
+        { date: 'Mar 11', label: 'Proposal submission deadline', status: 'target', color: 'yellow' },
+        { date: 'Q2 2026', label: 'Phase I award (if selected)', status: 'planned', color: 'emerald' },
+        { date: 'Q2–Q4', label: 'Feasibility study + Flat-Sat testbed', status: 'planned', color: 'emerald' },
+        { date: 'Q1 2027', label: 'Phase II → Flight software prototype', status: 'future', color: 'purple' },
+      ],
+      strategy: [
+        { label: 'STTR (SF25D-T1201)', desc: 'Win as Prime Contractor. Generates "Verified Experience" for AMAC scoring.' },
+        { label: 'AFRL AMAC IDIQ', desc: '$10 Billion vehicle (FA865226R0001). STTR Prime win provides mathematical key to scoring.' },
+        { label: 'Tradewinds', desc: 'Parallel submission — 5-min video demo. "Awardable" status for 2 years on DoD marketplace.' },
+      ],
+      notes: 'The STTR is not the end goal — it is the entry key to the $10B AMAC IDIQ vehicle. Winning as Prime on this STTR gives us the technical experience points needed to score a seat. Tradewinds is the insurance policy running in parallel.',
+    },
+    /* 15 — CLOSING */
+    {
+      id: 15, type: 'closing',
+      title: 'Partnership Request',
+      subtitle: 'Seeking university research lab for STTR co-proposal — submission deadline March 11, 2026',
+      asks: [
+        { icon: Users, label: 'Partnership', desc: 'Connect us with an aerospace / space systems lab for STTR co-proposal' },
+        { icon: Clock, label: 'Timeline', desc: 'Letter of Support needed by early March for March 11 submission' },
+        { icon: Eye, label: 'Demo', desc: '15 minutes to show the live dashboard — the architecture speaks for itself' },
+        { icon: DollarSign, label: 'University Receives', desc: '$75K–$100K of Phase I award for simulation and modeling work' },
+      ],
+      contact: {
+        name: 'Tyler Eno',
+        title: 'Founder, VITO Platform',
+        affiliation: 'West Valley College MESA Program',
+        email: 't.eno992@gmail.com',
+        phone: '(504) 410-7420',
+        sam: 'SAM.gov Ref: INC-GSAFSD20703056',
+      },
+      notes: 'End with clarity. We need one thing: a university partner. The code is built. The match is undeniable. We just need someone with orbital simulation tools and academic credibility to validate the transition.',
+    },
+  ];
+
+  const currentSlideData = slides[currentSlide];
+
+  /* ───────── SHARED UI ───────── */
+  const TacticalFrame = ({ children, className = '' }) => (
+    <div className={`relative w-full h-full border border-gray-700/50 bg-gray-950/80 overflow-hidden rounded ${className}`}>
+      <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-cyan-500/60" />
+      <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-cyan-500/60" />
+      <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-cyan-500/60" />
+      <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-cyan-500/60" />
+      {children}
+    </div>
+  );
+
+  const Badge = ({ text, color = 'cyan' }) => (
+    <span className={`inline-flex items-center px-2.5 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider uppercase bg-${color}-500/10 text-${color}-400 border border-${color}-500/30`}>
+      {text}
+    </span>
+  );
+
+  const StatCard = ({ label, value, desc }) => (
+    <div className="bg-gray-900/60 border border-gray-700/50 rounded p-3 text-center">
+      <div className="text-xl md:text-2xl font-bold text-cyan-400">{value}</div>
+      <div className="text-xs font-bold text-white mt-1">{label}</div>
+      <div className="text-[10px] text-gray-500 mt-0.5">{desc}</div>
+    </div>
+  );
+
+  /* ───────── RENDERERS ───────── */
+  const renderSlide = () => {
+    const s = currentSlideData;
+    switch (s.type) {
+
+    /* ── TITLE ── */
+    case 'title':
+      return (
+        <div className="flex flex-col items-center justify-center h-full text-center px-8 relative">
+          <div className="absolute top-6 left-8 flex items-center space-x-2 opacity-50">
+            <Shield size={14} className="text-cyan-500" />
+            <span className="text-[10px] font-mono text-gray-500 tracking-widest">DISTRIBUTION A · APPROVED FOR PUBLIC RELEASE</span>
+          </div>
+          <div className="mb-4">
+            <div className="flex items-center justify-center space-x-3 mb-2">
+              <div className="w-10 h-[1px] bg-cyan-700" />
+              <Satellite size={18} className="text-cyan-600" />
+              <div className="w-10 h-[1px] bg-cyan-700" />
+            </div>
+            <span className="text-[11px] font-mono text-cyan-600 tracking-[0.2em]">SPACE FORCE STTR · SF25D-T1201 · ADAPTIVE & INTELLIGENT SPACE</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-2">{s.title}</h1>
+          <h2 className="text-base md:text-lg text-cyan-400 font-normal tracking-wide mb-3">{s.subtitle}</h2>
+          <p className="text-sm text-gray-400 max-w-2xl leading-relaxed mb-6">{s.tagline}</p>
+          <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-mono text-gray-500">
+            {s.meta.split('  ·  ').map((m, i) => (
+              <React.Fragment key={i}>
+                {i > 0 && <span className="text-gray-700">·</span>}
+                <span className={m.includes('TRL') ? 'text-emerald-500 font-bold' : ''}>{m}</span>
+              </React.Fragment>
+            ))}
+          </div>
+          <div className="absolute bottom-8 flex flex-col items-center space-y-1">
+            <span className="text-[11px] font-mono text-gray-500">Tyler Eno · VITO Platform · West Valley College MESA Program</span>
+            <span className="text-[10px] font-mono text-gray-600">t.eno992@gmail.com · (504) 410-7420 · SAM.gov: INC-GSAFSD20703056</span>
+          </div>
+        </div>
+      );
+
+    /* ── PROBLEM ── */
+    case 'problem':
+      return (
+        <div className="h-full flex flex-col px-6 py-5">
+          <div className="mb-4">
+            <Badge text="Background" color="red" />
+            <h2 className="text-2xl font-bold mt-2">{s.title}</h2>
+            <p className="text-gray-400 text-sm mt-1">{s.subtitle}</p>
+          </div>
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-5 gap-3 items-start">
+            {s.items.map((item, i) => (
+              <div key={i} className={`bg-${item.color}-900/10 border border-${item.color}-800/30 rounded p-3 h-full flex flex-col`}>
+                <item.icon size={20} className={`text-${item.color}-400 mb-2`} />
+                <h3 className={`text-${item.color}-400 font-bold text-xs mb-1`}>{item.label}</h3>
+                <p className="text-gray-400 text-[11px] leading-relaxed flex-1">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+
+    /* ── ALIGNMENT / REQUIREMENTS TRACEABILITY ── */
+    case 'alignment': {
+      const areaLabels = { '1': 'FA-1 Edge', '2': 'FA-2 Sensor', '3': 'FA-3 Bus', 'X': 'Cross-Cut' };
+      const areaColors = { '1': 'cyan', '2': 'purple', '3': 'yellow', 'X': 'blue' };
+      return (
+        <div className="h-full flex flex-col px-3 py-2">
+          <div className="mb-1.5 flex items-baseline justify-between">
+            <div>
+              <h2 className="text-lg font-bold">{s.title}</h2>
+              <p className="text-gray-500 text-[10px]">{s.subtitle}</p>
+            </div>
+            <span className="text-emerald-500 text-[10px] font-mono font-bold">{s.rows.length} / {s.rows.length} DEPLOYED</span>
+          </div>
+          <div className="flex-1 overflow-auto">
+            <table className="w-full text-[9px] border-collapse">
+              <thead className="sticky top-0 bg-gray-950 z-10">
+                <tr className="border-b border-gray-700">
+                  <th className="text-left py-1 px-1 text-gray-500 font-mono w-[5%]">§</th>
+                  <th className="text-left py-1 px-1 text-gray-500 font-mono w-[8%]">AREA</th>
+                  <th className="text-left py-1 px-1 text-gray-500 font-mono w-[37%]">SOLICITATION REQUIREMENT</th>
+                  <th className="text-left py-1 px-1 text-gray-500 font-mono w-[44%]">VITO IMPLEMENTATION</th>
+                  <th className="text-center py-1 px-1 text-gray-500 font-mono w-[6%]">✓</th>
+                </tr>
+              </thead>
+              <tbody>
+                {s.rows.map((row, i) => (
+                  <tr key={i} className={`border-b border-gray-800/20 ${i % 2 === 0 ? 'bg-gray-900/20' : ''}`}>
+                    <td className="py-[3px] px-1 text-gray-600 font-mono text-[8px]">{row.ref}</td>
+                    <td className="py-[3px] px-1">
+                      <span className={`text-[7px] font-mono px-1 py-[1px] rounded bg-${areaColors[row.area]}-500/10 text-${areaColors[row.area]}-400`}>
+                        {areaLabels[row.area]}
+                      </span>
+                    </td>
+                    <td className="py-[3px] px-1 text-gray-300 leading-tight">{row.req}</td>
+                    <td className="py-[3px] px-1 text-cyan-300 leading-tight font-mono text-[8px]">{row.vito}</td>
+                    <td className="py-[3px] px-1 text-center">
+                      <CheckCircle size={10} className="text-emerald-500 inline" />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      );
+    }
+
+    /* ── ARCHITECTURE ── */
+    case 'architecture':
+      return (
+        <div className="h-full flex flex-col px-6 py-5">
+          <div className="mb-3">
+            <Badge text="System Design" />
+            <h2 className="text-2xl font-bold mt-2">{s.title}</h2>
+            <p className="text-gray-400 text-xs mt-1">{s.subtitle}</p>
+          </div>
+          <div className="flex-1 flex flex-col justify-center space-y-2">
+            {s.layers.map((layer, i) => (
+              <React.Fragment key={i}>
+                <div className={`flex items-stretch border border-${layer.color}-700/40 bg-${layer.color}-900/5 rounded overflow-hidden`}>
+                  <div className={`w-48 flex-shrink-0 bg-${layer.color}-900/20 flex items-center justify-center p-3 border-r border-${layer.color}-700/30`}>
+                    <div className="text-center">
+                      <layer.icon size={22} className={`text-${layer.color}-400 mx-auto mb-1`} />
+                      <div className={`text-${layer.color}-400 text-[10px] font-bold font-mono`}>{layer.name}</div>
+                    </div>
+                  </div>
+                  <div className="flex-1 p-3 flex items-center">
+                    <div>
+                      <div className="flex flex-wrap gap-1.5 mb-1">
+                        {layer.items.map((item, j) => (
+                          <span key={j} className={`text-[10px] font-mono bg-${layer.color}-500/10 text-${layer.color}-300 px-2 py-0.5 rounded border border-${layer.color}-500/20`}>{item}</span>
+                        ))}
+                      </div>
+                      <p className="text-gray-500 text-[10px]">{layer.desc}</p>
+                    </div>
+                  </div>
+                </div>
+                {i < s.layers.length - 1 && (
+                  <div className="flex justify-center">
+                    <ArrowDown size={14} className="text-gray-600" />
+                  </div>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+          <div className="mt-2 text-center text-[10px] text-gray-600 font-mono">
+            ↑ If AI layer degrades → Safety-critical operations continue autonomously ↑
+          </div>
+        </div>
+      );
+
+    /* ── CREW ── */
+    case 'crew':
+      return (
+        <div className="h-full flex flex-col px-6 py-4">
+          <div className="mb-3">
+            <Badge text="Agent Hierarchy" />
+            <h2 className="text-2xl font-bold mt-2">{s.title}</h2>
+            <p className="text-gray-400 text-xs mt-1">{s.subtitle}</p>
+          </div>
+          <div className="flex-1 flex flex-col">
+            <div className="mb-3">
+              <div className="text-[10px] font-mono text-cyan-600 tracking-widest mb-2">LEADERSHIP TIER</div>
+              <div className="grid grid-cols-3 gap-3">
+                {s.leadership.map((a, i) => (
+                  <div key={i} className={`bg-${a.color}-900/10 border border-${a.color}-700/30 rounded p-3`}>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className={`text-${a.color}-400 font-black text-lg`}>{a.name}</span>
+                      <span className={`text-[9px] font-mono bg-${a.color}-500/20 text-${a.color}-400 px-1.5 py-0.5 rounded`}>{a.badge}</span>
+                    </div>
+                    <div className="text-white text-xs font-bold mb-1">{a.role}</div>
+                    <div className="text-gray-500 text-[10px] leading-snug">{a.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex justify-center my-1">
+              <div className="flex items-center space-x-2 text-gray-600">
+                <div className="w-16 h-[1px] bg-gray-700" />
+                <ArrowDown size={12} />
+                <span className="text-[9px] font-mono">DIRECTS</span>
+                <ArrowDown size={12} />
+                <div className="w-16 h-[1px] bg-gray-700" />
+              </div>
+            </div>
+            <div>
+              <div className="text-[10px] font-mono text-emerald-600 tracking-widest mb-2">OPERATIONS TIER</div>
+              <div className="grid grid-cols-5 gap-2">
+                {s.operations.map((a, i) => (
+                  <div key={i} className={`bg-${a.color}-900/10 border border-${a.color}-700/30 rounded p-2.5`}>
+                    <div className={`text-${a.color}-400 font-black text-sm mb-0.5`}>{a.name}</div>
+                    <div className="text-white text-[10px] font-bold mb-0.5">{a.role}</div>
+                    <div className="text-gray-500 text-[9px] leading-snug">{a.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+
+    /* ── DEEP DIVE (KINETIC / STOW / GHOST) ── */
+    case 'deepdive':
+      return (
+        <div className="h-full flex flex-col px-6 py-5">
+          <div className="mb-3">
+            <Badge text={s.badge} />
+            <h2 className="text-xl font-bold mt-1.5">{s.title}</h2>
+            <p className="text-gray-400 text-xs mt-1">{s.subtitle}</p>
+          </div>
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                {s.stats.map((stat, i) => <StatCard key={i} {...stat} />)}
+              </div>
+              {s.flow && (
+                <div className="space-y-2 mt-4">
+                  <div className="text-[10px] font-mono text-gray-500 tracking-widest">DATA FLOW</div>
+                  {s.flow.map((step, i) => (
+                    <div key={i} className="flex items-start space-x-2">
+                      <span className="text-cyan-600 font-mono text-xs mt-0.5">{i + 1}.</span>
+                      <span className="text-gray-300 text-xs leading-snug">{step}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            {s.cascade && (
+              <div className="flex flex-col justify-center">
+                <div className="text-[10px] font-mono text-gray-500 tracking-widest mb-3">POWER CASCADE</div>
+                <div className="space-y-2">
+                  {s.cascade.map((tier, i) => (
+                    <div key={i} className="flex items-center space-x-3">
+                      <div className={`w-14 text-right font-mono text-sm font-bold text-${tier.color}-400`}>{tier.pct}</div>
+                      <div className="flex-1">
+                        <div className={`h-8 bg-${tier.color}-900/30 border border-${tier.color}-700/40 rounded flex items-center px-3`}
+                             style={{ width: `${100 - (i * 15)}%` }}>
+                          <span className="text-xs text-gray-300 truncate">{tier.tier}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 p-3 bg-emerald-900/10 border border-emerald-700/30 rounded text-xs text-emerald-300">
+                  <strong>Key:</strong> Processes are <em>frozen</em> in memory via cgroup freezer. When power returns, they <em>thaw instantly</em>. No reboot. No data loss. No restart sequence.
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+
+    /* ── MESH ── */
+    case 'mesh':
+      return (
+        <div className="h-full flex flex-col px-6 py-5">
+          <div className="mb-3">
+            <Badge text="§3.2 Focus Area 2" color="emerald" />
+            <h2 className="text-xl font-bold mt-1.5">{s.title}</h2>
+            <p className="text-gray-400 text-xs mt-1">{s.subtitle}</p>
+          </div>
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+            <div className="space-y-4">
+              {s.items.map((item, i) => (
+                <div key={i} className={`flex items-start space-x-3 bg-${item.color}-900/10 border border-${item.color}-700/30 rounded p-4`}>
+                  <item.icon size={24} className={`text-${item.color}-400 flex-shrink-0 mt-0.5`} />
+                  <div>
+                    <div className={`text-${item.color}-400 font-bold text-sm mb-1`}>{item.label}</div>
+                    <div className="text-gray-400 text-xs leading-relaxed">{item.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <TacticalFrame>
+              <div className="h-full flex flex-col items-center justify-center p-6">
+                <div className="flex flex-col items-center mb-4">
+                  <div className="w-16 h-16 border-2 border-emerald-500 bg-emerald-900/20 rounded-full flex items-center justify-center animate-pulse" style={{ animationDuration: '3s' }}>
+                    <Satellite size={28} className="text-emerald-400" />
+                  </div>
+                  <span className="text-emerald-400 text-[10px] font-mono mt-1">DRONE RELAY</span>
+                  <span className="text-gray-600 text-[8px]">400ft AGL · 100km range</span>
+                </div>
+                <div className="w-[2px] h-12 bg-gradient-to-b from-emerald-500/60 to-cyan-500/60" />
+                <div className="flex flex-col items-center my-2">
+                  <div className="w-20 h-14 border-2 border-cyan-500 bg-cyan-900/20 flex items-center justify-center rounded">
+                    <Cpu size={28} className="text-cyan-400" />
+                  </div>
+                  <span className="text-cyan-400 text-xs font-mono mt-1 font-bold">COMMAND HUB</span>
+                  <span className="text-gray-500 text-[8px]">VITO + OTTO AI SITREPs</span>
+                </div>
+                <div className="flex items-center space-x-6 mt-4">
+                  {[1,2,3,4,5].map(n => (
+                    <div key={n} className="flex flex-col items-center">
+                      <div className="w-4 h-4 bg-blue-500 rounded-full animate-ping" style={{ animationDelay: `${n * 0.3}s`, animationDuration: '2s' }} />
+                      <span className="text-[7px] text-blue-400 font-mono mt-1">$25</span>
+                    </div>
+                  ))}
+                </div>
+                <span className="text-blue-400 text-[9px] font-mono mt-2">COIN NODES · LoRa 915MHz · GPS · IP67</span>
+              </div>
+            </TacticalFrame>
+          </div>
+        </div>
+      );
+
+    /* ── VALIDATION ── */
+    case 'validation':
+      return (
+        <div className="h-full flex flex-col px-6 py-5">
+          <div className="mb-3">
+            <Badge text="Field Data" color="emerald" />
+            <h2 className="text-2xl font-bold mt-2">{s.title}</h2>
+            <p className="text-gray-400 text-xs mt-1">{s.subtitle}</p>
+          </div>
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="md:col-span-2 grid grid-cols-3 gap-3">
+              {s.metrics.map((m, i) => (
+                <div key={i} className="bg-gray-900/60 border border-gray-700/50 rounded p-4 flex flex-col items-center text-center">
+                  <m.icon size={20} className="text-cyan-500 mb-2" />
+                  <div className="text-2xl font-bold text-emerald-400">{m.value}</div>
+                  <div className="text-xs font-bold text-white mt-1">{m.label}</div>
+                  <div className="text-[10px] text-gray-500 mt-0.5">{m.desc}</div>
+                </div>
+              ))}
+            </div>
+            <div>
+              <TacticalFrame>
+                <div className="p-4 h-full flex flex-col justify-center">
+                  <div className="text-[10px] font-mono text-gray-500 tracking-widest mb-3">HARDWARE PLATFORM</div>
+                  <div className="space-y-2.5 font-mono text-xs">
+                    {Object.entries(s.hardware).map(([key, val]) => (
+                      <div key={key} className="flex justify-between">
+                        <span className="text-gray-500">{key}:</span>
+                        <span className="text-cyan-300">{val}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-6 pt-3 border-t border-gray-800">
+                    <div className="text-emerald-400 text-xs font-bold mb-1">Validation Conditions:</div>
+                    <div className="text-gray-500 text-[10px] space-y-1">
+                      <div>✓ Active vibration (transit)</div>
+                      <div>✓ Unconditioned thermal</div>
+                      <div>✓ Variable renewable power</div>
+                      <div>✓ Network outages</div>
+                    </div>
+                  </div>
+                </div>
+              </TacticalFrame>
+            </div>
+          </div>
+        </div>
+      );
+
+    /* ── APPLICATIONS ── */
+    case 'applications':
+      return (
+        <div className="h-full flex flex-col px-6 py-4">
+          <div className="mb-3">
+            <Badge text="Reconfigurability" color="purple" />
+            <h2 className="text-2xl font-bold mt-2">{s.title}</h2>
+            <p className="text-gray-400 text-xs mt-1">{s.subtitle}</p>
+          </div>
+          <div className="flex-1 grid grid-cols-4 gap-3">
+            {s.tiers.map((tier, i) => (
+              <div key={i} className={`border border-${tier.color}-700/30 bg-${tier.color}-900/5 rounded overflow-hidden flex flex-col`}>
+                <div className={`bg-${tier.color}-900/20 px-3 py-2 border-b border-${tier.color}-700/30`}>
+                  <span className={`text-${tier.color}-400 text-[10px] font-mono font-bold tracking-wider`}>{tier.name}</span>
+                </div>
+                <div className="p-2 flex-1 space-y-1.5">
+                  {tier.apps.map((app, j) => (
+                    <div key={j} className="bg-gray-900/40 rounded px-2 py-1.5">
+                      <div className="text-white text-[11px] font-bold">{app.code}</div>
+                      <div className="text-gray-500 text-[9px]">{app.desc}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-2 text-center text-[10px] text-gray-600 font-mono">
+            Same 8 core agents · Different cascade thresholds · Different telemetry sources · Satellite bus = Mission Profile 18
+          </div>
+        </div>
+      );
+
+    /* ── TRANSITION ── */
+    case 'transition':
+      return (
+        <div className="h-full flex flex-col px-6 py-5">
+          <div className="mb-3">
+            <Badge text="Phase I Scope" color="yellow" />
+            <h2 className="text-2xl font-bold mt-2">{s.title}</h2>
+            <p className="text-gray-400 text-xs mt-1">{s.subtitle}</p>
+          </div>
+          <div className="flex-1 grid grid-cols-2 gap-6">
+            <div>
+              <div className="flex items-center space-x-2 mb-3">
+                <CheckCircle size={16} className="text-emerald-500" />
+                <span className="text-emerald-400 text-sm font-bold font-mono">WHAT STAYS (Deployed)</span>
+              </div>
+              <div className="space-y-2">
+                {s.keeps.map((item, i) => (
+                  <div key={i} className="bg-emerald-900/10 border border-emerald-700/30 rounded p-3">
+                    <div className="text-emerald-300 text-xs font-bold">{item.label}</div>
+                    <div className="text-gray-500 text-[10px] mt-0.5">{item.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center space-x-2 mb-3">
+                <Wrench size={16} className="text-yellow-500" />
+                <span className="text-yellow-400 text-sm font-bold font-mono">WHAT ADAPTS (Phase I Work)</span>
+              </div>
+              <div className="space-y-2">
+                {s.changes.map((item, i) => (
+                  <div key={i} className="bg-yellow-900/10 border border-yellow-700/30 rounded p-3">
+                    <div className="text-yellow-300 text-xs font-bold">{item.label}</div>
+                    <div className="text-gray-500 text-[10px] mt-0.5">{item.desc}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-3 p-3 bg-cyan-900/10 border border-cyan-700/30 rounded">
+                <div className="text-cyan-400 text-[10px] font-mono font-bold mb-1">UNIVERSITY PARTNER SCOPE</div>
+                <div className="text-gray-400 text-[10px]">
+                  Items above are the university's deliverables: orbital simulation (GMAT/STK), radiation modeling, thermal vacuum analysis, CONOPS co-authoring.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+
+    /* ── PARTNERSHIP ── */
+    case 'partnership':
+      return (
+        <div className="h-full flex flex-col px-6 py-5">
+          <div className="mb-3">
+            <Badge text="STTR Structure" color="blue" />
+            <h2 className="text-2xl font-bold mt-2">{s.title}</h2>
+            <p className="text-gray-400 text-xs mt-1">{s.subtitle}</p>
+          </div>
+          <div className="flex-1 grid grid-cols-2 gap-6">
+            <div className="border border-cyan-700/30 bg-cyan-900/5 rounded overflow-hidden flex flex-col">
+              <div className="bg-cyan-900/20 px-4 py-3 border-b border-cyan-700/30">
+                <div className="text-cyan-400 font-bold">{s.business.name}</div>
+                <div className="text-white text-xs font-mono">{s.business.role}</div>
+              </div>
+              <div className="p-4 flex-1 space-y-2.5">
+                {s.business.tasks.map((t, i) => (
+                  <div key={i} className="flex items-start space-x-2">
+                    <ArrowRight size={12} className="text-cyan-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-300 text-xs">{t}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="border border-emerald-700/30 bg-emerald-900/5 rounded overflow-hidden flex flex-col">
+              <div className="bg-emerald-900/20 px-4 py-3 border-b border-emerald-700/30">
+                <div className="text-emerald-400 font-bold">{s.university.name}</div>
+                <div className="text-white text-xs font-mono">Budget: {s.university.budget}</div>
+              </div>
+              <div className="p-4 flex-1 space-y-2.5">
+                {s.university.tasks.map((t, i) => (
+                  <div key={i} className="flex items-start space-x-2">
+                    <ArrowRight size={12} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-300 text-xs">{t}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="px-4 py-3 bg-emerald-900/10 border-t border-emerald-700/30">
+                <div className="text-emerald-300 text-xs font-bold text-center">University receives $75K–$100K for simulation & validation</div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-4 text-center">
+            <div className="inline-flex items-center space-x-4 bg-gray-900/60 border border-gray-700/50 rounded px-6 py-3">
+              <div className="text-center">
+                <div className="text-[9px] text-gray-500 font-mono">SAM.GOV</div>
+                <div className="text-cyan-400 text-xs font-bold font-mono">INC-GSAFSD20703056</div>
+              </div>
+              <div className="w-[1px] h-8 bg-gray-700" />
+              <div className="text-center">
+                <div className="text-[9px] text-gray-500 font-mono">STTR TOPIC</div>
+                <div className="text-cyan-400 text-xs font-bold font-mono">SF25D-T1201</div>
+              </div>
+              <div className="w-[1px] h-8 bg-gray-700" />
+              <div className="text-center">
+                <div className="text-[9px] text-gray-500 font-mono">AMAC VEHICLE</div>
+                <div className="text-cyan-400 text-xs font-bold font-mono">FA865226R0001</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+
+    /* ── TIMELINE ── */
+    case 'timeline':
+      return (
+        <div className="h-full flex flex-col px-6 py-5">
+          <div className="mb-3">
+            <Badge text="Acquisition Path" color="yellow" />
+            <h2 className="text-2xl font-bold mt-2">{s.title}</h2>
+            <p className="text-gray-400 text-xs mt-1">{s.subtitle}</p>
+          </div>
+          <div className="flex-1 grid grid-cols-2 gap-6">
+            <div>
+              <div className="text-[10px] font-mono text-gray-500 tracking-widest mb-3">STTR TIMELINE</div>
+              <div className="space-y-4 relative">
+                <div className="absolute left-[5px] top-3 bottom-3 w-[2px] bg-gray-800" />
+                {s.milestones.map((m, i) => (
+                  <div key={i} className="flex items-start space-x-4 relative">
+                    <div className={`w-3 h-3 rounded-full border-2 flex-shrink-0 mt-0.5 z-10 ${m.status === 'upcoming' ? `border-${m.color}-500 bg-${m.color}-500 animate-pulse` : `border-${m.color}-600 bg-gray-950`}`} />
+                    <div>
+                      <div className={`text-${m.color}-400 font-mono text-xs font-bold`}>{m.date}</div>
+                      <div className="text-gray-300 text-sm">{m.label}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="text-[10px] font-mono text-gray-500 tracking-widest mb-3">ACQUISITION STRATEGY</div>
+              <div className="space-y-3">
+                {s.strategy.map((item, i) => (
+                  <div key={i} className="bg-gray-900/60 border border-gray-700/50 rounded p-4">
+                    <div className="flex items-center space-x-2 mb-1">
+                      <Target size={14} className="text-cyan-500" />
+                      <span className="text-cyan-400 text-xs font-bold">{item.label}</span>
+                    </div>
+                    <p className="text-gray-400 text-[11px] leading-snug">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 p-3 bg-cyan-900/10 border border-cyan-700/30 rounded">
+                <div className="text-cyan-300 text-xs text-center">
+                  <strong>Path:</strong> STTR Win → Verified Experience → AMAC IDIQ Seat → $10B Vehicle Access
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+
+    /* ── CLOSING ── */
+    case 'closing':
+      return (
+        <div className="h-full flex flex-col items-center justify-center px-8 text-center">
+          <div className="mb-6">
+            <Satellite size={28} className="text-cyan-600 mx-auto mb-3" />
+            <h2 className="text-2xl font-bold">{s.title}</h2>
+            <p className="text-gray-400 text-sm mt-1">{s.subtitle}</p>
+          </div>
+          <div className="grid grid-cols-2 gap-4 max-w-2xl mb-8">
+            {s.asks.map((ask, i) => (
+              <div key={i} className="bg-gray-900/60 border border-gray-700/50 rounded p-4 text-left">
+                <div className="flex items-center space-x-2 mb-2">
+                  <ask.icon size={16} className="text-cyan-500" />
+                  <span className="text-cyan-400 text-sm font-bold">{ask.label}</span>
+                </div>
+                <p className="text-gray-400 text-xs leading-relaxed">{ask.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="border border-cyan-700/40 bg-cyan-900/10 rounded px-6 py-4 max-w-lg">
+            <div className="text-lg font-bold text-white mb-1">{s.contact.name}</div>
+            <div className="text-cyan-400 text-sm font-mono mb-1">{s.contact.title}</div>
+            <div className="text-gray-400 text-xs mb-3">{s.contact.affiliation}</div>
+            <div className="flex items-center justify-center space-x-6 text-xs font-mono">
+              <span className="text-gray-300">{s.contact.email}</span>
+              <span className="text-gray-600">·</span>
+              <span className="text-gray-300">{s.contact.phone}</span>
+            </div>
+            <div className="mt-3 pt-3 border-t border-cyan-800/50 text-gray-500 text-[10px] font-mono">
+              {s.contact.sam}
+            </div>
+          </div>
+          <div className="mt-8 text-gray-600 text-[10px] font-mono">
+            VITO: Sovereign Operational Technology for the Extreme Edge · © 2026 Tyler Eno
+          </div>
+        </div>
+      );
+
+    default:
+      return null;
+    }
+  };
+
+  /* ───────── MAIN LAYOUT ───────── */
+  return (
+    <div className="flex flex-col h-screen bg-black text-white font-sans overflow-hidden select-none">
+      {/* Top Bar */}
+      <div className="h-10 border-b border-gray-800/50 flex items-center justify-between px-4 bg-gray-950/90 backdrop-blur">
+        <div className="flex items-center space-x-3">
+          <Shield size={14} className="text-cyan-500" />
+          <span className="font-bold tracking-wider text-[10px] text-gray-400 font-mono">
+            VITO SERIES-4 · STTR SF25D-T1201 · ADAPTIVE & INTELLIGENT SPACE
+          </span>
+        </div>
+        <div className="flex items-center space-x-4">
+          <span className="text-gray-600 text-[10px] font-mono">{currentSlide + 1} / {totalSlides}</span>
+          <button onClick={toggleNotes} className={`p-1 rounded transition-colors ${showNotes ? 'bg-cyan-900/50 text-cyan-400' : 'text-gray-600 hover:text-white'}`} title="Toggle speaker notes (N)">
+            <BookOpen size={14} />
+          </button>
+        </div>
+      </div>
+
+      <div className="flex-1 flex overflow-hidden">
+        <div className={`flex-1 relative transition-all duration-300 ${showNotes ? 'w-3/4' : 'w-full'}`}>
+          <div className="h-full">{renderSlide()}</div>
+          <button onClick={prevSlide} disabled={currentSlide === 0} className="absolute left-1 top-1/2 -translate-y-1/2 p-2 text-gray-700 hover:text-cyan-500 disabled:opacity-0 transition-all disabled:pointer-events-none">
+            <ChevronLeft size={32} />
+          </button>
+          <button onClick={nextSlide} disabled={currentSlide === totalSlides - 1} className="absolute right-1 top-1/2 -translate-y-1/2 p-2 text-gray-700 hover:text-cyan-500 disabled:opacity-0 transition-all disabled:pointer-events-none">
+            <ChevronRight size={32} />
+          </button>
+        </div>
+        <div className={`${showNotes ? 'w-72 border-l border-gray-800/50' : 'w-0'} bg-gray-950 transition-all duration-300 overflow-hidden flex flex-col`}>
+          <div className="p-4">
+            <h3 className="text-cyan-700 font-mono text-[10px] mb-3 uppercase tracking-widest border-b border-gray-800 pb-2">Speaker Notes</h3>
+            <div className="text-xs leading-relaxed text-gray-500">{currentSlideData.notes}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Slide Nav Dots */}
+      <div className="h-8 bg-gray-950/90 border-t border-gray-800/50 flex items-center justify-center space-x-1.5 px-4">
+        {slides.map((_, i) => (
+          <button key={i} onClick={() => setCurrentSlide(i)} className={`w-1.5 h-1.5 rounded-full transition-all ${i === currentSlide ? 'bg-cyan-500 w-4' : 'bg-gray-700 hover:bg-gray-500'}`} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default SlideDeck;

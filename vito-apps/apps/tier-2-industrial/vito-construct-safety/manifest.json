@@ -1,0 +1,53 @@
+{
+  "program": "ark-construct-safety",
+  "tier": "TIER 2 - Industrial & Infrastructure",
+  "codename": "BUILD",
+  "category": "Construction / Engineering",
+  "version": "4.6.6",
+  "description": "Remote site monitoring with vision AI for PPE detection and safety compliance.",
+  "challenge": "Construction sites in remote or urban environments often lack reliable connectivity, risking loss of safety, progress, and equipment data.",
+  "response": "VITO logs all site sensor and camera data locally, runs on-site AI for safety compliance, and provides autonomous alerts for hazardous conditions. Data is uploaded when a connection is available.",
+  "result": "Improved safety, full project documentation, and reduced downtime due to data loss.",
+  "agents_enabled": ["VIGIL", "STOW", "KINETIC", "GHOST", "FORGE"],
+  "agents_disabled": [],
+  "key_capabilities": [
+    "Vision AI (PPE detection)",
+    "Safety compliance alerts",
+    "Site sensor + camera logging",
+    "Autonomous anomaly detection",
+    "Project documentation caching"
+  ],
+  "power_behavior": {
+    "100_percent": "All services + camera feeds active",
+    "60_percent": "Shed UI/Dev",
+    "40_percent": "Shed non-critical sensors (keep cameras)",
+    "20_percent": "Core safety AI + critical sensors",
+    "10_percent": "Shutdown"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "tensorflow-lite": "^2.10.0",
+    "opencv-python": "^4.6.0",
+    "python": "^3.9.0"
+  },
+  "ports": {
+    "api": 3001,
+    "camera_feed": 3007,
+    "alerts": 3008,
+    "mesh": 41641
+  },
+  "volumes": {
+    "camera_data": "/data/cameras",
+    "sensor_logs": "/data/sensors",
+    "ai_models": "/models",
+    "nvme_cache": "/data/stow"
+  },
+  "environment_variables": {
+    "OTTO_VISION_AI_ENABLED": "true",
+    "OTTO_PPE_DETECTION": "true",
+    "OTTO_SAFETY_COMPLIANCE": "true",
+    "STOW_CAMERA_DATA_LOCAL": "true",
+    "KINETIC_CAMERA_PRIORITY": "true",
+    "FORGE_AUTONOMOUS_ALERTS": "true"
+  }
+}

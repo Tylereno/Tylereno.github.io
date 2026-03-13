@@ -1,0 +1,25 @@
+{
+  "name": "ark-mine-dle",
+  "version": "4.7.0",
+  "description": "VITO Direct Lithium Extraction Platform (Tier 2: Industrial)",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "dev": "KINETIC_MOCK=true node main.js"
+  },
+  "keywords": [
+    "lithium-extraction",
+    "industrial-automation",
+    "store-and-forward",
+    "vito-tier-2"
+  ],
+  "author": "VITO",
+  "license": "PROPRIETARY",
+  "dependencies": {
+    "vito-core": "file:../../../packages/vito-core",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  # TIER 3 - Logistics & Commerce
+  # Regulatory compliance, multi-WAN
+
+  vito-truck-telematics:
+    container_name: vito-truck-telematics
+    build:
+      context: ./vito-truck-telematics
+      dockerfile: Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-truck-telematics
+      - STOW_ELD_LOGGING=true
+      - GHOST_MULTI_WAN_BONDING=true
+    ports:
+      - "3001:3001"
+      - "3013:3013"  # ELD gateway
+      - "41641:41641"
+    volumes:
+      - ./data/eld:/data/eld
+      - ./data/gps:/data/gps
+      - ./data/stow:/data/stow
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - truck-telematics
+      - all
+
+  vito-logistics-warehouse:
+    container_name: vito-logistics-warehouse
+    build:
+      context: ./vito-logistics-warehouse
+      dockerfile: Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-logistics-warehouse
+      - KINETIC_INVENTORY_PRIORITY_SHEDDING=true
+      - STOW_INVENTORY_AUDIT_TRAIL=true
+    ports:
+      - "3001:3001"
+      - "3014:3014"  # Robot control
+      - "3015:3015"  # Inventory gateway
+      - "41641:41641"
+    volumes:
+      - ./data/inventory:/data/inventory
+      - ./data/movements:/data/movements
+      - ./data/stow:/data/stow
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - logistics-warehouse
+      - all
+
+  vito-ev-charging:
+    container_name: vito-ev-charging
+    build:
+      context: ./vito-ev-charging
+      dockerfile: Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-ev-charging
+      - STOW_OFFLINE_PAYMENT_LOGGING=true
+      - FORGE_PAYMENT_REPLAY=true
+    ports:
+      - "3001:3001"
+      - "3016:3016"  # Charging gateway
+      - "3017:3017"  # Payment processor
+      - "41641:41641"
+    volumes:
+      - ./data/sessions:/data/sessions
+      - ./data/payments:/data/payments
+      - ./data/stow:/data/stow
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - ev-charging
+      - all
+
+networks:
+  vito-mesh:
+    driver: bridge

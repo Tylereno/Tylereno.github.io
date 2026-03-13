@@ -1,0 +1,48 @@
+{
+  "program": "ark-ev-charging",
+  "tier": "TIER 3 - Logistics & Commerce",
+  "codename": "CHARGE",
+  "category": "Electric Vehicles / Energy Commerce",
+  "version": "4.6.6",
+  "description": "Vehicle-to-Grid (V2G) autonomous charging with offline payment processing.",
+  "challenge": "EV charging stations must process payments and manage charging autonomously even during ISP outages. Lost payment processing leads to disputes and regulatory fines.",
+  "response": "VITO logs all charging sessions and payments locally, validates payments when connectivity returns, and maintains regulatory compliance records. Works seamlessly with legacy credit card processors and modern blockchain payment methods.",
+  "result": "Zero payment loss, autonomous charging operations, and regulatory-compliant audit trails.",
+  "agents_enabled": ["STOW", "GHOST", "FORGE"],
+  "agents_disabled": ["VIGIL", "KINETIC", "OTTO"],
+  "key_capabilities": [
+    "Offline payment processing",
+    "Session logging + replay",
+    "V2G energy arbitrage",
+    "Multi-payment method support",
+    "Regulatory audit trails"
+  ],
+  "power_behavior": {
+    "100_percent": "All services active",
+    "60_percent": "Core charging + payment",
+    "40_percent": "Essential charging only",
+    "20_percent": "Idle with payment processing",
+    "10_percent": "Shutdown"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "node": "^18.0.0"
+  },
+  "ports": {
+    "api": 3001,
+    "charging_gateway": 3016,
+    "payment_processor": 3017,
+    "mesh": 41641
+  },
+  "volumes": {
+    "charging_sessions": "/data/sessions",
+    "payment_records": "/data/payments",
+    "nvme_cache": "/data/stow"
+  },
+  "environment_variables": {
+    "STOW_OFFLINE_PAYMENT_LOGGING": "true",
+    "STOW_SESSION_AUDIT_TRAIL": "true",
+    "GHOST_PAYMENT_SYNC_ON_RESTORE": "true",
+    "FORGE_PAYMENT_REPLAY": "true"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "ark-fire-disaster",
+  "version": "4.7.0",
+  "description": "VITO Emergency Response Mobile Command Post (Tier 1: Defense)",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "dev": "KINETIC_MOCK=true node main.js"
+  },
+  "keywords": [
+    "emergency-response",
+    "mobile-command",
+    "crisis-management",
+    "vito-tier-1"
+  ],
+  "author": "VITO",
+  "license": "PROPRIETARY",
+  "dependencies": {
+    "vito-core": "file:../../../packages/vito-core",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

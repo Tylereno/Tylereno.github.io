@@ -1,0 +1,104 @@
+version: '3.8'
+
+services:
+  # TIER 1 - Defense & Critical Response
+  # Each program: zero downtime, forensic accountability
+  # NOTE: OLLAMA_HOST must point to the host machine, not localhost (which is the container)
+  # Use host.docker.internal on Docker Desktop, or the host IP on Linux
+
+  vito-defense-tradewinds:
+    container_name: vito-defense-tradewinds
+    build:
+      context: ../../
+      dockerfile: apps/tier-1-defense/vito-defense-tradewinds/Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-defense-tradewinds
+      - STOW_STORE_AND_FORWARD_MODE=true
+      - KINETIC_BATTERY_SHED_MODE=true
+      - OLLAMA_HOST=${OLLAMA_HOST:-http://host.docker.internal:11434}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-qwen2.5-coder:3b}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "3001:3001"  # API
+      - "3002:3002"  # Telemetry
+      - "41641:41641"  # Mesh
+    volumes:
+      - ./data/audit_trail:/data/audit_trail
+      - ./data/stow:/data/stow
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - defense-tradewinds
+      - all
+
+  vito-fire-disaster:
+    container_name: vito-fire-disaster
+    build:
+      context: ../../
+      dockerfile: apps/tier-1-defense/vito-fire-disaster/Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-fire-disaster
+      - VITO_CODENAME=BLAZE
+      - KINETIC_BATTERY_EXTENSION=4x
+      - KINETIC_AGGRESSIVE_SHEDDING=true
+      - STOW_FLUSH_INTERVAL=1000
+      - VIGIL_THERMAL_THRESHOLD=85
+      - VIGIL_POLL_INTERVAL=5000
+      - OLLAMA_HOST=${OLLAMA_HOST:-http://host.docker.internal:11434}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-qwen2.5-coder:3b}
+      - LOG_LEVEL=info
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "3001:3001"
+      - "41641:41641"
+    volumes:
+      - ./data/fire_incidents:/data/incidents
+      - ./data/stow:/data/stow
+      - ./logs:/data/logs
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - fire
+      - fire-disaster
+      - all
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  vito-health-field:
+    container_name: vito-health-field
+    build:
+      context: ../../
+      dockerfile: apps/tier-1-defense/vito-health-field/Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-health-field
+      - HIPAA_COMPLIANCE=true
+      - KINETIC_MEDICAL_DEVICE_THRESHOLD=50
+      - OLLAMA_HOST=${OLLAMA_HOST:-http://host.docker.internal:11434}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-qwen2.5-coder:3b}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "3001:3001"
+      - "41641:41641"
+    volumes:
+      - ./data/patient_records:/data/patients
+      - ./data/encrypted_vault:/data/vault
+      - ./data/stow:/data/stow
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - health-field
+      - all
+
+networks:
+  vito-mesh:
+    driver: bridge

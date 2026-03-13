@@ -1,0 +1,64 @@
+# VITO Universal Base Dockerfile
+# ================================
+# Shared base for all 17 VITO programs (Tiers 1-4)
+# Optimized for sovereign, containerized deployment
+#
+# Usage: Each app's Dockerfile inherits FROM this base
+# Example: FROM ${REGISTRY}/vito-base:${VERSION} AS base
+
+FROM node:20-alpine
+
+LABEL maintainer="VITO Series-4 Engineering"
+LABEL description="Universal base image for VITO autonomous programs"
+LABEL version="4.6.6"
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies for hardware monitoring & mesh networking
+RUN apk add --no-cache \
+    curl \
+    ca-certificates \
+    dumb-init \
+    && rm -rf /var/cache/apk/*
+
+# Copy package files first (for better layer caching)
+COPY package*.json ./
+COPY ../packages/vito-core ../packages/vito-core/
+
+# Install dependencies
+RUN npm ci --prefer-offline --no-audit && \
+    npm cache clean --force
+
+# Copy application code
+COPY . .
+
+# Create data directories for STOW (store-and-forward)
+RUN mkdir -p /data/stow /data/logs && \
+    chmod 755 /data/stow /data/logs
+
+# Health check to ensure agents are running
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD node -e "require('http').get('http://localhost:3001/health', (res) => { if (res.statusCode === 200) process.exit(0); else process.exit(1); }).on('error', () => process.exit(1));" || true
+
+# Use dumb-init to handle signals properly
+ENTRYPOINT ["/sbin/dumb-init", "--"]
+
+# Default startup command
+CMD ["npm", "start"]
+
+# Environment variables (can be overridden per program)
+ENV NODE_ENV=production \
+    NODE_OPTIONS="--max-old-space-size=512" \
+    VITO_SERIES=4 \
+    VITO_VERSION=4.6.6 \
+    STOW_STORE_AND_FORWARD_MODE=true \
+    KINETIC_POWER_AWARE=true \
+    VIGIL_THERMAL_MONITORING=true \
+    OLLAMA_HOST=http://host.docker.internal:11434 \
+    OLLAMA_MODEL=qwen2.5-coder:3b
+
+# Expose standard VITO ports
+# 3001: API/Telemetry
+# 41641: Tailscale/Mesh networking
+EXPOSE 3001 41641

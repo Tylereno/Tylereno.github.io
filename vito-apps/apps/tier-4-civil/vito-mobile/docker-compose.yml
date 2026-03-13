@@ -1,0 +1,90 @@
+# ══════════════════════════════════════════════════════
+# VITO Mobile Node — Ford E-450 (SUSI)
+# Off-Grid Power & Engine Telemetry
+# ══════════════════════════════════════════════════════
+
+services:
+  vito-mobile:
+    build:
+      context: ../../
+      dockerfile: apps/Dockerfile.base
+    container_name: vito-mobile
+
+    # Hardware Access (Critical for real telemetry)
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0   # Renogy/Outback charge controller (serial)
+      - /dev/ttyUSB1:/dev/ttyUSB1   # Battery BMS (if separate port)
+      - /dev/ttyOBD:/dev/ttyOBD     # OBD-II adapter (if present)
+
+    volumes:
+      # Shared telemetry with main VITO server
+      - /opt/ark/data/stow:/app/data/stow
+      # Hardware config
+      - ./config:/app/config:ro
+      # Logs
+      - ./logs:/app/logs
+
+    environment:
+      # Core Identity
+      - APP_NAME=VITO-MOBILE
+      - SYSTEM_ID=SUSI-E450
+
+      # Hardware Configuration
+      - SOLAR_CAPACITY=1300W
+      - BATTERY_TYPE=LiFePO4_280Ah
+      - BATTERY_NOMINAL_VOLTAGE=48V
+      - CHARGE_CONTROLLER=Renogy_MPPT_60A
+      - BMS_MODEL=JBD_SP04S100A
+
+      # Serial Port Configuration
+      - CHARGE_CONTROLLER_PORT=/dev/ttyUSB0
+      - CHARGE_CONTROLLER_BAUD=9600
+      - BMS_PORT=/dev/ttyUSB1
+      - BMS_BAUD=9600
+      - OBD2_PORT=/dev/ttyOBD
+      - OBD2_BAUD=38400
+
+      # Inference
+      - OLLAMA_URL=http://host.docker.internal:11434
+      - OLLAMA_MODEL=qwen2.5-coder:3b
+
+      # Telemetry
+      - TELEMETRY_INTERVAL=5000  # Poll hardware every 5 seconds
+      - STOW_DATA_DIR=/app/data/stow
+
+      # Network
+      - VITO_SERVER_URL=http://host.docker.internal:3001
+
+      # Environment
+      - NODE_ENV=production
+
+    # Security & Privileges
+    privileged: false  # Keep minimal privileges
+    security_opt:
+      - no-new-privileges:true
+
+    restart: always
+
+    # Health Check
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: OBD-II Logging Service
+  # Separate container if you want dedicated CAN-bus monitoring
+  # vito-engine-logger:
+  #   image: node:20-alpine
+  #   container_name: vito-engine-logger
+  #   devices:
+  #     - /dev/ttyOBD:/dev/ttyOBD
+  #   volumes:
+  #     - ./crew/vigil.js:/app/vigil.js
+  #   command: node /app/vigil.js
+  #   restart: always
+
+volumes:
+  stow-data:
+    driver: local

@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #020617;
+  color: #f1f5f9;
+}
+
+.slide {
+  width: 1280px;
+  min-height: 720px;
+  margin: 2rem auto;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  padding: 56px 72px 48px 72px;
+  box-sizing: border-box;
+}
+
+.slide-accent-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.slide-number {
+  position: absolute;
+  bottom: 20px;
+  right: 28px;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  color: #475569;
+  letter-spacing: 0.05em;
+}
+
+.slide-footer-tag {
+  position: absolute;
+  bottom: 20px;
+  left: 28px;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  color: #334155;
+  letter-spacing: 0.04em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+table th {
+  background: #1e293b;
+  color: #94a3b8;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-bottom: 2px solid #334155;
+  text-align: left;
+}
+
+table td {
+  padding: 7px 12px;
+  border-bottom: 1px solid #1e293b;
+  color: #cbd5e1;
+  vertical-align: top;
+  line-height: 1.4;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Print */
+@media print {
+  @page {
+    size: 1280px 720px;
+    margin: 0;
+  }
+
+  body {
+    background: white;
+  }
+
+  .slide {
+    width: 100%;
+    min-height: auto;
+    margin: 0;
+    background: white;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  table th {
+    background: #e2e8f0;
+    color: #1e293b;
+  }
+
+  table td {
+    color: #334155;
+    border-bottom-color: #e2e8f0;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

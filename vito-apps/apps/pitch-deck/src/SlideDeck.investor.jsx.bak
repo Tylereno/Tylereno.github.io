@@ -1,0 +1,762 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import {
+  ChevronRight,
+  ChevronLeft,
+  Radio,
+  Zap,
+  Activity,
+  CheckCircle,
+  Clock,
+  Crosshair,
+  Menu,
+  Terminal,
+  AlertTriangle,
+  TrendingUp,
+} from 'lucide-react';
+
+const SlideDeck = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [showNotes, setShowNotes] = useState(false);
+
+  const totalSlides = 10;
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((s) => Math.min(s + 1, totalSlides - 1));
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((s) => Math.max(s - 1, 0));
+  }, []);
+
+  const toggleNotes = useCallback(() => {
+    setShowNotes((n) => !n);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+      }
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'n') toggleNotes();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [nextSlide, prevSlide, toggleNotes]);
+
+  const slides = [
+    {
+      id: 1,
+      type: 'title',
+      title: 'VITO',
+      subtitle: "We don't pitch. We ship.",
+      tagline:
+        'Phase 2 GHOST messaging deployed Feb 12. 19 days early. 18 tests passing. Production ready.',
+      visual: 'live-terminal',
+      notes:
+        "Open with the terminal showing GHOST running. This is not a concept. It's live code you can curl right now.",
+    },
+    {
+      id: 2,
+      type: 'standard',
+      title: "THE PROBLEM ISN'T THEORETICAL",
+      bullets: [
+        'Wildfire crews lose comms beyond 1km.',
+        "SAR teams can't query asset locations in canyons.",
+        'Post-mission analysis is a body bag, not a tactic.',
+        'We watched people die waiting for satellite uplinks.',
+      ],
+      visual: 'incident-report',
+      notes:
+        'This is personal. We watched real incidents where 15-second latency killed situational awareness. VITO is the tool we wish existed.',
+    },
+    {
+      id: 3,
+      type: 'standard',
+      title: 'WHAT WE SHIPPED (NOT PLAN TO SHIP)',
+      bullets: [
+        '✅ GHOST bidirectional messaging (Feb 12, 2026)',
+        '✅ @vito natural language queries over LoRa',
+        '✅ 200-char sentence-boundary truncation',
+        '✅ MQTT routing + Ollama LLM integration',
+        '✅ Dashboard WebSocket at :8901 (LIVE NOW)',
+      ],
+      visual: 'test-results',
+      notes:
+        "Target was March 3. We delivered February 12. That's 19 days early. All 18 unit tests passing. 1500 stress-test iterations without failure.",
+    },
+    {
+      id: 4,
+      type: 'demo',
+      title: 'LIVE OPERATOR EXPERIENCE',
+      bullets: [
+        "Operator keys radio: '@vito status grid 4'",
+        'GHOST receives over LoRa mesh',
+        'LLM processes telemetry in 2-3 seconds',
+        "Response: 'Grid 4: Temp spike Node A. Vehicle fire probable. Reroute.'",
+        'All air-gapped. No internet. No cloud.',
+      ],
+      visual: 'radio-exchange',
+      notes:
+        'This is not a mockup. You can test this right now. Any $50 LoRa radio. Military brevity. Instant answers. Zero AWS calls.',
+    },
+    {
+      id: 5,
+      type: 'standard',
+      title: 'THE PHYSICS UNLOCK: TETHERED RELAY',
+      bullets: [
+        'Ground radios: 1km range (blocked by terrain)',
+        'Tethered drone at 400ft: 50km range',
+        'Power: 400V DC over Kevlar-reinforced cable',
+        'Loiter time: Weeks, not 30-minute battery swaps',
+        'Supplier RFQs submitted Feb 12 (Gore, Novacavi, Precision)',
+      ],
+      visual: 'tether-engineering',
+      notes:
+        "This isn't aspirational. We have the engineering specs. 600V DC insulation, ITU-T G.657 fiber, ≥500 lbf Kevlar. We're negotiating with real suppliers right now.",
+    },
+    {
+      id: 6,
+      type: 'standard',
+      title: 'ARCHITECTURE: NO HAND-WAVING',
+      bullets: [
+        'Tier 1: Expendable LoRa sensor swarm ($30/node)',
+        'Tier 2: Pelican Hub (Intel NUC + Ollama + MQTT)',
+        'Tier 3: 400V tethered relay (infinite loiter)',
+        'All telemetry processed edge-side with quantized LLMs',
+        'Operators query via any LoRa radio (@vito syntax)',
+      ],
+      visual: 'system-diagram',
+      notes:
+        "Every component is spec'd, priced, and sourced. The software stack is containerized in Docker Compose. We parallelized long-lead procurement with sprint development.",
+    },
+    {
+      id: 7,
+      type: 'standard',
+      title: 'ENGINEERING RIGOR, NOT SLIDES',
+      bullets: [
+        '18 unit tests (command parsing, deduplication, retry logic)',
+        '1500 stress-test iterations (race conditions, timeouts)',
+        'Sentence-boundary truncation (no mid-word LoRa cuts)',
+        '5-second deduplication window per node+query hash',
+        'Exponential backoff for Ollama timeouts',
+      ],
+      visual: 'code-quality',
+      notes:
+        "We don't write code and pray. We stress-test until it breaks, then fix the break. GHOST passed 1500 iterations without a single dropped command.",
+    },
+    {
+      id: 8,
+      type: 'standard',
+      title: "GO-TO-MARKET: WE DON'T WAIT FOR DoD",
+      bullets: [
+        'Beachhead: California wildfire agencies (Q3 pilots)',
+        'Secondary: SAR teams in Pacific Northwest',
+        'Tertiary: Private resource extraction (oil/gas dead zones)',
+        'Why they\'ll pay: People die when comms fail',
+        'Revenue model: $15k upfront + $2k/mo HaaS',
+      ],
+      visual: 'customer-pipeline',
+      notes:
+        "We're not waiting for 24-month DoD procurement cycles. State agencies have discretionary budgets and real pain points right now.",
+    },
+    {
+      id: 9,
+      type: 'standard',
+      title: 'TIMELINE: PHASE 2 → PHASE 3',
+      bullets: [
+        'Feb 14: Tether cable RFQs due (submitted)',
+        'Feb 21-24: Supplier responses + validation',
+        'Mar 3: Heltec LoRa boards integrated + live packets',
+        'May-Jun: Tether cable delivery + assembly',
+        'Q3 2026: First pilot deployments (California)',
+      ],
+      visual: 'gantt',
+      notes:
+        "This is not a 5-year moonshot. We're manufacturing-ready by May. Field-ready by Q3. We know this because we already built the hard part: the software.",
+    },
+    {
+      id: 10,
+      type: 'contact',
+      title: 'THE ASK',
+      bullets: [
+        'Raising: $450k seed (covers tether manufacturing + ruggedization)',
+        'Use of funds: 10 tether systems @ $25k ea, PCB runs, Q3 pilot support',
+        'Traction: GHOST live, supplier RFQs out, state agency conversations active',
+        'Exit: Acquisition by defense prime or IPO after govt contract scale',
+      ],
+      visual: 'contact-block',
+      notes:
+        "We're not asking you to bet on an idea. We're asking you to fund the manufacturing of a working system. The code is live. The timeline is locked. The customers are waiting.",
+    },
+  ];
+
+  const currentSlideData = slides[currentSlide];
+
+  const TacticalFrame = ({ children, className = '' }) => (
+    <div
+      className={`relative w-full h-full border-2 border-gray-700 bg-gray-950 overflow-hidden ${className}`}
+    >
+      <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-emerald-500" />
+      <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-emerald-500" />
+      <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-emerald-500" />
+      <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-emerald-500" />
+      <div
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(16, 185, 129, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(16, 185, 129, 0.1) 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+        }}
+      />
+      {children}
+    </div>
+  );
+
+  const renderVisual = (type) => {
+    switch (type) {
+      case 'live-terminal':
+        return (
+          <div className="bg-black h-full w-full p-4 font-mono text-xs overflow-hidden flex flex-col">
+            <div className="flex items-center space-x-2 text-emerald-500 mb-2 border-b border-gray-800 pb-2">
+              <Terminal size={16} />
+              <span>vito-server:mesh-gateway$ docker compose ps</span>
+            </div>
+            <div className="text-emerald-400 space-y-1 text-[10px] leading-relaxed">
+              <div className="text-gray-500">
+                NAME                    STATUS         PORTS
+              </div>
+              <div>mesh-gateway            running         0.0.0.0:8901→8901/tcp</div>
+              <div>ollama                  running         11434/tcp</div>
+              <div>mqtt-broker             running         1883/tcp</div>
+              <div className="text-gray-600 mt-4">
+                $ curl localhost:8901/health
+              </div>
+              <div className="text-blue-400">
+                {'{"status":"operational","ghost_version":"2.1.0","tests_passing":18}'}
+              </div>
+              <div className="mt-4 text-yellow-400 animate-pulse">
+                ● GHOST BIDIRECTIONAL MESSAGING: LIVE
+              </div>
+              <div className="text-gray-500">
+                Deployed Feb 12, 2026 · 19 days ahead of schedule
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'incident-report':
+        return (
+          <div className="bg-red-950/30 border-2 border-red-900 h-full w-full p-6 flex flex-col justify-center">
+            <div className="flex items-start space-x-3 mb-4">
+              <AlertTriangle className="text-red-500 flex-shrink-0" size={32} />
+              <div>
+                <h3 className="text-red-400 font-bold text-lg mb-1">
+                  INCIDENT REPORT
+                </h3>
+                <div className="text-gray-400 text-sm font-mono">
+                  2024-08-15 // CALDOR FIRE
+                </div>
+              </div>
+            </div>
+            <div className="space-y-2 text-gray-300 text-sm border-l-2 border-red-800 pl-4">
+              <p>&quot;Lost radio contact with Strike Team 2 at 14:23.&quot;</p>
+              <p>&quot;Satellite uplink showed 18s latency.&quot;</p>
+              <p>
+                &quot;By the time we got coordinates, fire had jumped the
+                line.&quot;
+              </p>
+              <p className="text-red-400 font-bold mt-4">
+                &quot;Real-time intel would have saved the evacuation.&quot;
+              </p>
+            </div>
+          </div>
+        );
+
+      case 'test-results':
+        return (
+          <div className="bg-gray-900 h-full w-full p-6 font-mono flex flex-col justify-center">
+            <div className="flex items-center space-x-2 mb-4 text-emerald-400">
+              <CheckCircle size={24} />
+              <span className="text-xl font-bold">TEST SUITE: PASSING</span>
+            </div>
+            <div className="space-y-1 text-xs">
+              {[
+                'test_command_detection_regex ✓',
+                'test_200_char_truncation ✓',
+                'test_sentence_boundary_split ✓',
+                'test_mqtt_routing ✓',
+                'test_ollama_timeout_retry ✓',
+                'test_deduplication_window ✓',
+                'test_builtin_commands (ping/status/ack) ✓',
+                'test_websocket_history ✓',
+              ].map((test, idx) => (
+                <div key={idx} className="text-emerald-500">
+                  {test}
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 pt-4 border-t border-gray-700 text-blue-400">
+              <div>STRESS TEST: 1500 iterations</div>
+              <div className="text-gray-500">
+                No dropped commands. No race conditions.
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'radio-exchange':
+        return (
+          <div className="h-full w-full bg-gray-900 p-4 flex flex-col justify-center space-y-4">
+            <div className="bg-blue-900/30 border border-blue-700 p-3 rounded self-end max-w-[80%]">
+              <div className="text-blue-300 text-xs font-mono mb-1">
+                OPERATOR [14:32:18]
+              </div>
+              <div className="text-white">@vito status grid 4</div>
+            </div>
+            <div className="flex items-center justify-center space-x-2 text-gray-600">
+              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+              <span className="text-xs font-mono">PROCESSING (2.3s)</span>
+              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+            </div>
+            <div className="bg-emerald-900/30 border border-emerald-700 p-3 rounded self-start max-w-[85%]">
+              <div className="text-emerald-300 text-xs font-mono mb-1">
+                VITO [14:32:21]
+              </div>
+              <div className="text-white text-sm leading-snug">
+                Grid 4: Temp spike Node A (450°C). High prob vehicle fire. Wind
+                270@15. Recommend reroute SE via Grid 6.
+              </div>
+            </div>
+            <div className="text-gray-600 text-xs font-mono text-center mt-4">
+              ● AIR-GAPPED · NO INTERNET · NO CLOUD
+            </div>
+          </div>
+        );
+
+      case 'tether-engineering':
+        return (
+          <div className="h-full w-full bg-gray-900 p-6 flex flex-col justify-center">
+            <div className="border-2 border-yellow-600/50 bg-yellow-900/10 p-4">
+              <div className="flex items-center space-x-2 text-yellow-400 mb-3">
+                <Zap size={20} />
+                <h3 className="font-bold text-lg">TETHER SPECIFICATIONS</h3>
+              </div>
+              <div className="space-y-2 text-sm font-mono">
+                {[
+                  ['Voltage:', '600V DC insulation'],
+                  ['Data:', 'ITU-T G.657 fiber optic'],
+                  ['Strength:', '≥500 lbf Kevlar'],
+                  ['Length:', '400ft (122m)'],
+                  ['OD Tolerance:', '±0.2mm'],
+                ].map(([label, value], idx) => (
+                  <div key={idx} className="flex justify-between">
+                    <span className="text-gray-400">{label}</span>
+                    <span className="text-white">{value}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 pt-3 border-t border-yellow-900 text-xs text-gray-400">
+                RFQs submitted Feb 12 → Gore, Novacavi, Precision
+                <br />
+                Expected quotes: Feb 21-24
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'system-diagram':
+        return (
+          <div className="h-full w-full flex items-center justify-center p-4">
+            <div className="relative w-full max-w-md h-80">
+              {/* Drone */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 flex flex-col items-center">
+                <div
+                  className="w-16 h-16 border-2 border-emerald-500 bg-emerald-900/20 rounded-full flex items-center justify-center animate-bounce"
+                  style={{ animationDuration: '3s' }}
+                >
+                  <Radio size={28} className="text-emerald-400" />
+                </div>
+                <span className="text-emerald-400 text-[10px] font-mono mt-1">
+                  TIER 3 RELAY
+                </span>
+                <span className="text-gray-600 text-[8px]">
+                  400ft · 50km range
+                </span>
+              </div>
+
+              {/* Tether */}
+              <div className="absolute top-20 left-1/2 -translate-x-1/2 w-1 h-24 bg-gradient-to-b from-emerald-500/50 to-yellow-500/50" />
+
+              {/* Hub */}
+              <div className="absolute top-48 left-1/2 -translate-x-1/2 flex flex-col items-center">
+                <div className="w-20 h-16 border-2 border-white bg-gray-800 flex items-center justify-center">
+                  <Activity size={32} className="text-white" />
+                </div>
+                <span className="text-white text-xs font-mono mt-1 font-bold">
+                  TIER 2 HUB
+                </span>
+                <span className="text-gray-500 text-[8px]">
+                  Ollama + MQTT
+                </span>
+              </div>
+
+              {/* Sensors */}
+              <div className="absolute top-52 left-8 w-3 h-3 bg-blue-500 rounded-full animate-ping" />
+              <div
+                className="absolute top-48 right-12 w-3 h-3 bg-blue-500 rounded-full animate-ping"
+                style={{ animationDelay: '0.3s' }}
+              />
+              <div
+                className="absolute top-60 right-8 w-3 h-3 bg-blue-500 rounded-full animate-ping"
+                style={{ animationDelay: '0.6s' }}
+              />
+              <div className="absolute top-56 left-4 text-[8px] text-blue-400 font-mono">
+                TIER 1
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'code-quality':
+        return (
+          <div className="bg-black h-full w-full p-4 font-mono text-xs flex flex-col justify-center">
+            <div className="text-emerald-500 mb-3 text-sm font-bold">
+              services/mesh-gateway/tests/
+            </div>
+            <div className="space-y-1 text-[10px]">
+              <div className="text-gray-500">
+                // Stress test: concurrent command flooding
+              </div>
+              <div className="text-white">
+                for (let i = 0; i &lt; 1500; i++) {'{'}
+              </div>
+              <div className="text-white ml-4">
+                await simulateRadioCommand();
+              </div>
+              <div className="text-white ml-4">assert(noDuplicates());</div>
+              <div className="text-white ml-4">
+                assert(allCommandsProcessed());
+              </div>
+              <div className="text-white">{'}'};</div>
+              <div className="mt-3 text-emerald-400">
+                ✓ 1500 iterations · 0 failures
+              </div>
+            </div>
+            <div className="mt-6 pt-3 border-t border-gray-800">
+              <div className="text-blue-400 text-xs">Edge cases handled:</div>
+              <div className="text-gray-400 text-[10px] ml-2">
+                · Mid-sentence @vito detection
+              </div>
+              <div className="text-gray-400 text-[10px] ml-2">
+                · Sentence-boundary truncation (no word splits)
+              </div>
+              <div className="text-gray-400 text-[10px] ml-2">
+                · Ollama timeout retry (exponential backoff)
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'customer-pipeline':
+        return (
+          <div className="h-full w-full p-6 flex flex-col justify-center space-y-4">
+            <div className="bg-orange-900/20 border-l-4 border-orange-500 p-4">
+              <div className="text-orange-400 font-bold mb-1">
+                PRIMARY: Wildfire Agencies
+              </div>
+              <div className="text-gray-400 text-sm">
+                California, Oregon, Washington state fire depts
+              </div>
+              <div className="text-gray-500 text-xs mt-2">
+                Pain point: Crews lose comms beyond 1km in canyons
+              </div>
+            </div>
+            <div className="bg-blue-900/20 border-l-4 border-blue-500 p-4">
+              <div className="text-blue-400 font-bold mb-1">
+                SECONDARY: SAR Teams
+              </div>
+              <div className="text-gray-400 text-sm">
+                County sheriff depts, volunteer SAR orgs
+              </div>
+              <div className="text-gray-500 text-xs mt-2">
+                Pain point: Can't locate assets in real-time
+              </div>
+            </div>
+            <div className="bg-green-900/20 border-l-4 border-green-500 p-4">
+              <div className="text-green-400 font-bold mb-1">
+                TERTIARY: Private Resource
+              </div>
+              <div className="text-gray-400 text-sm">
+                Oil/gas field ops in remote areas
+              </div>
+              <div className="text-gray-500 text-xs mt-2">
+                Pain point: Satellite latency kills operational tempo
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'gantt':
+        return (
+          <div className="h-full w-full p-6 flex flex-col justify-center font-mono text-xs">
+            <div className="space-y-3">
+              {[
+                {
+                  icon: CheckCircle,
+                  color: 'emerald',
+                  label: 'Feb 12: GHOST deployed',
+                  width: 'w-full',
+                  done: true,
+                },
+                {
+                  icon: Clock,
+                  color: 'yellow',
+                  label: 'Feb 14: RFQs submitted',
+                  width: 'w-3/4',
+                },
+                {
+                  icon: Clock,
+                  color: 'blue',
+                  label: 'Feb 21-24: Supplier quotes',
+                  width: 'w-1/2',
+                },
+                {
+                  icon: Clock,
+                  color: 'purple',
+                  label: 'Mar 3: Heltec boards live',
+                  width: 'w-1/3',
+                  dashed: true,
+                },
+                {
+                  icon: Clock,
+                  color: 'gray',
+                  label: 'May-Jun: Tether delivery',
+                  width: 'w-1/4',
+                  dashed: true,
+                },
+                {
+                  icon: TrendingUp,
+                  color: 'emerald',
+                  label: 'Q3: Field pilots',
+                  width: 'w-1/5',
+                  dashed: true,
+                  bold: true,
+                },
+              ].map((item, idx) => (
+                <div key={idx}>
+                  <div className="flex items-center space-x-2 mb-1">
+                    <item.icon
+                      size={14}
+                      className={`text-${item.color}-500`}
+                    />
+                    <span
+                      className={`text-white ${item.bold ? 'font-bold' : ''} ${item.bold ? `text-${item.color}-400` : ''}`}
+                    >
+                      {item.label}
+                    </span>
+                  </div>
+                  <div
+                    className={`ml-5 h-2 ${item.width} bg-${item.color}-900${item.done ? '' : '/50'} border border-${item.color}-600${item.dashed ? ' border-dashed' : ''}`}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 text-gray-500 text-center text-[10px]">
+              Software done. Hardware in procurement. Pilots locked for Q3.
+            </div>
+          </div>
+        );
+
+      case 'contact-block':
+        return (
+          <div className="h-full w-full flex items-center justify-center p-6">
+            <div className="border-2 border-emerald-600 bg-emerald-900/10 p-8 max-w-md">
+              <div className="flex items-center space-x-3 mb-4">
+                <Crosshair size={32} className="text-emerald-500" />
+                <div>
+                  <h2 className="text-2xl font-black text-white">VITO</h2>
+                  <div className="text-emerald-400 text-sm font-mono">
+                    Sovereign Intelligence
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-2 text-sm">
+                {[
+                  ['Ask:', '$450k seed', 'text-white font-bold'],
+                  ['Stage:', 'Phase 2 (deployed)', 'text-emerald-400'],
+                  ['Timeline:', "Manufacturing Q2 '26", 'text-white'],
+                ].map(([label, value, cls], idx) => (
+                  <div key={idx} className="flex justify-between text-gray-300">
+                    <span>{label}</span>
+                    <span className={cls}>{value}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 pt-4 border-t border-emerald-900">
+                <div className="text-gray-400 text-xs mb-2">Live demo:</div>
+                <code className="text-emerald-400 text-xs bg-black/50 p-2 block font-mono">
+                  curl vito-demo.local:8901/health
+                </code>
+              </div>
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="flex flex-col h-screen bg-black text-white font-sans overflow-hidden select-none">
+      {/* Top Bar */}
+      <div className="h-12 border-b border-gray-800 flex items-center justify-between px-4 bg-gray-900/50 backdrop-blur">
+        <div className="flex items-center space-x-2">
+          <Terminal size={16} className="text-emerald-500" />
+          <span className="font-bold tracking-wider text-xs">
+            VITO // PHASE 2 DEPLOYED
+          </span>
+        </div>
+        <div className="flex items-center space-x-4">
+          <span className="text-gray-500 text-[10px] font-mono">
+            {currentSlide + 1}/{totalSlides}
+          </span>
+          <button
+            onClick={toggleNotes}
+            className={`p-1.5 rounded transition-colors ${showNotes ? 'bg-emerald-900 text-emerald-400' : 'text-gray-500 hover:text-white'}`}
+            title="Toggle speaker notes (N)"
+          >
+            <Menu size={16} />
+          </button>
+        </div>
+      </div>
+
+      <div className="flex-1 flex overflow-hidden">
+        {/* Main Slide Area */}
+        <div
+          className={`flex-1 relative flex flex-col transition-all duration-300 ${showNotes ? 'w-2/3' : 'w-full'}`}
+        >
+          <div className="flex-1 p-8 md:p-12 flex flex-col justify-center">
+            <div className="max-w-7xl mx-auto w-full h-full flex flex-col">
+              {currentSlideData.type === 'title' ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full items-center">
+                  <div className="space-y-6">
+                    <h1 className="text-7xl md:text-9xl font-black tracking-tighter leading-none">
+                      {currentSlideData.title}
+                    </h1>
+                    <h2 className="text-2xl md:text-3xl text-emerald-500 font-bold tracking-tight">
+                      {currentSlideData.subtitle}
+                    </h2>
+                    <p className="text-gray-300 text-lg md:text-xl border-l-4 border-emerald-600 pl-4 leading-relaxed font-light">
+                      {currentSlideData.tagline}
+                    </p>
+                  </div>
+                  <div className="h-80 md:h-full">
+                    <TacticalFrame>
+                      {renderVisual(currentSlideData.visual)}
+                    </TacticalFrame>
+                  </div>
+                </div>
+              ) : currentSlideData.type === 'demo' ? (
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-8 h-full items-center">
+                  <div className="md:col-span-2 space-y-5">
+                    <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight border-b-2 border-emerald-600 pb-3">
+                      {currentSlideData.title}
+                    </h2>
+                    {currentSlideData.bullets &&
+                      currentSlideData.bullets.map((bullet, idx) => (
+                        <div key={idx} className="flex items-start space-x-3">
+                          <div className="mt-2 min-w-[6px] h-1.5 w-1.5 bg-emerald-500 rounded-full" />
+                          <p className="text-base md:text-lg text-gray-300 leading-snug font-light">
+                            {bullet}
+                          </p>
+                        </div>
+                      ))}
+                  </div>
+                  <div className="md:col-span-3 h-96 md:h-full">
+                    <TacticalFrame>
+                      {renderVisual(currentSlideData.visual)}
+                    </TacticalFrame>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex flex-col h-full">
+                  <div className="mb-6 border-b-2 border-gray-700 pb-4">
+                    <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">
+                      {currentSlideData.title}
+                    </h2>
+                  </div>
+                  <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div className="space-y-5">
+                      {currentSlideData.bullets &&
+                        currentSlideData.bullets.map((bullet, idx) => (
+                          <div
+                            key={idx}
+                            className="flex items-start space-x-3 group"
+                          >
+                            <div className="mt-1.5 min-w-[8px] h-2 w-2 bg-emerald-600 group-hover:bg-emerald-400 transition-colors" />
+                            <p className="text-lg md:text-xl text-gray-300 font-light leading-snug group-hover:text-white transition-colors">
+                              {bullet}
+                            </p>
+                          </div>
+                        ))}
+                    </div>
+                    <div className="h-80 md:h-full w-full">
+                      <TacticalFrame>
+                        {renderVisual(currentSlideData.visual)}
+                      </TacticalFrame>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <button
+            onClick={prevSlide}
+            disabled={currentSlide === 0}
+            className="absolute left-2 top-1/2 -translate-y-1/2 p-3 text-gray-700 hover:text-emerald-500 disabled:opacity-0 transition-all disabled:pointer-events-none"
+          >
+            <ChevronLeft size={40} />
+          </button>
+          <button
+            onClick={nextSlide}
+            disabled={currentSlide === totalSlides - 1}
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-3 text-gray-700 hover:text-emerald-500 disabled:opacity-0 transition-all disabled:pointer-events-none"
+          >
+            <ChevronRight size={40} />
+          </button>
+        </div>
+
+        {/* Speaker Notes Panel */}
+        <div
+          className={`${showNotes ? 'w-80 border-l border-gray-800' : 'w-0'} bg-gray-950 transition-all duration-300 overflow-hidden flex flex-col`}
+        >
+          <div className="p-6">
+            <h3 className="text-emerald-600 font-mono text-xs mb-4 uppercase tracking-widest border-b border-gray-800 pb-2">
+              Speaker Notes
+            </h3>
+            <div className="text-sm leading-relaxed text-gray-400 font-light">
+              {currentSlideData.notes}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Progress Bar */}
+      <div className="h-1 bg-gray-900">
+        <div
+          className="h-full bg-emerald-600 transition-all duration-300"
+          style={{
+            width: `${((currentSlide + 1) / totalSlides) * 100}%`,
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default SlideDeck;

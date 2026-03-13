@@ -1,0 +1,111 @@
+{
+  "system": {
+    "name": "VITO-MOBILE",
+    "vehicle": "SUSI (2002 Ford E-450)",
+    "deployed_on": "Lenovo P53",
+    "access_url": "http://100.124.104.38:5173",
+    "version": "v4.6.0"
+  },
+
+  "power_system": {
+    "solar_array": {
+      "capacity_watts": 1300,
+      "controller": "Renogy MPPT 60A",
+      "controller_interface": "/dev/ttyUSB0",
+      "baud_rate": 9600,
+      "data_format": "PV_W=value,BAT_V=value,BAT_A=value"
+    },
+
+    "battery_bank": {
+      "chemistry": "LiFePO4",
+      "capacity_ah": 280,
+      "nominal_voltage": 48,
+      "cells": "16S (4 x 4S-70Ah packs in series)",
+      "bms_model": "JBD-SP04S100A",
+      "bms_interface": "/dev/ttyUSB1",
+      "bms_baud_rate": 9600,
+      "bms_data_format": "SoC=value,Temp=value,Voltage=value,Current=value",
+      "max_continuous_discharge": 100,
+      "warranty_cycles": 3000,
+      "notes": "Smart BMS with cell balancing and temperature monitoring"
+    },
+
+    "inverter": {
+      "model": "Unknown (6000W estimated)",
+      "continuous_power": 6000,
+      "peak_power": 12000,
+      "input_voltage": 48
+    }
+  },
+
+  "engine": {
+    "model": "7.3L Turbo Diesel",
+    "year": 2002,
+    "displacement_liters": 7.3,
+    "aspiration": "Turbocharged",
+    "fuel_system": "Direct Injection",
+    "glow_plug_system": "Ceramic heaters (engine block mounted)",
+    "injector_type": "Bosch IDI (Indirect injection)",
+    "diagnostics": {
+      "protocol": "OBD-II CAN-Bus",
+      "adapter": "ELM327 USB",
+      "interface": "/dev/ttyOBD",
+      "baud_rate": 38400,
+      "available_pids": [
+        "0105 - Engine Coolant Temperature",
+        "010C - Engine RPM",
+        "0104 - Engine Load",
+        "011F - Engine Runtime"
+      ]
+    },
+    "notes": "Robust mechanical diesel, minimal electronics compared to modern engines"
+  },
+
+  "connectivity": {
+    "primary": "Starlink Terminal (L-band satellite)",
+    "backup": "Cellular (if available)",
+    "mesh_vpn": "Tailscale (100.124.104.38)",
+    "mesh_peers": 4,
+    "zero_trust_capable": true
+  },
+
+  "crew_agents": {
+    "KINETIC": {
+      "responsibility": "Power orchestration & load shedding",
+      "monitors": ["Solar input watts", "Battery SoC%", "Battery voltage", "Charge current"],
+      "controls": "Tier shedding (TIER_0=critical, TIER_1=high, TIER_2=low)",
+      "script": "/opt/ark/apps/tier-4-civil/vito-mobile/crew/kinetic.js"
+    },
+
+    "VIGIL": {
+      "responsibility": "Engine health & diagnostics",
+      "monitors": ["Engine coolant temp", "RPM", "Engine load %", "Glow plug status", "Fault codes"],
+      "optional": true,
+      "requires": "OBD-II adapter",
+      "script": "/opt/ark/apps/tier-4-civil/vito-mobile/crew/vigil.js"
+    },
+
+    "OTTO": {
+      "responsibility": "Decision-making based on power + engine state",
+      "logic_examples": [
+        "If SoC < 20%, disable TIER_1 loads",
+        "If engine coolant temp > 90°C, reduce inverter output",
+        "If solar input > 1000W, queue charge-intensive tasks"
+      ]
+    }
+  },
+
+  "deployment_checklist": {
+    "hardware_wiring": {
+      "usb0_charge_controller": false,
+      "usb1_bms": false,
+      "obd2_adapter": false
+    },
+    "software_status": {
+      "container_built": false,
+      "container_deployed": false,
+      "telemetry_flowing": false,
+      "dashboard_updated": false
+    }
+  }
+}

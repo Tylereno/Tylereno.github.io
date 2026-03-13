@@ -1,0 +1,48 @@
+{
+  "program": "ark-power-rentals",
+  "tier": "TIER 2 - Industrial & Infrastructure",
+  "codename": "POWER",
+  "category": "Power Rentals / Portable Generation",
+  "version": "4.6.6",
+  "description": "Mobile power generator fleet monitoring and remote diagnostics.",
+  "challenge": "Rolling rental fleets require rapid deployment, remote monitoring of fuel, runtime and maintenance scheduling. Intermittent connectivity and harsh environments make fleet supervision costly and error-prone.",
+  "response": "VITO provides continuous generator telemetry, fuel-level alerts, and runtime analytics. Noah Guardian auto-schedules maintenance, compresses logs for efficient backhaul, and secures operator access via Tailscale.",
+  "result": "Improved fleet uptime, reduced maintenance costs, and remote issue resolution without routine on-site visits.",
+  "agents_enabled": ["VIGIL", "STOW", "KINETIC", "GHOST", "FORGE"],
+  "agents_disabled": [],
+  "key_capabilities": [
+    "Generator telemetry monitoring",
+    "Fuel-level alerts",
+    "Automated maintenance scheduling",
+    "Log compression for backhaul",
+    "Tailscale remote diagnostics"
+  ],
+  "power_behavior": {
+    "100_percent": "All services active",
+    "70_percent": "Shed UI/Dev",
+    "50_percent": "Generator telemetry + fuel monitoring",
+    "20_percent": "Core sensors only",
+    "10_percent": "Shutdown"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "node": "^18.0.0"
+  },
+  "ports": {
+    "api": 3001,
+    "generator_bridge": 3011,
+    "mesh": 41641
+  },
+  "volumes": {
+    "generator_logs": "/data/generators",
+    "maintenance_schedule": "/data/maintenance",
+    "nvme_cache": "/data/stow"
+  },
+  "environment_variables": {
+    "OTTO_PREDICTIVE_MAINTENANCE": "true",
+    "STOW_GENERATOR_TELEMETRY": "true",
+    "STOW_LOG_COMPRESSION": "true",
+    "KINETIC_GENERATOR_PRIORITY": "true",
+    "FORGE_MAINTENANCE_SCHEDULING": "true"
+  }
+}

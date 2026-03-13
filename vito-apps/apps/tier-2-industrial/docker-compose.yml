@@ -1,0 +1,183 @@
+version: '3.8'
+
+services:
+  # TIER 2 - Industrial & Infrastructure
+  # Hardware interfacing, store-and-forward mode
+
+  vito-mine-dle:
+    container_name: vito-mine-dle
+    build:
+      context: ./vito-mine-dle
+      dockerfile: Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-mine-dle
+      - STOW_STORE_AND_FORWARD_MODE=true
+      - STOW_CACHE_DURATION_DAYS=21
+    ports:
+      - "3001:3001"
+      - "3002:3002"
+      - "502:502"  # Modbus
+      - "41641:41641"
+    volumes:
+      - ./data/sensors:/data/sensors
+      - ./data/stow:/data/stow
+      - ./data/compliance:/data/compliance
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - mine-dle
+      - all
+
+  vito-grid-substation:
+    container_name: vito-grid-substation
+    build:
+      context: ./vito-grid-substation
+      dockerfile: Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-grid-substation
+      - OTTO_SCADA_INTEGRATION=true
+      - OTTO_FAULT_DETECTION_AI=true
+    ports:
+      - "3001:3001"
+      - "502:502"  # SCADA/Modbus
+      - "41641:41641"
+    volumes:
+      - ./data/scada:/data/scada
+      - ./data/stow:/data/stow
+      - ./data/compliance:/data/compliance
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - grid-substation
+      - all
+
+  vito-marine-offshore:
+    container_name: vito-marine-offshore
+    build:
+      context: ./vito-marine-offshore
+      dockerfile: Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-marine-offshore
+      - OTTO_PREDICTIVE_MAINTENANCE=true
+      - STOW_SATELLITE_BURST_ENABLED=true
+    ports:
+      - "3001:3001"
+      - "3005:3005"  # Equipment bridge
+      - "3006:3006"  # Satellite
+      - "41641:41641"
+    volumes:
+      - ./data/equipment:/data/equipment
+      - ./data/blackbox:/data/blackbox
+      - ./data/stow:/data/stow
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - marine-offshore
+      - all
+
+  vito-construct-safety:
+    container_name: vito-construct-safety
+    build:
+      context: ./vito-construct-safety
+      dockerfile: Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-construct-safety
+      - OTTO_VISION_AI_ENABLED=true
+      - OTTO_PPE_DETECTION=true
+    ports:
+      - "3001:3001"
+      - "3007:3007"  # Camera feed
+      - "3008:3008"  # Alerts
+      - "41641:41641"
+    volumes:
+      - ./data/cameras:/data/cameras
+      - ./data/sensors:/data/sensors
+      - ./models:/models
+      - ./data/stow:/data/stow
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - construct-safety
+      - all
+
+  vito-farm-precision:
+    container_name: vito-farm-precision
+    build:
+      context: ./vito-farm-precision
+      dockerfile: Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-farm-precision
+      - OTTO_IRRIGATION_AI=true
+      - OTTO_AUTONOMOUS_PUMP_CONTROL=true
+    ports:
+      - "3001:3001"
+      - "3009:3009"  # Pump control
+      - "3010:3010"  # Sensor gateway
+      - "41641:41641"
+    volumes:
+      - ./data/climate:/data/climate
+      - ./data/irrigation:/data/irrigation
+      - ./data/archive:/data/archive
+      - ./data/stow:/data/stow
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - farm-precision
+      - all
+
+  vito-power-rentals:
+    container_name: vito-power-rentals
+    build:
+      context: ./vito-power-rentals
+      dockerfile: Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-power-rentals
+      - OTTO_PREDICTIVE_MAINTENANCE=true
+      - STOW_GENERATOR_TELEMETRY=true
+    ports:
+      - "3001:3001"
+      - "3011:3011"  # Generator bridge
+      - "41641:41641"
+    volumes:
+      - ./data/generators:/data/generators
+      - ./data/maintenance:/data/maintenance
+      - ./data/stow:/data/stow
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - power-rentals
+      - all
+
+  vito-telecom-cell:
+    container_name: vito-telecom-cell
+    build:
+      context: ./vito-telecom-cell
+      dockerfile: Dockerfile
+    environment:
+      - VITO_PROGRAM=vito-telecom-cell
+      - STOW_CALL_DATA_LOGGING=true
+      - FORGE_RADIO_AUTO_RESTART=true
+    ports:
+      - "3001:3001"
+      - "3012:3012"  # Radio bridge
+      - "41641:41641"
+    volumes:
+      - ./data/calls:/data/calls
+      - ./data/radio:/data/radio
+      - ./data/stow:/data/stow
+    networks:
+      - vito-mesh
+    restart: unless-stopped
+    profiles:
+      - telecom-cell
+      - all
+
+networks:
+  vito-mesh:
+    driver: bridge

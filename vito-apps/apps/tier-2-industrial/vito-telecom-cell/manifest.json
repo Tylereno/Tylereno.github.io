@@ -1,0 +1,48 @@
+{
+  "program": "ark-telecom-cell",
+  "tier": "TIER 2 - Industrial & Infrastructure",
+  "codename": "TOWER",
+  "category": "Telecommunications",
+  "version": "4.6.6",
+  "description": "Cell tower site resilience during power and backhaul outages.",
+  "challenge": "Cell towers in remote or disaster-prone areas face frequent power and backhaul outages, risking loss of call/data records and extended downtime.",
+  "response": "VITO logs all call/data events locally, manages backup power, and autonomously restarts radios after brownouts. When the link is restored, all records are synchronized to the NOC.",
+  "result": "Maintained service continuity, no loss of regulatory data, and faster recovery after outages.",
+  "agents_enabled": ["VIGIL", "STOW", "KINETIC", "GHOST", "FORGE"],
+  "agents_disabled": [],
+  "key_capabilities": [
+    "Call/data event logging",
+    "Autonomous radio restart",
+    "Backup power management",
+    "Brownout detection",
+    "Regulatory data preservation"
+  ],
+  "power_behavior": {
+    "100_percent": "All services active",
+    "60_percent": "Shed UI/Dev",
+    "50_percent": "Radio + backup power prioritized",
+    "20_percent": "Radio bridge only",
+    "10_percent": "Shutdown"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "node": "^18.0.0"
+  },
+  "ports": {
+    "api": 3001,
+    "radio_bridge": 3012,
+    "mesh": 41641
+  },
+  "volumes": {
+    "call_logs": "/data/calls",
+    "radio_events": "/data/radio",
+    "nvme_cache": "/data/stow"
+  },
+  "environment_variables": {
+    "STOW_CALL_DATA_LOGGING": "true",
+    "STOW_REGULATORY_COMPLIANCE": "true",
+    "KINETIC_RADIO_PRIORITY": "true",
+    "FORGE_RADIO_AUTO_RESTART": "true",
+    "VIGIL_BROWNOUT_DETECTION": "true"
+  }
+}

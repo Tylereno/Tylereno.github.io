@@ -1,0 +1,489 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════
+   VITO Technical Volume — Print-First Stylesheet
+   Black & White, dense text, formal document format
+   ═══════════════════════════════════════════════════ */
+
+:root {
+  --page-width: 8.5in;
+  --page-margin: 1in;
+  --font-body: 'Times New Roman', Times, serif;
+  --font-heading: 'Inter', Arial, Helvetica, sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+  --color-text: #111111;
+  --color-muted: #555555;
+  --color-border: #333333;
+  --color-bg-alt: #f5f5f5;
+  --color-accent: #000000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 11pt;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: white;
+  line-height: 1.5;
+}
+
+/* ── Page containers ── */
+.doc-page {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0.6in var(--page-margin);
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-page:last-child {
+  page-break-after: auto;
+}
+
+.page-body {
+  flex: 1;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  color: var(--color-accent);
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 20pt;
+  font-weight: 700;
+  margin-bottom: 6pt;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 14pt;
+  font-weight: 700;
+  margin-bottom: 6pt;
+  border-bottom: 2px solid black;
+  padding-bottom: 4pt;
+  margin-top: 18pt;
+}
+
+h3 {
+  font-size: 12pt;
+  font-weight: 600;
+  margin-bottom: 4pt;
+  margin-top: 12pt;
+}
+
+h4 {
+  font-size: 11pt;
+  font-weight: 600;
+  margin-bottom: 3pt;
+  margin-top: 10pt;
+}
+
+p {
+  margin: 0 0 8pt 0;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  margin: 8pt 0;
+}
+
+table th {
+  background: var(--color-bg-alt);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 4pt 6pt;
+  border: 1px solid var(--color-border);
+  font-size: 8pt;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+table td {
+  padding: 3pt 6pt;
+  border: 1px solid #999;
+  vertical-align: top;
+  line-height: 1.4;
+}
+
+table tr:nth-child(even) td {
+  background: var(--color-bg-alt);
+}
+
+/* ── Lists ── */
+ul, ol {
+  margin: 4pt 0 8pt 0;
+  padding-left: 20pt;
+}
+
+li {
+  margin-bottom: 2pt;
+}
+
+/* ── Figure captions ── */
+.figure-caption {
+  font-size: 9pt;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  text-align: center;
+  margin-top: 6pt;
+  margin-bottom: 8pt;
+  color: var(--color-muted);
+}
+
+.figure-caption span {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* ── Mermaid diagrams ── */
+.mermaid-container {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 12pt;
+  margin: 8pt 0;
+  overflow-x: auto;
+}
+
+.mermaid-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Collapsible sections ── */
+details {
+  border: 1px solid #ccc;
+  margin: 6pt 0;
+  padding: 0;
+}
+
+details summary {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 10pt;
+  padding: 6pt 10pt;
+  cursor: pointer;
+  background: var(--color-bg-alt);
+  border-bottom: 1px solid #ccc;
+  user-select: none;
+}
+
+details[open] summary {
+  border-bottom: 1px solid #ccc;
+}
+
+details > div {
+  padding: 8pt 10pt;
+}
+
+/* ── Search/filter input ── */
+.search-input {
+  font-family: var(--font-mono);
+  font-size: 9pt;
+  border: 1px solid #999;
+  padding: 4pt 8pt;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 8pt;
+}
+
+.search-input:focus {
+  outline: 2px solid black;
+  outline-offset: 1px;
+}
+
+/* ── Status badges ── */
+.badge {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 7pt;
+  font-weight: 700;
+  padding: 1pt 5pt;
+  border: 1px solid;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-deployed {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
+
+.badge-proposed {
+  border-color: #000;
+  background: #ddd;
+  color: #000;
+}
+
+.badge-phase2 {
+  border-color: #999;
+  background: #fff;
+  color: #555;
+}
+
+/* ── Gantt chart ── */
+.gantt-bar {
+  height: 14px;
+  border: 1px solid #000;
+  position: relative;
+}
+
+.gantt-bar-fill {
+  height: 100%;
+  background: #000;
+}
+
+.gantt-bar-fill.critical {
+  background: repeating-linear-gradient(45deg, #000, #000 3px, #fff 3px, #fff 6px);
+}
+
+.gantt-milestone {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #000;
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
+/* ── Monospace blocks ── */
+code, .mono {
+  font-family: var(--font-mono);
+  font-size: 9pt;
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  background: var(--color-bg-alt);
+  border: 1px solid #ccc;
+  padding: 8pt;
+  overflow-x: auto;
+  margin: 6pt 0;
+}
+
+/* ── Header/footer for pages ── */
+.page-header {
+  font-family: var(--font-heading);
+  font-size: 8pt;
+  color: var(--color-muted);
+  border-bottom: 0.5pt solid #999;
+  padding-bottom: 4pt;
+  margin-bottom: 16pt;
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-footer {
+  font-family: var(--font-heading);
+  font-size: 8pt;
+  color: var(--color-muted);
+  border-top: 0.5pt solid #999;
+  padding-top: 4pt;
+  margin-top: 16pt;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ── Classification markings ── */
+.classification {
+  font-family: var(--font-heading);
+  font-size: 7pt;
+  text-align: center;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 4pt;
+}
+
+/* ── Two-column layout ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16pt;
+}
+
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12pt;
+}
+
+/* ── Print toolbar (screen only) ── */
+.print-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #111;
+  color: #ddd;
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.print-toolbar button {
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 6px 16px;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+}
+
+.print-toolbar button:hover {
+  background: #555;
+}
+
+/* Screen: add margin for toolbar */
+@media screen {
+  body {
+    padding-top: 52px;
+    background: #e5e5e5;
+  }
+
+  .doc-page {
+    background: white;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.15);
+    margin-bottom: 16px;
+  }
+}
+
+/* ── PRINT STYLES ── */
+@media print {
+  .print-toolbar,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    padding-top: 0;
+    background: white;
+  }
+
+  .doc-page {
+    box-shadow: none;
+    margin: 0;
+    padding: 0.5in 0.75in;
+    max-width: none;
+  }
+
+  h2 {
+    page-break-after: avoid;
+  }
+
+  table {
+    page-break-inside: avoid;
+  }
+
+  /* Force closed <details> to show content in print */
+  details > *:not(summary) {
+    display: block !important;
+  }
+
+  .no-break {
+    page-break-inside: avoid;
+  }
+  * {
+    color: #000 !important;
+    background: #fff !important;
+    border-color: #000 !important;
+  }
+
+  table th {
+    background: #eee !important;
+  }
+
+  table tr:nth-child(even) td {
+    background: #f5f5f5 !important;
+  }
+
+  .badge-deployed {
+    background: #000 !important;
+    color: #fff !important;
+  }
+
+  .badge-proposed {
+    background: #ccc !important;
+    color: #000 !important;
+  }
+
+  .badge-phase2 {
+    background: #fff !important;
+    color: #000 !important;
+    border-style: dashed !important;
+  }
+
+  .mermaid-container {
+    border: 1px solid #000 !important;
+  }
+}
+
+/* ── Page break utilities ── */
+.break-before { page-break-before: always; }
+.break-after { page-break-after: always; }
+.no-break { page-break-inside: avoid; }
+
+/* ── KaTeX overrides ── */
+.katex {
+  font-size: 1em;
+}
+
+/* ── TOC ── */
+.toc-entry {
+  display: flex;
+  justify-content: space-between;
+  padding: 2pt 0;
+  border-bottom: 1px dotted #ccc;
+}
+
+.toc-entry .toc-dots {
+  flex: 1;
+  border-bottom: 1px dotted #999;
+  margin: 0 6pt;
+  min-width: 20pt;
+}
+
+/* ── Equation display ── */
+.equation-block {
+  text-align: center;
+  margin: 12pt 0;
+  padding: 8pt;
+  background: var(--color-bg-alt);
+  border: 1px solid #ccc;
+  font-size: 12pt;
+}
+
+/* Nav anchor offsets */
+[id] {
+  scroll-margin-top: 60px;
+}

@@ -1,0 +1,69 @@
+# .dockerignore for VITO - Exclude unnecessary files from Docker build context
+# This dramatically reduces build time by not copying bloat into the image
+
+# Version Control
+.git
+.gitignore
+.github
+
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+.npm
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+.venv
+venv
+env
+
+# OS
+.DS_Store
+.env.local
+.env.*.local
+Thumbs.db
+
+# Build artifacts
+dist
+build
+*.tgz
+
+# Logs
+logs
+*.log
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Data (don't include in images)
+data/
+/data
+
+# Archives
+_archive/
+
+# Cache
+.cache
+.npm-cache
+
+# Temporary
+tmp
+temp
+*.tmp
+
+# Large files
+*.zip
+*.tar.gz
+*.tar
+*.iso
+
+# Test coverage
+coverage
+.nyc_output

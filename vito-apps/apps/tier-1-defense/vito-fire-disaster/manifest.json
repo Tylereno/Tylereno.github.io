@@ -1,0 +1,48 @@
+{
+  "program": "ark-fire-disaster",
+  "tier": "TIER 1 - Defense & Critical Response",
+  "codename": "RESPONDER",
+  "category": "Emergency Services",
+  "version": "4.6.6",
+  "description": "Mobile Command Center for wildfire/hurricane response. Preserves critical communications during power loss.",
+  "challenge": "Mobile Command Center loses grid power during wildfire/hurricane response. Standard servers crash, corrupting databases and severing comms with field teams.",
+  "response": "VITO's Hardware Watchdog prevents OS corruption. Energy Orchestration sheds non-essential workloads to keep radio links alive 4x longer. All services auto-recover when power returns.",
+  "result": "Critical comms maintained. No data corruption. Seamless recovery without IT staff intervention.",
+  "agents_enabled": ["VIGIL", "KINETIC", "STOW", "GHOST", "FORGE"],
+  "agents_disabled": ["OTTO"],
+  "key_capabilities": [
+    "Radio-link preservation (4x battery extension)",
+    "Automated power shedding cascade",
+    "Emergency broadcast mode",
+    "Auto-restart critical services",
+    "Field team sync logging"
+  ],
+  "power_behavior": {
+    "100_percent": "All services active",
+    "80_percent": "Shed UI/Dashboards",
+    "60_percent": "Shed development tools",
+    "40_percent": "Shed analytics + media",
+    "15_percent": "Comms stack ONLY (absolutely critical)",
+    "10_percent": "Graceful shutdown"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "node": "^18.0.0"
+  },
+  "ports": {
+    "api": 3001,
+    "radio_bridge": 3003,
+    "mesh": 41641
+  },
+  "volumes": {
+    "field_logs": "/data/field",
+    "emergency_cache": "/data/emergency",
+    "nvme_cache": "/data/stow"
+  },
+  "environment_variables": {
+    "KINETIC_BACKUP_BATTERY_EXTEND": "4x",
+    "KINETIC_COMMS_PRESERVATION": "true",
+    "FORGE_AUTO_RESTART_ENABLED": "true",
+    "STOW_FIELD_TEAM_SYNC": "true"
+  }
+}

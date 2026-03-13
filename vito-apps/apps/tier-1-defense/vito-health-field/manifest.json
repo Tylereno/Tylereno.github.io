@@ -1,0 +1,51 @@
+{
+  "program": "ark-health-field",
+  "tier": "TIER 1 - Defense & Critical Response",
+  "codename": "MED",
+  "category": "Healthcare",
+  "version": "4.6.6",
+  "description": "Field hospital operations in disaster zones. Maintains patient records and device logs despite unreliable power/network.",
+  "challenge": "Field hospitals in disaster zones must maintain patient records and critical device logs despite unreliable power and network access.",
+  "response": "VITO stores all patient and device data locally, provides autonomous backup power management, and ensures all logs are uploaded securely when possible.",
+  "result": "No loss of patient data, continuous device monitoring, and compliance with medical record regulations.",
+  "agents_enabled": ["VIGIL", "STOW", "KINETIC", "GHOST", "FORGE"],
+  "agents_disabled": [],
+  "key_capabilities": [
+    "HIPAA-compliant audit trails",
+    "Encrypted patient data storage",
+    "Medical device integration + recovery",
+    "Extended backup power management",
+    "Automated upload on connectivity"
+  ],
+  "power_behavior": {
+    "100_percent": "All services active",
+    "80_percent": "Shed UI/Dashboards",
+    "60_percent": "Shed development tools",
+    "50_percent": "Medical devices ALWAYS ON (critical threshold)",
+    "20_percent": "Patient DB + core monitoring only",
+    "10_percent": "Graceful shutdown to NVMe"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "node": "^18.0.0"
+  },
+  "ports": {
+    "api": 3001,
+    "device_bridge": 3004,
+    "mesh": 41641
+  },
+  "volumes": {
+    "patient_records": "/data/patients",
+    "device_logs": "/data/devices",
+    "encrypted_vault": "/data/vault",
+    "nvme_cache": "/data/stow"
+  },
+  "environment_variables": {
+    "OTTO_HIPAA_COMPLIANCE": "true",
+    "STOW_HIPAA_AUDIT_TRAIL": "true",
+    "STOW_PATIENT_DATA_ENCRYPTED": "true",
+    "KINETIC_MEDICAL_DEVICE_PRIORITY": "true",
+    "KINETIC_SHED_THRESHOLD": "50"
+  },
+  "certifications": ["HIPAA", "FDA Medical Device Logging"]
+}

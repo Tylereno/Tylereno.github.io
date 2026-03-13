@@ -1,0 +1,52 @@
+{
+  "program": "ark-farm-precision",
+  "tier": "TIER 2 - Industrial & Infrastructure",
+  "codename": "YIELD",
+  "category": "Agriculture / Environmental Science",
+  "version": "4.6.6",
+  "description": "Precision agriculture with autonomous irrigation control. Survives polar winters.",
+  "challenge": "Controlling irrigation autonomously based on local soil moisture sensors, independent of the cloud. Surviving polar winters by shedding all UI layers and only logging raw climate data to NVMe.",
+  "response": "VITO stores high-resolution sensor data locally, runs on-site AI to adapt irrigation schedules, and controls pumps autonomously. Store-and-Forward ensures complete datasets for seasonal analysis.",
+  "result": "Optimized water usage, stabilized yields, and autonomous operation through connectivity outages and polar winters.",
+  "agents_enabled": ["VIGIL", "STOW", "KINETIC", "GHOST", "FORGE"],
+  "agents_disabled": [],
+  "key_capabilities": [
+    "Autonomous pump control",
+    "Irrigation AI optimization",
+    "Climate prediction",
+    "Seasonal data archiving",
+    "Polar-winter mode (UI shedding)"
+  ],
+  "power_behavior": {
+    "100_percent": "All services active",
+    "60_percent": "Shed UI/Dev",
+    "40_percent": "Shed non-critical sensors",
+    "20_percent": "Pump control + climate sensors",
+    "10_percent": "Shutdown"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "node": "^18.0.0"
+  },
+  "ports": {
+    "api": 3001,
+    "pump_control": 3009,
+    "sensor_gateway": 3010,
+    "mesh": 41641
+  },
+  "volumes": {
+    "climate_data": "/data/climate",
+    "irrigation_logs": "/data/irrigation",
+    "seasonal_archive": "/data/archive",
+    "nvme_cache": "/data/stow"
+  },
+  "environment_variables": {
+    "OTTO_IRRIGATION_AI": "true",
+    "OTTO_CLIMATE_PREDICTION": "true",
+    "OTTO_AUTONOMOUS_PUMP_CONTROL": "true",
+    "STOW_CLIMATE_DATA_HIGH_RES": "true",
+    "STOW_SEASONAL_DATA_ARCHIVE": "true",
+    "KINETIC_POLAR_WINTER_ENABLED": "false",
+    "KINETIC_UI_LAYER_SHEDDING": "true"
+  }
+}

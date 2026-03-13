@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f3f4f6;
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #111827;
+  color: #e5e7eb;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toolbar button {
+  margin-left: 8px;
+  padding: 6px 10px;
+  border: 1px solid #4b5563;
+  background: #1f2937;
+  color: #f9fafb;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.doc-page {
+  width: 8.5in;
+  min-height: 11in;
+  margin: 16px auto;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header,
+.page-footer {
+  font-size: 9pt;
+  color: #4b5563;
+  border-bottom: 1px solid #d1d5db;
+  padding: 8pt 14pt;
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-footer {
+  border-top: 1px solid #d1d5db;
+  border-bottom: none;
+  margin-top: auto;
+}
+
+.page-body {
+  padding: 14pt 16pt;
+  font-size: 10pt;
+  line-height: 1.4;
+}
+
+h1, h2, h3 {
+  margin: 0 0 8pt 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+}
+
+th, td {
+  border: 1px solid #d1d5db;
+  padding: 6pt;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #f3f4f6;
+}
+
+@media print {
+  @page {
+    size: letter;
+    margin: 0;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .toolbar {
+    display: none;
+  }
+
+  .doc-page {
+    margin: 0;
+    border: none;
+    min-height: auto;
+    page-break-after: always;
+  }
+}

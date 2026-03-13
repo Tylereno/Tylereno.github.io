@@ -1,0 +1,49 @@
+{
+  "program": "ark-logistics-warehouse",
+  "tier": "TIER 3 - Logistics & Commerce",
+  "codename": "WAREHOUSE",
+  "category": "Supply Chain / Warehousing",
+  "version": "4.6.6",
+  "description": "Autonomous warehouse robotics orchestration with inventory priority shedding.",
+  "challenge": "A warehouse running automated robotic inventory systems must continue essential operations during power or network constraints. Standard systems halt completely during outages, blocking shipment.",
+  "response": "VITO prioritizes high-value inventory during power constraints, gracefully sheds lower-priority retrieval tasks, and maintains complete audit trail of all inventory movements.",
+  "result": "Uninterrupted fulfillment of critical orders, predictable SLA performance, and regulatory-grade inventory records.",
+  "agents_enabled": ["VIGIL", "STOW", "KINETIC", "FORGE"],
+  "agents_disabled": ["GHOST", "OTTO"],
+  "key_capabilities": [
+    "Autonomous robot orchestration",
+    "Inventory priority ranking",
+    "Graceful task shedding",
+    "Movement audit trails",
+    "SLA performance monitoring"
+  ],
+  "power_behavior": {
+    "100_percent": "All robots active",
+    "60_percent": "Shed low-priority retrieval",
+    "40_percent": "Critical inventory only",
+    "20_percent": "Manual failover mode",
+    "10_percent": "Shutdown"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "node": "^18.0.0"
+  },
+  "ports": {
+    "api": 3001,
+    "robot_control": 3014,
+    "inventory_gateway": 3015,
+    "mesh": 41641
+  },
+  "volumes": {
+    "inventory": "/data/inventory",
+    "movement_logs": "/data/movements",
+    "nvme_cache": "/data/stow"
+  },
+  "environment_variables": {
+    "STOW_INVENTORY_AUDIT_TRAIL": "true",
+    "STOW_MOVEMENT_LOGGING": "true",
+    "KINETIC_INVENTORY_PRIORITY_SHEDDING": "true",
+    "KINETIC_ROBOT_PRIORITY": "true",
+    "FORGE_ROBOT_AUTO_RECOVERY": "true"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "program": "ark-defense-tradewinds",
+  "tier": "TIER 1 - Defense & Critical Response",
+  "codename": "TRADEWINDS",
+  "category": "Aerospace / Defense",
+  "version": "4.6.6",
+  "description": "Local Mission Control for UAVs/Rovers during radio silence. Hosts technical docs and decision logic locally.",
+  "challenge": "Acts as local Mission Control for UAVs/Rovers during radio silence. Hosts technical docs and decision logic locally.",
+  "response": "VITO enables autonomous operation and logs all command decisions to an immutable audit trail for post-mission review.",
+  "result": "Instantaneous fault resolution. Complete autonomy. Full forensic accountability for command decisions.",
+  "agents_enabled": ["VIGIL", "STOW", "GHOST", "OTTO"],
+  "agents_disabled": ["KINETIC", "FORGE"],
+  "key_capabilities": [
+    "High-frequency audit logging (100ms interval)",
+    "Strict P2P encrypted mesh networking",
+    "Local LLM only (no cloud proxy)",
+    "Immutable decision trails for forensics",
+    "Air-gap ready deployment"
+  ],
+  "power_behavior": {
+    "100_percent": "All services active",
+    "80_percent": "Shed UI/Dashboards",
+    "60_percent": "Shed development tools",
+    "40_percent": "Shed analytics + media",
+    "15_percent": "Comms + core sensors only",
+    "10_percent": "Graceful shutdown to NVMe"
+  },
+  "dependencies": {
+    "vito-core": "4.6.6",
+    "node": "^18.0.0"
+  },
+  "ports": {
+    "api": 3001,
+    "telemetry": 3002,
+    "mesh": 41641
+  },
+  "volumes": {
+    "audit_trail": "/data/audit",
+    "mission_docs": "/data/docs",
+    "nvme_cache": "/data/stow"
+  },
+  "environment_variables": {
+    "OTTO_LLM_PROVIDER": "local",
+    "GHOST_MESH_STRICT_PEER_ONLY": "true",
+    "STOW_LOG_INTERVAL_MS": "100",
+    "STOW_AUDIT_TRAIL_ENABLED": "true"
+  }
+}
