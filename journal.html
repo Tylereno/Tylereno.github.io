@@ -27,10 +27,10 @@
             <h4>ENTRY 001: DESIGNING FOR ENTROPY</h4>
             <p style="color: var(--gray); font-size: 0.85rem; margin-bottom: 1rem;">2026-01-16 | Systems Architecture</p>
             
-            <p>Modern industrial operations assume infinite bandwidth and stable power. In the field, this assumption fails catastrophically. When designing ARK, I had to engineer for entropy—the natural tendency of systems to degrade under environmental stress.</p>
+            <p>Modern industrial operations assume infinite bandwidth and stable power. In the field, this assumption fails catastrophically. When designing VITO, I had to engineer for entropy—the natural tendency of systems to degrade under environmental stress.</p>
             
             <p style="margin-top: 1rem;"><strong>THE POWER PROBLEM</strong></p>
-            <p>Standard servers run at 100% capacity until they crash. ARK implements voltage-aware orchestration that detects energy envelope constraints (solar array voltage, battery SoC) and gracefully degrades service levels:</p>
+            <p>Standard servers run at 100% capacity until they crash. VITO implements voltage-aware orchestration that detects energy envelope constraints (solar array voltage, battery SoC) and gracefully degrades service levels:</p>
             <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
                 <li><strong>Level 1 (Nominal):</strong> Full capabilities—AI analytics, dashboards, remote access</li>
                 <li><strong>Level 2 (Conservation):</strong> Background analytics suspended, core logging active</li>
@@ -38,7 +38,7 @@
             </ul>
             
             <p style="margin-top: 1rem;"><strong>THE NETWORK PROBLEM</strong></p>
-            <p>Standard IoT gateways buffer 2-4 hours of data, then drop packets. ARK buffers terabytes locally on NVMe storage. When the link returns, it bursts compressed summaries while preserving full high-resolution historical data for audit.</p>
+            <p>Standard IoT gateways buffer 2-4 hours of data, then drop packets. VITO buffers terabytes locally on NVMe storage. When the link returns, it bursts compressed summaries while preserving full high-resolution historical data for audit.</p>
             
             <p style="margin-top: 1rem;"><strong>THE RECOVERY PROBLEM</strong></p>
             <p>Hardware watchdog timers monitor the OS kernel. On software hang, the system executes a hard power cycle and cold boots autonomously. Zero-dependency boot ensures full initialization without external IAM, DNS, or license servers. The system is "born ready" at power-on.</p>
@@ -67,8 +67,8 @@
                 <li><strong>Equipment Damage:</strong> $100,000+ for thermal or electrical failures that could have been prevented with early detection</li>
             </ul>
             
-            <p style="margin-top: 1rem;"><strong>THE ARK SOLUTION</strong></p>
-            <p>ARK's autonomous observability stack provides:</p>
+            <p style="margin-top: 1rem;"><strong>THE VITO SOLUTION</strong></p>
+            <p>VITO's autonomous observability stack provides:</p>
             <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
                 <li><strong>Real-time Telemetry:</strong> Sentry for error tracking, Datadog for metrics and logs</li>
                 <li><strong>Autonomous Recovery:</strong> Hardware watchdog architecture eliminates manual intervention</li>
@@ -80,7 +80,7 @@
             <p>For a remote DLE facility experiencing 4 network outages per year (average 48 hours each):</p>
             <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
                 <li>Standard infrastructure: 192 hours downtime, $9.6M-38.4M in lost production</li>
-                <li>ARK infrastructure: 0 hours downtime (autonomous operation), zero data loss</li>
+                <li>VITO infrastructure: 0 hours downtime (autonomous operation), zero data loss</li>
                 <li>Eliminated truck rolls: $80,000-240,000 per year in avoided dispatch costs</li>
             </ul>
             
@@ -114,8 +114,8 @@
                 <li>Production downtime costs $50,000-200,000 per hour</li>
             </ul>
             
-            <p style="margin-top: 1rem;"><strong>THE ARK SOLUTION</strong></p>
-            <p>ARK provides sovereign infrastructure for DLE operations:</p>
+            <p style="margin-top: 1rem;"><strong>THE VITO SOLUTION</strong></p>
+            <p>VITO provides sovereign infrastructure for DLE operations:</p>
             <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
                 <li><strong>Store-and-Forward Telemetry:</strong> Local NVMe caching ensures 100% data retention during network outages</li>
                 <li><strong>Power-Aware Orchestration:</strong> Graceful degradation during brownouts, autonomous recovery</li>
@@ -127,7 +127,7 @@
             <p>For a typical DLE facility producing 10,000 metric tons LCE/year:</p>
             <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
                 <li>Production value: $50,000-100,000 per ton = $500M-1B annually</li>
-                <li>ARK infrastructure cost: $50,000-200,000 (one-time + annual maintenance)</li>
+                <li>VITO infrastructure cost: $50,000-200,000 (one-time + annual maintenance)</li>
                 <li>ROI: Prevents 1 hour of downtime = full system cost recovery</li>
             </ul>
             

@@ -57,7 +57,7 @@ Executed rapid tear-down and "Leave No Trace" remediation, ensuring 100% asset r
 
 ## // STRATEGIC PROJECTS
 
-### PROJECT: ARK NODE | Autonomous Infrastructure Stack
+### PROJECT: VITO NODE | Autonomous Infrastructure Stack
 
 **Objective:** Built a self-healing, offline-first compute node for DDIL (Denied, Disrupted, Intermittent, Limited) environments.
 
