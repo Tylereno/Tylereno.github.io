@@ -1,5 +1,5 @@
 # CONCEPTS OF OPERATIONS (CONOPS)
-## PROJECT ARK: Autonomous Resilient Kernel
+## PROJECT VITO: Vital Isolated Tactical Operator
 
 **Document Type:** Technical Briefing / Operational Strategy  
 **Classification:** UNCLASSIFIED / PROPRIETARY  
@@ -13,7 +13,7 @@
 
 Modern industrial operations—specifically in subsurface mining, mineral extraction, and aerospace analogs—increasingly rely on real-time cloud connectivity. In Denied, Degraded, Intermittent, and Limited (DDIL) environments, this dependency creates a critical failure point. When the link is severed, operations halt, data is lost, and safety systems degrade.
 
-ARK (Autonomous Resilient Kernel) is a sovereign infrastructure stack designed to eliminate this fragility. It provides enterprise-grade compute, storage, and logic execution at the extreme edge, capable of indefinite operation without external connectivity or human intervention.
+VITO (Vital Isolated Tactical Operator) is a sovereign infrastructure stack designed to eliminate this fragility. It provides enterprise-grade compute, storage, and logic execution at the extreme edge, capable of indefinite operation without external connectivity or human intervention.
 
 **Core Principle:** Software should be robust enough to run in the dark.
 
@@ -45,11 +45,11 @@ Remote sites rarely have DevOps engineers on standby. A system that requires a c
 
 ## 3.0 SYSTEM ARCHITECTURE
 
-ARK is not a "hybrid cloud" extension; it is a **Sovereign Node**. It treats the cloud as a luxury, not a dependency.
+VITO is not a "hybrid cloud" extension; it is a **Sovereign Node**. It treats the cloud as a luxury, not a dependency.
 
 ### 3.1 The Entropy-Hardened Kernel
 
-ARK utilizes a minimalist, stripped-down virtualization layer designed for Mean Time To Recovery (MTTR).
+VITO utilizes a minimalist, stripped-down virtualization layer designed for Mean Time To Recovery (MTTR).
 
 **Watchdog Architecture:** Hardware-level timers monitor the OS kernel. In the event of a software hang, the node executes a hard power cycle and cold boots without human interaction.
 
@@ -59,7 +59,7 @@ ARK utilizes a minimalist, stripped-down virtualization layer designed for Mean 
 
 ### 3.2 Power-Aware Orchestration
 
-Unlike standard servers which run at 100% until they crash, ARK is aware of its energy envelope (e.g., Solar Array voltage, Battery SoC).
+Unlike standard servers which run at 100% until they crash, VITO is aware of its energy envelope (e.g., Solar Array voltage, Battery SoC).
 
 **Level 1 (Nominal):** Full capabilities (AI Analytics, Dashboards, Remote Access)  
 **Level 2 (Conservation):** Background analytics suspended  
@@ -69,7 +69,7 @@ Unlike standard servers which run at 100% until they crash, ARK is aware of its 
 
 ### 3.3 Store-and-Forward Telemetry
 
-ARK buffers terabytes of high-frequency sensor data locally on NVMe storage. When the link returns, it intelligently bursts compressed summaries to headquarters, preserving the full high-resolution historical record locally for later audit.
+VITO buffers terabytes of high-frequency sensor data locally on NVMe storage. When the link returns, it intelligently bursts compressed summaries to headquarters, preserving the full high-resolution historical record locally for later audit.
 
 **No Data Loss Policy:** Every sensor reading is logged atomically. Network failures do not result in data loss.
 
@@ -87,7 +87,7 @@ ARK buffers terabytes of high-frequency sensor data locally on NVMe storage. Whe
 - Manual intervention required
 - **Result:** Lost data, compliance violation, production halt
 
-**ARK Response:**
+**VITO Response:**
 1. Detects loss of backhaul. Switches telemetry to "Store-and-Forward" mode (local NVMe caching)
 2. Detects voltage drop. Sheds non-essential visualization containers
 3. Maintains 100% of sensor fidelity locally
@@ -101,7 +101,7 @@ ARK buffers terabytes of high-frequency sensor data locally on NVMe storage. Whe
 
 **Standard Tech:** Relies on "Ground Control" for error resolution.
 
-**ARK Response:** Acts as the local "Mission Control." It hosts a local repository of documentation, repair manuals, and decision logic, allowing the system (or local crew) to resolve faults without waiting for Earth-side instructions.
+**VITO Response:** Acts as the local "Mission Control." It hosts a local repository of documentation, repair manuals, and decision logic, allowing the system (or local crew) to resolve faults without waiting for Earth-side instructions.
 
 **Application:** Lunar mining operations, Mars habitats, deep-space exploration platforms.
 
@@ -111,7 +111,7 @@ ARK buffers terabytes of high-frequency sensor data locally on NVMe storage. Whe
 
 **Standard Tech:** Site controllers panic during power fluctuations, lose configuration, require truck rolls.
 
-**ARK Response:** 
+**VITO Response:** 
 - Graceful degradation during power dips
 - Configuration survives brownouts
 - Autonomous recovery without human intervention
@@ -121,7 +121,7 @@ ARK buffers terabytes of high-frequency sensor data locally on NVMe storage. Whe
 
 ## 5.0 VALIDATION: MOBILE NODE ALPHA
 
-The ARK architecture has been validated through extensive field testing via **Mobile Node Alpha**, a terrestrial analog platform built on a ruggedized Ford E-450 chassis.
+The VITO architecture has been validated through extensive field testing via **Mobile Node Alpha**, a terrestrial analog platform built on a ruggedized Ford E-450 chassis.
 
 **Test Duration:** 12+ months of continuous operation  
 **Environmental Stressors:** Tested under active vibration (transit), unconditioned thermal variances, and variable renewable power inputs  
@@ -164,9 +164,9 @@ Services can be deployed incrementally based on available resources.
 
 ## 7.0 CONCLUSION
 
-ARK represents a shift from "Connected Industrial IoT" to **"Sovereign Industrial Autonomy."** It ensures that the value of a remote site—its data and its production—is preserved regardless of the state of the grid or the network.
+VITO represents a shift from "Connected Industrial IoT" to **"Sovereign Industrial Autonomy."** It ensures that the value of a remote site—its data and its production—is preserved regardless of the state of the grid or the network.
 
-**Strategic Position:** ARK is not a cloud extension. It is a sovereign operational technology (OT) layer designed for the extreme edge—where connectivity is a luxury, power is constrained, and human intervention is impossible.
+**Strategic Position:** VITO is not a cloud extension. It is a sovereign operational technology (OT) layer designed for the extreme edge—where connectivity is a luxury, power is constrained, and human intervention is impossible.
 
 **Applications:**
 - Direct Lithium Extraction (DLE) facilities

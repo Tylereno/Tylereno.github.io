@@ -3,253 +3,562 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tyler Eno - Industrial Systems Architect specializing in sovereign infrastructure for disconnected and hostile environments. Expert in autonomous server kernels, critical infrastructure, and DDIL operations.">
-    <meta name="keywords" content="Industrial Systems Architect, ARK, autonomous infrastructure, edge computing, DDIL environments, critical infrastructure, lithium extraction, off-grid systems">
-    
-    <!-- Open Graph / Facebook -->
+    <meta name="description" content="Tyler Eno - Systems Architect & Technical Product Manager specializing in autonomous edge-computing platforms for DDIL environments. Creator of VITO (Vital Isolated Tactical Operator).">
+    <meta name="keywords" content="Systems Architect, Technical Product Manager, VITO, edge computing, DDIL, autonomous infrastructure, microgrid controller, defense tech">
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tylereno.me/">
-    <meta property="og:title" content="Tyler Eno | Industrial Systems Architect">
-    <meta property="og:description" content="Bridging the gap between heavy infrastructure and digital intelligence. Sovereign operational technology for DDIL environments.">
-    
-    <!-- Twitter -->
+    <meta property="og:title" content="Tyler Eno | Systems Architect & Technical Product Manager">
+    <meta property="og:description" content="Building autonomous edge-computing platforms for DDIL environments. Creator of VITO (Vital Isolated Tactical Operator).">
+
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://tylereno.me/">
-    <meta property="twitter:title" content="Tyler Eno | Industrial Systems Architect">
-    <meta property="twitter:description" content="Bridging the gap between heavy infrastructure and digital intelligence. Sovereign operational technology for DDIL environments.">
-    
-    <title>Tyler Eno | Industrial Systems Architect</title>
+    <meta property="twitter:title" content="Tyler Eno | Systems Architect & Technical Product Manager">
+    <meta property="twitter:description" content="Building autonomous edge-computing platforms for DDIL environments. Creator of VITO (Vital Isolated Tactical Operator).">
+
+    <title>Tyler Eno | Systems Architect & Technical Product Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { primaryColor: '#000000', primaryTextColor: '#000000', primaryBorderColor: '#000000', lineColor: '#000000', secondaryColor: '#f5f5f5', tertiaryColor: '#ffffff' } });
-    </script>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html" title="Home">HOME</a></li>
-            <li><a href="operations.html" title="Client Projects & Case Studies">OPERATIONS</a></li>
-            <li><a href="ark.html" title="ARK Series">ARK</a></li>
-            <li><a href="ventures.html" title="Companies Founded & Owned">VENTURES</a></li>
-            <li><a href="journal.html" title="Technical Journal">LOGS</a></li>
-            <li><a href="consultation.html" title="Consulting Services">CONSULTATION</a></li>
-        </ul>
-    </nav>
 
-    <header class="hero">
-        <h1>TYLER ENO</h1>
-        <h2>INDUSTRIAL SYSTEMS ARCHITECT</h2>
-        <span class="tagline">Status: <span class="status-indicator"></span> SYSTEMS OPERATIONAL</span>
-    </header>
-
-    <div class="trust-bar-container">
-        <div class="trust-item">
-            <span class="trust-org">EVgo</span>
-            <span class="trust-role">PROJECT MANAGER</span>
-            <span class="trust-context">NATIONAL EV NETWORK</span>
-        </div>
-
-        <div class="trust-divider"></div>
-
-        <div class="trust-item">
-            <span class="trust-org">ARK-NODE</span>
-            <span class="trust-role">LEAD DEVELOPER</span>
-            <span class="trust-context">AUTONOMOUS INFRASTRUCTURE</span>
-        </div>
-
-        <div class="trust-divider"></div>
-
-        <div class="trust-item">
-            <span class="trust-org">CRITICAL INFRASTRUCTURE</span>
-            <span class="trust-role">POWER LOGISTICS</span>
-            <span class="trust-context">LARGE-SCALE TEMPORARY OPS</span>
-        </div>
-
-        <div class="trust-divider"></div>
-
-        <div class="trust-item">
-            <span class="trust-org">OFF-GRID SOLAR SUPPLY</span>
-            <span class="trust-role">SYSTEMS ENGINEER</span>
-            <span class="trust-context">SOLAR TRAILER DEPLOYMENT</span>
-        </div>
-
-        <div class="trust-divider"></div>
-
-        <div class="trust-item">
-            <span class="trust-org">SUN-WAVE</span>
-            <span class="trust-role">SYSTEMS ARCHITECT</span>
-            <span class="trust-context">EXPEDITION RV POWER</span>
+<!-- Navigation -->
+<nav class="nav" id="nav">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">
+            <span class="nav-logo-icon">V</span>
+            <span class="nav-logo-text">TYLER ENO</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="#demo">VITO</a>
+            <a href="#architecture">ARCHITECTURE</a>
+            <a href="#experience">EXPERIENCE</a>
+            <a href="#contact">CONTACT</a>
         </div>
     </div>
+</nav>
 
-    <section class="container">
-        <div class="abstract">
-            <p>I bridge the gap between heavy infrastructure and digital intelligence. With a background in national EV charging networks (EVgo) and temporary critical infrastructure, I engineer the nervous systems that keep physical assets online. From lithium extraction in Arkansas to artisan manufacturing, I build systems that survive the elements.</p>
+<!-- ============================================ -->
+<!-- SECTION 1: HERO                              -->
+<!-- ============================================ -->
+<section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-scanlines"></div>
+    <div class="container hero-content">
+        <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            SYSTEMS ONLINE
         </div>
-    </section>
-
-    <section class="container">
-        <h3>ARK NODE ARCHITECTURE</h3>
-        <div class="diagram-container">
-            <div class="diagram-label">// SYSTEM_SCHEMATIC_V4.0</div>
-            <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#000000', 'lineColor': '#000000', 'secondaryColor': '#f5f5f5', 'tertiaryColor': '#ffffff', 'background': '#fafafa', 'mainBkg': '#ffffff', 'secondBkg': '#f5f5f5', 'textColor': '#000000'}}}%%
-graph TB
-    %% Define styles
-    classDef hardware fill:#ffffff,stroke:#000000,stroke-width:2px,color:#000000
-    classDef logic fill:#f5f5f5,stroke:#000000,stroke-width:1px,stroke-dasharray: 5 5,color:#000000
-    classDef storage fill:#ffffff,stroke:#000000,stroke-width:2px,color:#000000
-    classDef cognitive fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000000
-
-    subgraph Power_Layer["POWER & ENERGY"]
-        direction TB
-        Solar[Solar Array 2kW] --> CC[Charge Controller]
-        Grid[Grid / Shore Power] --> CC
-        CC --> LiFePO4[LiFePO4 Battery Bank]
-        LiFePO4 --> PSU[Server PSU & Buck Converters]
-    end
-
-    subgraph Resilience_Layer["AUTONOMOUS RECOVERY"]
-        Watchdog[Hardware Watchdog] -->|Hard Reset| Host
-        UPS[UPS Backup] --> Host
-        VOLT[Voltage Sensors] --> Orch
-    end
-
-    subgraph Compute_Layer["COMPUTE KERNEL"]
-        direction TB
-        Host[Linux Docker Host]
-        Orch[Docker Orchestration]
-        Host --> Orch
-        Orch --> APP1[Data Logger]
-        Orch --> APP2[Telemetry Forwarder]
-        Orch --> APP3[Safety Controllers]
-        Orch --> APP4[Monitoring Stack]
-    end
-
-    subgraph Cognitive_Core["COGNITIVE CORE"]
-        direction TB
-        Orch --> Ollama[Ollama Inference Engine]
-        Ollama --> Model1[granite4:3b]
-        Ollama --> Model2[qwen2.5:3b]
-        Ollama --> Embed[nomic-embed-text]
-        Model1 --> CrewAI[CrewAI Orchestrator]
-        Model2 --> CrewAI
-        Embed --> VectorMem[Vector Memory<br/>ChromaDB]
-        VectorMem --> CrewAI
-        CrewAI --> Agent1[SysAdmin Agent]
-        CrewAI --> Agent2[Strategist Agent]
-        CrewAI --> Agent3[Writer Agent]
-        CrewAI --> Agent4[Editor Agent]
-        Agent1 --> DockerSock[Docker Socket]
-        Agent2 --> SerperAPI[SerperDev API]
-        Agent2 --> Internet[Internet]
-    end
-
-    subgraph Storage_Layer["ATOMIC STORAGE"]
-        direction TB
-        NVMe[NVMe RAID 1]
-        Log[Immutable Logs]
-        APP1 --> NVMe
-        APP2 --> NVMe
-        APP3 --> NVMe
-        CrewAI --> RunHistory[Run History]
-        RunHistory --> NVMe
-        NVMe --> Log
-        Log --> BUFFER[Store & Forward Buffer]
-    end
-
-    subgraph Mission_Control["MISSION CONTROL"]
-        direction TB
-        CrewAI --> Status[Status]
-        Status --> FastAPI[FastAPI Backend<br/>Port 8085]
-        FastAPI --> NextJS[Next.js Dashboard<br/>Port 3003]
-        NextJS --> Operator[Operator]
-    end
-
-    subgraph Network_Layer["MESH & TRANSPORT"]
-        direction TB
-        Mesh[Zero-Trust Mesh / VPN]
-        Telem[LoRa Telemetry]
-        BUFFER --> Mesh
-        APP4 --> Mesh
-        Host --> Telem
-        NextJS --> RemoteAccess[Remote Access]
-        RemoteAccess --> Mesh
-    end
-
-    subgraph Observability["OBSERVABILITY"]
-        APP4 --> DATADOG[Datadog Metrics]
-        APP4 --> SENTRY[Sentry Error Tracking]
-        FastAPI --> HealthStatus[Health Status]
-        HealthStatus --> DATADOG
-        Mesh --> REMOTE[Remote Access]
-    end
-
-    %% Inter-layer connections
-    PSU ==> Host
-    Watchdog -.->|Heartbeat| Orch
-
-    %% Styling
-    class Solar,Grid,CC,LiFePO4,PSU,Host,NVMe,Watchdog,UPS hardware
-    class Orch,APP1,APP2,APP3,APP4,Mesh,Telem logic
-    class Log,BUFFER storage
-    class DATADOG,SENTRY,REMOTE,VOLT logic
-    class Ollama,Model1,Model2,Embed,CrewAI,VectorMem,Agent1,Agent2,Agent3,Agent4,DockerSock,SerperAPI,Internet,Status,FastAPI,NextJS,Operator,RunHistory,HealthStatus,RemoteAccess cognitive
+        <h1 class="hero-title">
+            Systems Architect &<br>
+            <span class="hero-title-accent">Technical Product Manager</span>
+        </h1>
+        <p class="hero-subtitle">
+            Building autonomous edge-computing platforms for
+            <span class="hero-highlight">DDIL</span> environments.
+        </p>
+        <p class="hero-subtitle-detail">
+            Denied, Degraded, Intermittent &amp; Limited connectivity
+        </p>
+        <div class="hero-ctas">
+            <a href="#demo" class="btn btn-primary">
+                <span class="btn-icon">&#9654;</span>
+                Watch Demo
+            </a>
+            <a href="RESUME.pdf" target="_blank" class="btn btn-outline">
+                <span class="btn-icon">&#8595;</span>
+                Download Resume
+            </a>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-value">33+</span>
+                <span class="hero-stat-label">Containers</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+                <span class="hero-stat-value">250ms</span>
+                <span class="hero-stat-label">FSM Loop</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+                <span class="hero-stat-value">100%</span>
+                <span class="hero-stat-label">Data Retention</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+                <span class="hero-stat-value">&lt;60s</span>
+                <span class="hero-stat-label">MTTR</span>
             </div>
         </div>
-        <p style="font-size: 0.85rem; color: var(--gray); margin-top: 1rem; text-align: center;">Autonomous infrastructure stack for DDIL environments with Cognitive AI layer. Hardware watchdog architecture with power-aware orchestration, 100% data retention, and autonomous AI agent workforce.</p>
-    </section>
+    </div>
+</section>
 
-    <section class="container">
-        <h3>SELECTED CASE STUDIES</h3>
-        <div class="grid">
-            <div class="case-study">
-                <h4>ARK: Sovereign Edge Infrastructure</h4>
-                <p><strong>Challenge:</strong> Remote industrial sites lose connectivity and data during outages.</p>
-                <p><strong>Solution:</strong> Autonomous server kernel with hardware watchdog, power-aware orchestration, and 100% data retention.</p>
-                <p><strong>Result:</strong> 99.9% uptime, zero data loss during 72+ hour network outages, validated via Mobile Node Alpha.</p>
-                <p style="margin-top: 1rem;">
-                    <a href="operations.html#ark" class="btn btn-secondary">VIEW CASE STUDY</a>
+<!-- ============================================ -->
+<!-- SECTION 2: VITO DEMO                         -->
+<!-- ============================================ -->
+<section class="section demo-section" id="demo">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">// FLAGSHIP PROJECT</span>
+            <h2 class="section-title">VITO<span class="accent">:</span> Vital Isolated Tactical Operator</h2>
+            <p class="section-desc">
+                An autonomous edge operating system functioning as Kubernetes for critical infrastructure.
+                Currently the focus of a <span class="accent">US Space Force STTR grant proposal</span> (Topic SF25D-T1201).
+            </p>
+        </div>
+
+        <div class="demo-video-container">
+            <div class="demo-video-frame">
+                <div class="demo-video-topbar">
+                    <div class="demo-video-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="demo-video-title">vito-series-4 &mdash; sovereign dashboard</span>
+                    <span class="demo-video-status">
+                        <span class="status-dot"></span> LIVE
+                    </span>
+                </div>
+                <div class="demo-video-placeholder">
+                    <div class="demo-placeholder-content">
+                        <div class="demo-placeholder-icon">
+                            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                                <circle cx="40" cy="40" r="38" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                                <polygon points="32,24 60,40 32,56" fill="currentColor" opacity="0.6"/>
+                            </svg>
+                        </div>
+                        <p class="demo-placeholder-text">VITO Series-4 Dashboard Demo</p>
+                        <p class="demo-placeholder-sub">React Dashboard &bull; C++20 FSM &bull; 33+ Docker Containers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-actions">
+            <a href="ARK-CONOPS.pdf" target="_blank" class="btn btn-primary btn-lg">
+                <span class="btn-icon">&#128196;</span>
+                Download the Full Technical Architecture Deck
+            </a>
+            <a href="https://github.com/Tylereno/vito-node" target="_blank" class="btn btn-outline">
+                <span class="btn-icon">&lt;/&gt;</span>
+                View Source on GitHub
+            </a>
+        </div>
+
+        <div class="demo-features">
+            <div class="demo-feature">
+                <div class="demo-feature-icon">&#9879;</div>
+                <h4>Autonomous Recovery</h4>
+                <p>Hardware watchdog with &lt;60s MTTR. Self-healing architecture requires zero human intervention.</p>
+            </div>
+            <div class="demo-feature">
+                <div class="demo-feature-icon">&#9889;</div>
+                <h4>Energy-Aware Orchestration</h4>
+                <p>4-tier intelligent load shedding extends critical uptime by 400% during solar droughts.</p>
+            </div>
+            <div class="demo-feature">
+                <div class="demo-feature-icon">&#128274;</div>
+                <h4>Zero-Trust Security</h4>
+                <p>Tailscale mesh networking with WireGuard encryption. Air-gap ready, no open firewall ports.</p>
+            </div>
+            <div class="demo-feature">
+                <div class="demo-feature-icon">&#129302;</div>
+                <h4>Local AI Inference</h4>
+                <p>6 on-board AI agents manage system resilience via local GPU. No cloud API dependencies.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 3: ARCHITECTURE & TECH STACK         -->
+<!-- ============================================ -->
+<section class="section arch-section" id="architecture">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">// CORE ENGINEERING</span>
+            <h2 class="section-title">Architecture & Tech Stack</h2>
+        </div>
+
+        <div class="arch-grid">
+            <!-- Column 1 -->
+            <div class="arch-card">
+                <div class="arch-card-header">
+                    <span class="arch-card-number">01</span>
+                    <h3 class="arch-card-title">Decoupled Microgrid Controller</h3>
+                </div>
+                <div class="arch-card-body">
+                    <div class="arch-spec">
+                        <span class="arch-spec-label">Core Logic</span>
+                        <span class="arch-spec-value">C++20 daemon operating an 8-state Finite State Machine</span>
+                    </div>
+                    <div class="arch-spec">
+                        <span class="arch-spec-label">Execution</span>
+                        <span class="arch-spec-value">Strict 250ms evaluation loops ensuring deterministic grid balancing</span>
+                    </div>
+                    <div class="arch-spec">
+                        <span class="arch-spec-label">Dispatch</span>
+                        <span class="arch-spec-value">Sub-500ms physical hardware dispatch via gRPC (e.g., SetGridConnection for instant islanding)</span>
+                    </div>
+                    <div class="arch-tags">
+                        <span class="arch-tag">C++20</span>
+                        <span class="arch-tag">gRPC</span>
+                        <span class="arch-tag">FSM</span>
+                        <span class="arch-tag">250ms Loop</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="arch-card">
+                <div class="arch-card-header">
+                    <span class="arch-card-number">02</span>
+                    <h3 class="arch-card-title">Modular Profile Architecture</h3>
+                </div>
+                <div class="arch-card-body">
+                    <div class="arch-spec">
+                        <span class="arch-spec-label">Infrastructure</span>
+                        <span class="arch-spec-value">33+ container ecosystem managed by a Node.js/React core</span>
+                    </div>
+                    <div class="arch-spec">
+                        <span class="arch-spec-label">Deployment Shifting</span>
+                        <span class="arch-spec-value">Docker Compose overrides allow a single node to instantly shift from a zero-exposure defense controller to an industrial sensor hub</span>
+                    </div>
+                    <div class="arch-spec">
+                        <span class="arch-spec-label">AI Management</span>
+                        <span class="arch-spec-value">6 local AI agents managing system resilience and watchdog timers</span>
+                    </div>
+                    <div class="arch-tags">
+                        <span class="arch-tag">Docker</span>
+                        <span class="arch-tag">Node.js</span>
+                        <span class="arch-tag">React</span>
+                        <span class="arch-tag">Ollama</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 3 -->
+            <div class="arch-card">
+                <div class="arch-card-header">
+                    <span class="arch-card-number">03</span>
+                    <h3 class="arch-card-title">Zero-Trust & Offline Resilience</h3>
+                </div>
+                <div class="arch-card-body">
+                    <div class="arch-spec">
+                        <span class="arch-spec-label">Networking</span>
+                        <span class="arch-spec-value">Integrated Tailscale mesh network for secure, zero-trust command and control</span>
+                    </div>
+                    <div class="arch-spec">
+                        <span class="arch-spec-label">Data Retention</span>
+                        <span class="arch-spec-value">Offline-first telemetry queuing (In-memory to Disk) guarantees 100% data retention during total backhaul outages</span>
+                    </div>
+                    <div class="arch-spec">
+                        <span class="arch-spec-label">Observability</span>
+                        <span class="arch-spec-value">Auto-provisioned Grafana dashboards, InfluxDB, and Telegraf for high-frequency telemetry ingestion via MQTT</span>
+                    </div>
+                    <div class="arch-tags">
+                        <span class="arch-tag">Tailscale</span>
+                        <span class="arch-tag">MQTT</span>
+                        <span class="arch-tag">InfluxDB</span>
+                        <span class="arch-tag">Grafana</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Architecture Diagram -->
+        <div class="arch-diagram">
+            <div class="arch-diagram-title">VITO SERIES-4 &mdash; SYSTEM ARCHITECTURE</div>
+            <div class="arch-layers">
+                <div class="arch-layer-row">
+                    <div class="arch-layer-box cognitive">
+                        <span class="arch-layer-label">COGNITIVE TIER</span>
+                        <div class="arch-layer-items">
+                            <span>OTTO (Product Manager / AI)</span>
+                            <span>VERA (Intel + History)</span>
+                            <span>MASON (Resources)</span>
+                        </div>
+                        <div class="arch-layer-note">Local LLM &bull; No Cloud Dependency</div>
+                    </div>
+                </div>
+                <div class="arch-layer-connector">&#8595;</div>
+                <div class="arch-layer-row">
+                    <div class="arch-layer-box operational">
+                        <span class="arch-layer-label">OPERATIONAL TIER &mdash; The Crew</span>
+                        <div class="arch-layer-items">
+                            <span>VIGIL (Resilience Lead)</span>
+                            <span>KINETIC (Power Engineer)</span>
+                            <span>STOW (Data Steward)</span>
+                            <span>GHOST (NetSec Op)</span>
+                            <span>FORGE (DevOps Builder)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="arch-layer-connector">&#8595;</div>
+                <div class="arch-layer-row">
+                    <div class="arch-layer-box hardware">
+                        <span class="arch-layer-label">HARDWARE + PHYSICAL INTERFACE</span>
+                        <div class="arch-layer-items">
+                            <span>Thermal/CPU Sensors</span>
+                            <span>BMS + Solar Power</span>
+                            <span>NVMe Atomic Storage</span>
+                            <span>LoRa/Mesh Networking</span>
+                            <span>Docker Services</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="arch-layer-connector"></div>
+                <div class="arch-layer-row arch-guarantees">
+                    <div class="arch-guarantee"><span>&#128737;</span> HW Safety</div>
+                    <div class="arch-guarantee"><span>&#9889;</span> 4x Battery</div>
+                    <div class="arch-guarantee"><span>&#128274;</span> Zero Data Loss</div>
+                    <div class="arch-guarantee"><span>&#128225;</span> Denied Area Comms</div>
+                    <div class="arch-guarantee"><span>&#128260;</span> Self-Healing</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 4: OPERATIONAL EXPERIENCE            -->
+<!-- ============================================ -->
+<section class="section exp-section" id="experience">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">// OPERATIONAL HISTORY</span>
+            <h2 class="section-title">Professional Experience</h2>
+        </div>
+
+        <div class="timeline">
+            <!-- VITO -->
+            <div class="timeline-item">
+                <div class="timeline-marker active"></div>
+                <div class="timeline-content">
+                    <div class="timeline-meta">
+                        <span class="timeline-date">Early 2026 &mdash; Present</span>
+                        <span class="timeline-badge current">CURRENT</span>
+                    </div>
+                    <h3 class="timeline-title">VITO (Vital Isolated Tactical Operator)</h3>
+                    <span class="timeline-role">Lead Architect & Developer</span>
+                    <ul class="timeline-details">
+                        <li>Architected an autonomous edge operating system functioning as Kubernetes for critical infrastructure</li>
+                        <li>Focus of a US Space Force STTR grant proposal (Topic SF25D-T1201) in partnership with university researchers</li>
+                        <li>Engineered a decoupled C++20 microgrid controller with an 8-state FSM on a strict 250ms evaluation loop</li>
+                        <li>Built modular deployment architecture using Docker Compose overrides managing 33+ containers</li>
+                        <li>Designed offline-first telemetry queuing with zero-trust mesh guaranteeing 100% data retention</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Principal Investigator -->
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-meta">
+                        <span class="timeline-date">2025 &mdash; Present</span>
+                    </div>
+                    <h3 class="timeline-title">Independent Scientific Research & Development</h3>
+                    <span class="timeline-role">Principal Investigator &bull; Remote</span>
+                    <ul class="timeline-details">
+                        <li>Directing R&D in autonomous edge-compute architectures for DDIL-resilient microgrid controllers</li>
+                        <li>Engineered offline-first AI infrastructure with custom server and virtualized Linux testbed</li>
+                        <li>Architected AI-driven ERP platform for automated workflow estimation and supply chain tracking</li>
+                        <li>Managed full system lifecycle for high-concurrency relational databases and multi-tenant platforms</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Smackover -->
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-meta">
+                        <span class="timeline-date">2024 &mdash; 2025</span>
+                    </div>
+                    <h3 class="timeline-title">Smackover Resources</h3>
+                    <span class="timeline-role">Co-Founder & COO &bull; Remote / On-site</span>
+                    <ul class="timeline-details">
+                        <li>Spearheaded operational launch of a Direct Lithium Extraction (DLE) startup</li>
+                        <li>Authored technical documentation and feasibility reports translating complex chemical engineering data</li>
+                        <li>Orchestrated high-level stakeholder meetings with investors and partners</li>
+                        <li>Executed deep regulatory due diligence for extraction workflow compliance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- EVgo -->
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-meta">
+                        <span class="timeline-date">2023 &mdash; 2024</span>
+                    </div>
+                    <h3 class="timeline-title">EVgo</h3>
+                    <span class="timeline-role">Project Manager, Deployment &bull; Los Angeles, CA</span>
+                    <ul class="timeline-details">
+                        <li>Managed end-to-end deployment of EV charging infrastructure: site acquisition, design, permitting, energization</li>
+                        <li>Facilitated complex negotiations with utility companies, municipal agencies, and contractors</li>
+                        <li>Optimized cross-functional workflows to accelerate grid interconnection timelines</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sunwave -->
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-meta">
+                        <span class="timeline-date">2017 &mdash; 2023</span>
+                    </div>
+                    <h3 class="timeline-title">Sunwave Van Conversions</h3>
+                    <span class="timeline-role">Owner & Lead Engineer &bull; Lancaster, CA</span>
+                    <ul class="timeline-details">
+                        <li>Founded and scaled a specialized design and construction firm for high-end custom vehicle conversions</li>
+                        <li>Engineered modular, plug-and-play solar power systems with 100+ installations and 100% safety record</li>
+                        <li>Developed data-driven estimation engine reducing quote generation time by 40%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Burning Man -->
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-meta">
+                        <span class="timeline-date">2018 &mdash; 2019</span>
+                    </div>
+                    <h3 class="timeline-title">Burning Man Project</h3>
+                    <span class="timeline-role">Electrical Lead & Product Owner &bull; Black Rock City, NV</span>
+                    <ul class="timeline-details">
+                        <li>Architected 10,000+ node relational database in a completely off-grid desert environment</li>
+                        <li>Leveraged data analytics driving a $1M+ contract renegotiation with &gt;10% fuel usage reduction</li>
+                        <li>Directed renewable energy transition: 5 major power grids from diesel to solar</li>
+                        <li>Engineered electrical grid layouts for 40+ temporary power grids (25 kW &ndash; 600 kW)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Off-Grid Solar -->
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-meta">
+                        <span class="timeline-date">2015 &mdash; 2020</span>
+                    </div>
+                    <h3 class="timeline-title">Off-Grid Solar Supply</h3>
+                    <span class="timeline-role">Owner &bull; Lancaster, CA</span>
+                    <ul class="timeline-details">
+                        <li>Deployed mobile energy solutions for large-scale events with 3.5 kW solar/battery bank trailers</li>
+                        <li>Consulted on off-grid energy needs ensuring power reliability in remote environments</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="education-block">
+            <h3 class="education-title">Education & Certifications</h3>
+            <div class="education-grid">
+                <div class="education-item">
+                    <span class="education-school">West Valley College</span>
+                    <span class="education-detail">Engineering (MESA Program) &bull; Current Student</span>
+                </div>
+                <div class="education-item">
+                    <span class="education-school">Google Project Management Certificate</span>
+                    <span class="education-detail">Coursera &bull; 2022</span>
+                </div>
+                <div class="education-item">
+                    <span class="education-school">Delgado Community College</span>
+                    <span class="education-detail">Computer Aided Design and Drafting (CADD) &bull; 2013&ndash;2014</span>
+                </div>
+                <div class="education-item">
+                    <span class="education-school">University of New Orleans</span>
+                    <span class="education-detail">Electrical Engineering &bull; 2010&ndash;2013</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 5: CONTACT / FOOTER                  -->
+<!-- ============================================ -->
+<footer class="footer" id="contact">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-main">
+                <h2 class="footer-title">Get in Touch</h2>
+                <p class="footer-desc">
+                    Available for architecture design, system implementation, and defense-tech product management engagements.
                 </p>
+                <div class="footer-links">
+                    <a href="mailto:t.eno992@gmail.com" class="btn btn-primary">
+                        <span class="btn-icon">&#9993;</span>
+                        t.eno992@gmail.com
+                    </a>
+                    <a href="RESUME.pdf" target="_blank" class="btn btn-outline">
+                        <span class="btn-icon">&#8595;</span>
+                        Resume (PDF)
+                    </a>
+                </div>
             </div>
-            
-            <div class="case-study">
-                <h4>Direct Lithium Extraction (DLE)</h4>
-                <p><strong>Challenge:</strong> Arkansas Smackover formation requires sovereign infrastructure for remote operations.</p>
-                <p><strong>Solution:</strong> Store-and-forward telemetry with local NVMe caching, autonomous recovery systems.</p>
-                <p><strong>Result:</strong> Continuous operation in DDIL environments, eliminating $50K-200K/hour downtime costs.</p>
-                <p style="margin-top: 1rem;">
-                    <a href="ventures.html#smackover" class="btn btn-secondary">VIEW VENTURE</a>
-                </p>
+            <div class="footer-info">
+                <div class="footer-info-block">
+                    <span class="footer-info-label">Location</span>
+                    <span class="footer-info-value">San Jose, CA</span>
+                </div>
+                <div class="footer-info-block">
+                    <span class="footer-info-label">Phone</span>
+                    <span class="footer-info-value">(504) 410-7420</span>
+                </div>
+                <div class="footer-info-block">
+                    <span class="footer-info-label">Portfolio</span>
+                    <span class="footer-info-value"><a href="https://tylereno.me">tylereno.me</a></span>
+                </div>
+                <div class="footer-info-block">
+                    <span class="footer-info-label">GitHub</span>
+                    <span class="footer-info-value"><a href="https://github.com/Tylereno" target="_blank">github.com/Tylereno</a></span>
+                </div>
             </div>
         </div>
-    </section>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Tyler Eno. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
 
-    <section class="container">
-        <h3>QUICK ACCESS</h3>
-        <p>
-            <a href="RESUME.pdf" class="btn" target="_blank">RESUME (PDF)</a>
-            <a href="ARK-CONOPS.pdf" class="btn" target="_blank">READ CONOPS (PDF)</a>
-            <a href="https://github.com/Tylereno/ark-node" class="btn" target="_blank">VIEW SOURCE (GITHUB)</a>
-        </p>
-    </section>
+<script>
+(function() {
+    const nav = document.getElementById('nav');
+    let lastScroll = 0;
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+        lastScroll = window.scrollY;
+    });
 
-    <section class="container" style="background: var(--gray-light); padding: 2rem; border: 1px solid var(--black);">
-        <h3>CONSULTATION SERVICES</h3>
-        <p>I architect sovereign infrastructure systems for industrial operations in disconnected and hostile environments. Available for architecture design, system implementation, and operational optimization projects.</p>
-        <p style="margin-top: 1rem;">
-            <a href="consultation.html" class="btn">VIEW SERVICES</a>
-            <a href="mailto:t.eno992@gmail.com?subject=Consultation Inquiry" class="btn btn-secondary">REQUEST CONSULTATION</a>
-        </p>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Tyler Eno. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;">
-            Email: <a href="mailto:t.eno992@gmail.com">t.eno992@gmail.com</a> | 
-            <a href="https://linkedin.com/in/tyler-eno" target="_blank">LinkedIn</a>
-        </p>
-    </footer>
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            var target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelector('.nav-links').classList.remove('open');
+            }
+        });
+    });
+})();
+</script>
 </body>
 </html>
