@@ -1,1 +1,14 @@
 node_modules/
+.DS_Store
+
+# Vite build output (we deploy via /deck, not app dist)
+vito-apps/apps/**/dist/
+
+# Local installs
+vito-apps/apps/**/node_modules/
+
+# App-local build output (we deploy via top-level /deck)
+vito-apps/apps/**/dist/
+
+# App-local installs
+vito-apps/apps/**/node_modules/
