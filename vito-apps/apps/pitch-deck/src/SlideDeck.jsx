@@ -101,6 +101,17 @@ const ScreenshotDeck = () => {
           'Edge DevOps: Resolves Docker contexts to dynamically reallocate compute resources on the fly.',
         ],
       },
+      {
+        id: 10,
+        title: 'Next Step',
+        imageSrc: null,
+        bullets: [
+          'Consulting-first engagements for teams that need execution structure fast.',
+          'VITO remains the flagship technical proof platform behind the consulting work.',
+          'Book a 15-minute discovery call: t.eno992@gmail.com',
+        ],
+        cta: 'Let’s scope the next sprint.',
+      },
     ],
     []
   );
@@ -201,16 +212,34 @@ const ScreenshotDeck = () => {
                     ))}
                   </div>
                   <div className="h-80 md:h-full w-full">
-                    <TacticalFrame className="p-3 md:p-4">
-                      <div className="w-full h-full flex items-center justify-center">
-                        <img
-                          src={current.imageSrc}
-                          alt={current.title}
-                          className="w-full h-full object-contain"
-                          draggable={false}
-                        />
-                      </div>
-                    </TacticalFrame>
+                    {current.imageSrc ? (
+                      <TacticalFrame className="p-3 md:p-4">
+                        <div className="w-full h-full flex items-center justify-center">
+                          <img
+                            src={current.imageSrc}
+                            alt={current.title}
+                            className="w-full h-full object-contain"
+                            draggable={false}
+                          />
+                        </div>
+                      </TacticalFrame>
+                    ) : (
+                      <TacticalFrame className="p-4 md:p-6 flex items-center justify-center">
+                        <div className="max-w-xl text-center space-y-5 px-4">
+                          <p className="text-xs uppercase tracking-[0.3em] text-emerald-500 font-mono">
+                            Discovery Call
+                          </p>
+                          <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-white">
+                            {current.cta}
+                          </h3>
+                          <div className="space-y-2 text-gray-300 text-base md:text-lg leading-relaxed">
+                            <p>Tyler Eno</p>
+                            <p>t.eno992@gmail.com</p>
+                            <p>linkedin.com/in/tyler-eno</p>
+                          </div>
+                        </div>
+                      </TacticalFrame>
+                    )}
                   </div>
                 </div>
               </div>
