@@ -141,6 +141,10 @@ p {
     display: block;
 }
 
+.hero-cta-row {
+    margin-top: 1.25rem;
+}
+
 /* TRUST BAR CONTAINER */
 .trust-bar-container {
     display: flex;
@@ -588,6 +592,10 @@ a:hover {
     
     h1 {
         font-size: 2rem;
+    }
+
+    h2 {
+        line-height: 1.5;
     }
     
     nav ul {
